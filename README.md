@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 NOVIT Software - Sitio Web Oficial
 
-## Getting Started
+## 📋 Descripción del Proyecto
 
-First, run the development server:
+Sitio web moderno y responsivo para NOVIT Software, desarrollado con Next.js 14, TypeScript y Tailwind CSS. Incluye animaciones avanzadas, optimización SEO y diseño mobile-first.
 
+## 🎨 Características Principales
+
+### ✨ Diseño y UX
+- **Hero Section** con video de fondo y animaciones fluidas
+- **Sección de Servicios** con efecto "tarjetero" inspirado en Samsung Fold
+- **Grid Masonry** para casos de éxito con efectos hover
+- **Navegación sticky bottom** para móviles
+- **CTA flotante** con formulario de contacto rápido
+- **Efectos de scroll** con animaciones personalizadas
+- **Imágenes grayscale** que cambian a color al scroll/hover
+
+### 🛠 Stack Tecnológico
+- **Next.js 14** con App Router y SSR
+- **TypeScript** para type safety
+- **Tailwind CSS** con configuración personalizada
+- **GSAP** para animaciones avanzadas
+- **Framer Motion** para transiciones
+- **Lucide React** para iconografía
+
+### 🌐 Funcionalidades
+- **Multiidioma** (Español, Inglés, Catalán)
+- **SEO Optimizado** con metadatos dinámicos
+- **Performance** optimizado (LCP < 2.1s, FID < 100ms)
+- **Responsive Design** mobile-first
+- **Gestos Touch** para interacciones móviles
+
+## 🚀 Instalación y Setup
+
+### Prerrequisitos
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Node.js >= 18.0.0
+npm >= 9.0.0
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Instalación
+```bash
+# Instalar dependencias
+npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Ejecutar en desarrollo
+npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Abrir en el navegador
+# http://localhost:3000
+```
 
-## Learn More
+### Scripts Disponibles
+```bash
+npm run dev          # Desarrollo
+npm run build        # Build para producción
+npm run start        # Ejecutar build
+npm run lint         # Linter
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Estructura del Proyecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/                    # App Router (Next.js 14)
+│   ├── globals.css        # Estilos globales
+│   ├── layout.tsx         # Layout principal
+│   └── page.tsx          # Página de inicio
+├── components/
+│   ├── layout/           # Componentes de layout
+│   │   ├── Header.tsx    # Navegación principal
+│   │   └── Footer.tsx    # Footer del sitio
+│   ├── sections/         # Secciones principales
+│   │   ├── Hero.tsx      # Hero con video
+│   │   ├── Services.tsx  # Servicios con efecto tarjetero
+│   │   └── CasesGrid.tsx # Grid masonry de casos
+│   └── ui/              # Componentes UI
+│       └── FloatingCTA.tsx # CTA flotante
+├── hooks/               # Custom hooks
+│   └── useAnimations.ts # Hooks para animaciones
+├── types/              # Definiciones TypeScript
+│   └── index.ts        # Tipos principales
+└── lib/               # Utilidades
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Sistema de Diseño
 
-## Deploy on Vercel
+### Colores Principales
+```css
+--primary-color: #0A0089    /* Azul NOVIT */
+--secondary-color: #FF0080  /* Magenta */
+--accent-cyan: #00FFE1      /* Cyan */
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tipografía
+- **Principal**: Inter (Google Fonts)
+- **Alternativa**: System fonts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎬 Animaciones y Efectos
+
+### Efectos Implementados
+1. **Hero**: Partículas animadas + parallax
+2. **Servicios**: Cards con efecto tarjetero (GSAP)
+3. **Casos**: Grid masonry + hover effects
+4. **Scroll**: Animaciones on-scroll con Intersection Observer
+5. **Imágenes**: Efecto grayscale → color
+6. **Navegación**: Sticky bottom en móvil
+
+## 📱 Responsive Design
+
+### Mobile First
+- Navegación sticky bottom
+- Gestos touch habilitados
+- Optimización para thumb zone
+
+### Desktop
+- Navegación fija superior
+- Hover effects completos
+- Parallax avanzado
+
+## 📊 Métricas de Performance
+
+### Objetivos
+- **LCP**: < 2.1s
+- **FID**: < 100ms
+- **CLS**: < 0.1
+
+### Optimizaciones
+- Next.js Image Optimization
+- Font optimization
+- CSS critical path
+- JavaScript code splitting
+
+## 🌍 Idiomas Soportados
+- **Español** (es) - Principal
+- **Inglés** (en)  
+- **Catalán** (ca)
+
+## 📧 Contacto
+
+**NOVIT Software**
+- Email: info@novitsoftware.com
+- Tel: +54 11 3176 9406
+- Web: https://novitsoftware.com
+
+---
+
+**Desarrollado con ❤️ por el equipo de NOVIT Software**
