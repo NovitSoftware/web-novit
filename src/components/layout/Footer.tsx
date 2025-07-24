@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Mail, 
   Phone, 
@@ -31,10 +32,13 @@ export default function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-novit rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">N</span>
-                </div>
-                <span className="text-2xl font-bold">NOVIT</span>
+                <Image
+                  src="/novit-logo.svg"
+                  alt="NOVIT Software"
+                  width={120}
+                  height={40}
+                  className="h-8 w-auto"
+                />
               </div>
               
               <p className="text-gray-300 mb-6 leading-relaxed">
@@ -181,7 +185,7 @@ export default function Footer() {
                     placeholder="tu@email.com"
                     className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-l-lg text-sm focus:outline-none focus:border-accent-cyan"
                   />
-                  <button className="px-4 py-2 bg-gradient-novit rounded-r-lg hover:shadow-lg transition-all duration-300 text-sm font-medium">
+                  <button className="px-4 py-2 bg-gradient-novit-accent rounded-r-lg hover:shadow-lg transition-all duration-300 text-sm font-medium">
                     Suscribirse
                   </button>
                 </div>

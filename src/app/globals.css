@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
-/* Custom Novit Colors and Gradients */
+/* Custom Novit Colors and Gradients - Dark Theme Corporate */
 :root {
-  --primary-50: #f0f0ff;
-  --primary-100: #e6e6ff;
-  --primary-500: #0A0089;
-  --primary-600: #080072;
-  --primary-700: #06005a;
-  --primary-800: #040043;
-  --primary-900: #02002c;
+  --primary-50: #f8fafc;
+  --primary-100: #f1f5f9;
+  --primary-500: #1e293b;
+  --primary-600: #334155;
+  --primary-700: #475569;
+  --primary-800: #64748b;
+  --primary-900: #94a3b8;
   
-  --secondary-500: #FF0080;
-  --secondary-600: #e6006b;
-  --secondary-700: #cc0066;
+  --secondary-500: #3b82f6;
+  --secondary-600: #2563eb;
+  --secondary-700: #1d4ed8;
   
-  --accent-cyan: #00FFE1;
+  --accent-cyan: #06b6d4;
+  --accent-gold: #f59e0b;
   
-  --gradient-novit: linear-gradient(135deg, #0A0089 0%, #FF0080 50%, #00FFE1 100%);
+  /* Dark theme professional gradient */
+  --gradient-novit: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+  --gradient-novit-accent: linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #06b6d4 100%);
 }
 
 /* Utility classes for custom styles */
@@ -142,10 +145,18 @@
   animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
-/* Gradientes customizados para Novit */
+/* Gradientes customizados para Novit - Dark Theme */
 .gradient-text {
-  background: linear-gradient(135deg, #0A0089 0%, #FF0080 50%, #00FFE1 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.bg-gradient-novit {
+  background: var(--gradient-novit);
+}
+
+.bg-gradient-novit-accent {
+  background: var(--gradient-novit-accent);
 }
