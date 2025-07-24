@@ -11,10 +11,10 @@ const cases: CaseStudy[] = [
   {
     id: 'consultatio-nordelta',
     title: 'Sistema de Gestión Inmobiliaria',
-    client: 'Consultatio/Nordelta',
+    client: 'Consultatio',
     description: 'Desarrollo de plataforma integral para gestión de proyectos inmobiliarios con más de 1000 propiedades.',
     image: '/images/cases/consultatio.svg',
-    tags: ['Desarrollo Web', 'ERP', 'Real Estate'],
+    tags: ['Desarrollo Web', 'ERP'],
     year: 2024,
     hasDetailPage: true,
     results: [
@@ -25,25 +25,25 @@ const cases: CaseStudy[] = [
   },
   {
     id: 'nazca-brands',
-    title: 'Transformación Digital',
+    title: 'E-commerce de Lujo',
     client: 'Nazca Brands',
-    description: 'Implementación de soluciones de IA para optimización de procesos de marketing.',
+    description: 'Desarrollo de plataforma e-commerce para marcas de lujo con experiencia premium.',
     image: '/images/cases/nazca.svg',
-    tags: ['IA', 'Marketing', 'Automatización'],
-    year: 2024,
+    tags: ['E-commerce', 'UX/UI'],
+    year: 2023,
     hasDetailPage: true,
     results: [
-      { metric: 'Eficiencia mejorada', value: '45%' },
-      { metric: 'Campañas automatizadas', value: '500+' },
+      { metric: 'Conversión mejorada', value: '45%' },
+      { metric: 'Tiempo de carga', value: '<2s' },
     ],
   },
   {
     id: 'tecnovoz',
-    title: 'Plataforma de Comunicaciones',
+    title: 'Plataforma de Comunicaciones VoIP',
     client: 'Tecnovoz',
-    description: 'Sistema de gestión de comunicaciones empresariales con integración VoIP.',
+    description: 'Sistema de gestión de comunicaciones empresariales con integración VoIP y funcionalidades avanzadas.',
     image: '/images/cases/tecnovoz.svg',
-    tags: ['VoIP', 'Comunicaciones', 'B2B'],
+    tags: ['VoIP', 'Comunicaciones'],
     year: 2023,
     hasDetailPage: false,
   },
@@ -51,31 +51,41 @@ const cases: CaseStudy[] = [
     id: 'indec',
     title: 'Sistema Estadístico Nacional',
     client: 'INDEC',
-    description: 'Modernización de sistemas de recolección y procesamiento de datos estadísticos.',
-    image: '/images/cases/consultatio.svg',
-    tags: ['Data Science', 'Gobierno', 'Big Data'],
-    year: 2023,
-    hasDetailPage: false,
-  },
-  {
-    id: 'puig',
-    title: 'E-commerce de Lujo',
-    client: 'Puig',
-    description: 'Desarrollo de plataforma e-commerce para marcas de lujo con experiencia premium.',
-    image: '/images/cases/nazca.svg',
-    tags: ['E-commerce', 'UX/UI', 'Lujo'],
+    description: 'Modernización de sistemas de recolección y procesamiento de datos estadísticos nacionales.',
+    image: '/images/cases/indec.svg',
+    tags: ['Data Science', 'Gobierno'],
     year: 2023,
     hasDetailPage: false,
   },
   {
     id: 'salas-bim',
     title: 'Aplicación BIM Web',
-    client: 'Salas',
-    description: 'Desarrollo de aplicación web para visualización y gestión de modelos BIM.',
-    image: '/images/cases/tecnovoz.svg',
-    tags: ['BIM', 'Construcción', '3D'],
+    client: 'Grupo Salas',
+    description: 'Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción.',
+    image: '/images/cases/salas.svg',
+    tags: ['BIM', 'Construcción'],
     year: 2024,
     hasDetailPage: true,
+  },
+  {
+    id: 'eb-metrics',
+    title: 'Plataforma de Analytics',
+    client: 'EB Metrics',
+    description: 'Sistema de análisis y métricas empresariales para optimización de procesos.',
+    image: '/images/cases/consultatio.svg',
+    tags: ['Analytics', 'Data Science'],
+    year: 2023,
+    hasDetailPage: false,
+  },
+  {
+    id: 'gamma',
+    title: 'Sistema de Gestión',
+    client: 'Gamma',
+    description: 'Plataforma integral de gestión empresarial con módulos especializados.',
+    image: '/images/cases/nazca.svg',
+    tags: ['ERP', 'Gestión'],
+    year: 2023,
+    hasDetailPage: false,
   },
 ];
 
@@ -83,14 +93,10 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
   const { ref, isGrayscale, setIsHovered } = useImageEffect();
   const { ref: cardRef, isVisible } = useScrollAnimation();
 
-  // Diferentes alturas para el efecto masonry
-  const heights = ['h-80', 'h-96', 'h-72', 'h-88', 'h-80', 'h-96'];
-  const cardHeight = heights[index % heights.length];
-
   return (
     <div
       ref={cardRef as any}
-      className={`group relative overflow-hidden rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-500 ${cardHeight} ${
+      className={`group relative overflow-hidden rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-500 h-80 ${
         isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
       }`}
       style={{ animationDelay: `${index * 100}ms` }}
@@ -111,8 +117,8 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-end p-6">
-        {/* Tags */}
+      <div className="relative z-10 h-full flex flex-col justify-between p-6">
+        {/* Top Section - Tags */}
         <div className="flex flex-wrap gap-2 mb-3">
           {caseStudy.tags.slice(0, 2).map((tag) => (
             <span
@@ -124,55 +130,58 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
           ))}
         </div>
 
-        {/* Client */}
-        <p className="text-accent-cyan font-semibold text-sm mb-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
-          {caseStudy.client}
-        </p>
+        {/* Bottom Section - Main Content */}
+        <div className="space-y-3">
+          {/* Client */}
+          <p className="text-accent-cyan font-semibold text-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
+            {caseStudy.client}
+          </p>
 
-        {/* Title */}
-        <h3 className="text-white font-bold text-xl mb-2 group-hover:text-accent-cyan transition-colors duration-300">
-          {caseStudy.title}
-        </h3>
+          {/* Title */}
+          <h3 className="text-white font-bold text-xl group-hover:text-accent-cyan transition-colors duration-300 leading-tight">
+            {caseStudy.title}
+          </h3>
 
-        {/* Description */}
-        <p className="text-white/80 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-200">
-          {caseStudy.description}
-        </p>
+          {/* Description */}
+          <p className="text-white/80 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-200">
+            {caseStudy.description}
+          </p>
 
-        {/* Bottom Row */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center text-white/60 text-xs">
-            <Calendar className="w-3 h-3 mr-1" />
-            {caseStudy.year}
+          {/* Bottom Row */}
+          <div className="flex items-center justify-between pt-2">
+            <div className="flex items-center text-white/60 text-xs">
+              <Calendar className="w-3 h-3 mr-1" />
+              {caseStudy.year}
+            </div>
+
+            {caseStudy.hasDetailPage && (
+              <Link
+                href={`/casos-exito/${caseStudy.id}`}
+                className="flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-accent-cyan hover:text-primary-500 transition-all duration-300 group/btn"
+              >
+                <ArrowUpRight className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+              </Link>
+            )}
           </div>
 
-          {caseStudy.hasDetailPage && (
-            <Link
-              href={`/casos-exito/${caseStudy.id}`}
-              className="flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-accent-cyan hover:text-primary-500 transition-all duration-300 group/btn"
-            >
-              <ArrowUpRight className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-            </Link>
+          {/* Results Preview - Solo para casos con página detalle */}
+          {caseStudy.hasDetailPage && caseStudy.results && (
+            <div className="mt-4 p-3 bg-black/30 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-300">
+              <div className="grid grid-cols-2 gap-2 text-center">
+                {caseStudy.results.slice(0, 2).map((result, idx) => (
+                  <div key={idx}>
+                    <div className="text-accent-cyan font-bold text-lg">
+                      {result.value}
+                    </div>
+                    <div className="text-white/60 text-xs">
+                      {result.metric}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
-
-        {/* Results Preview - Solo para casos con página detalle */}
-        {caseStudy.hasDetailPage && caseStudy.results && (
-          <div className="mt-4 p-3 bg-black/30 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-300">
-            <div className="grid grid-cols-2 gap-2 text-center">
-              {caseStudy.results.slice(0, 2).map((result, idx) => (
-                <div key={idx}>
-                  <div className="text-accent-cyan font-bold text-lg">
-                    {result.value}
-                  </div>
-                  <div className="text-white/60 text-xs">
-                    {result.metric}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Hover Overlay */}
@@ -235,12 +244,10 @@ export default function CasesGrid() {
           ))}
         </div>
 
-        {/* Cases Grid - Masonry Layout */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+        {/* Cases Grid - Improved Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {cases.map((caseStudy, index) => (
-            <div key={caseStudy.id} className="break-inside-avoid">
-              <CaseCard caseStudy={caseStudy} index={index} />
-            </div>
+            <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
           ))}
         </div>
 
