@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useScrollAnimation, useImageEffect } from '@/hooks/useAnimations';
 import { CaseStudy } from '@/types';
 import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
+import { calculateYearsOfExperience } from '@/utils/experience';
 
 const cases: CaseStudy[] = [
   {
@@ -218,7 +219,7 @@ export default function CasesGrid() {
             { number: '50+', label: 'Proyectos completados' },
             { number: '35+', label: 'Clientes satisfechos' },
             { number: '31+', label: 'Países alcanzados' },
-            { number: '8+', label: 'Años de experiencia' },
+            { number: calculateYearsOfExperience(), label: 'Años de experiencia' },
           ].map((stat, index) => (
             <div
               key={index}
