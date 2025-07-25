@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useScrollAnimation, useImageEffect } from '@/hooks/useAnimations';
@@ -9,51 +8,62 @@ import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
 
 const cases: CaseStudy[] = [
   {
-    id: 'consultatio-nordelta',
+    id: 'nazca-brands',
+    title: 'Data analytics con IA para impulsar una app de fidelización en EE.UU.',
+    client: 'Nazca Brands',
+    description: 'Desarrollo de dashboards interactivos embebidos con KPIs estratégicos usando Power BI y Microsoft Copilot para análisis conversacional.',
+    image: '/images/cases/nazca.svg',
+    tags: ['Power BI', 'Microsoft Copilot'],
+    year: 2024,
+    hasDetailPage: true,
+    results: [
+      { metric: 'Integración exitosa', value: '100%' },
+      { metric: 'Métricas en tiempo real', value: 'Activo' },
+      { metric: 'Solución escalable', value: 'Nacional' },
+    ],
+  },
+  {
+    id: 'consultatio',
     title: 'Sistema de Gestión Inmobiliaria',
     client: 'Consultatio',
-    description: 'Desarrollo de plataforma integral para gestión de proyectos inmobiliarios con más de 1000 propiedades.',
+    description: 'Plataforma integral para gestión de proyectos inmobiliarios con análisis avanzado y dashboards de control.',
     image: '/images/cases/consultatio.svg',
     tags: ['Desarrollo Web', 'ERP'],
     year: 2024,
     hasDetailPage: true,
     results: [
-      { metric: 'Reducción de tiempo', value: '60%' },
       { metric: 'Propiedades gestionadas', value: '1000+' },
       { metric: 'Usuarios activos', value: '200+' },
+      { metric: 'Reducción de tiempo', value: '60%' },
     ],
   },
   {
-    id: 'nazca-brands',
-    title: 'E-commerce de Lujo',
-    client: 'Nazca Brands',
-    description: 'Desarrollo de plataforma e-commerce para marcas de lujo con experiencia premium.',
-    image: '/images/cases/nazca.svg',
-    tags: ['E-commerce', 'UX/UI'],
-    year: 2023,
-    hasDetailPage: true,
-    results: [
-      { metric: 'Conversión mejorada', value: '45%' },
-      { metric: 'Tiempo de carga', value: '<2s' },
-    ],
-  },
-  {
-    id: 'tecnovoz',
-    title: 'Plataforma de Comunicaciones VoIP',
-    client: 'Tecnovoz',
-    description: 'Sistema de gestión de comunicaciones empresariales con integración VoIP y funcionalidades avanzadas.',
-    image: '/images/cases/tecnovoz.svg',
-    tags: ['VoIP', 'Comunicaciones'],
+    id: 'ebmetrics',
+    title: 'Plataforma de Analytics',
+    client: 'EB Metrics',
+    description: 'Sistema avanzado de análisis de datos y métricas empresariales para optimización de procesos de negocio.',
+    image: '/images/cases/ebmetrics.svg',
+    tags: ['Analytics', 'Data Science'],
     year: 2023,
     hasDetailPage: false,
   },
   {
-    id: 'indec',
-    title: 'Sistema Estadístico Nacional',
-    client: 'INDEC',
-    description: 'Modernización de sistemas de recolección y procesamiento de datos estadísticos nacionales.',
-    image: '/images/cases/indec.svg',
-    tags: ['Data Science', 'Gobierno'],
+    id: 'gamma',
+    title: 'Sistema de Visualización de Datos',
+    client: 'Gamma',
+    description: 'Plataforma integral de dashboards y KPIs para análisis empresarial con visualizaciones interactivas avanzadas.',
+    image: '/images/cases/gamma.svg',
+    tags: ['Data Visualization', 'KPIs'],
+    year: 2023,
+    hasDetailPage: false,
+  },
+  {
+    id: 'novopath',
+    title: 'Aplicación de Gestión de Procesos',
+    client: 'NovoPath',
+    description: 'Desarrollo de aplicación empresarial para gestión y análisis de flujos de procesos internos y optimización.',
+    image: '/images/cases/novopath.svg',
+    tags: ['Gestión', 'Procesos'],
     year: 2023,
     hasDetailPage: false,
   },
@@ -61,36 +71,16 @@ const cases: CaseStudy[] = [
     id: 'salas-bim',
     title: 'Aplicación BIM Web',
     client: 'Grupo Salas',
-    description: 'Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción.',
+    description: 'Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción e infraestructura.',
     image: '/images/cases/salas.svg',
     tags: ['BIM', 'Construcción'],
     year: 2024,
     hasDetailPage: true,
   },
-  {
-    id: 'eb-metrics',
-    title: 'Plataforma de Analytics',
-    client: 'EB Metrics',
-    description: 'Sistema de análisis y métricas empresariales para optimización de procesos.',
-    image: '/images/cases/consultatio.svg',
-    tags: ['Analytics', 'Data Science'],
-    year: 2023,
-    hasDetailPage: false,
-  },
-  {
-    id: 'gamma',
-    title: 'Sistema de Gestión',
-    client: 'Gamma',
-    description: 'Plataforma integral de gestión empresarial con módulos especializados.',
-    image: '/images/cases/nazca.svg',
-    tags: ['ERP', 'Gestión'],
-    year: 2023,
-    hasDetailPage: false,
-  },
 ];
 
 function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
-  const { ref, isGrayscale, setIsHovered } = useImageEffect();
+  const { isGrayscale, setIsHovered } = useImageEffect();
   const { ref: cardRef, isVisible } = useScrollAnimation();
 
   return (
