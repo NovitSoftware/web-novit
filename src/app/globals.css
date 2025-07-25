@@ -1,25 +1,27 @@
 @import "tailwindcss";
 
-/* Custom Novit Colors and Gradients - Dark Theme Corporate */
+/* Custom Novit Colors and Gradients - Brand Guidelines */
 :root {
   --primary-50: #f8fafc;
   --primary-100: #f1f5f9;
-  --primary-500: #1e293b;
-  --primary-600: #334155;
-  --primary-700: #475569;
-  --primary-800: #64748b;
+  --primary-500: #0A089B;  /* Dark blue from brand guidelines */
+  --primary-600: #1E4B8C;  /* Medium blue */
+  --primary-700: #2E7EC8;  /* Lighter blue */
+  --primary-800: #5CB3D3;  /* Cyan blue */
   --primary-900: #94a3b8;
   
-  --secondary-500: #3b82f6;
+  --secondary-500: #3B82F6;  /* Bright blue from brand guidelines */
   --secondary-600: #2563eb;
   --secondary-700: #1d4ed8;
   
-  --accent-cyan: #06b6d4;
+  --accent-cyan: #5CB3D3;    /* Cyan from brand guidelines */
+  --accent-magenta: #E91E63; /* Magenta for contrast */
   --accent-gold: #f59e0b;
   
-  /* Dark theme professional gradient */
-  --gradient-novit: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
-  --gradient-novit-accent: linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #06b6d4 100%);
+  /* Brand-compliant gradients */
+  --gradient-novit: linear-gradient(135deg, #0A089B 0%, #1E4B8C 50%, #2E7EC8 100%);
+  --gradient-novit-accent: linear-gradient(135deg, #0A089B 0%, #3B82F6 50%, #5CB3D3 100%);
+  --gradient-novit-logo: linear-gradient(135deg, #5CB3D3 0%, #2E7EC8 50%, #1E4B8C 100%);
 }
 
 /* Utility classes for custom styles */
@@ -75,7 +77,7 @@
 /* Gradient color stops */
 .from-accent-cyan {
   --tw-gradient-from: var(--accent-cyan);
-  --tw-gradient-to: rgba(0, 255, 225, 0);
+  --tw-gradient-to: rgba(92, 179, 211, 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -84,13 +86,13 @@
 }
 
 .from-primary-500\/60 {
-  --tw-gradient-from: rgba(10, 0, 137, 0.6);
-  --tw-gradient-to: rgba(10, 0, 137, 0);
+  --tw-gradient-from: rgba(10, 8, 155, 0.6);
+  --tw-gradient-to: rgba(10, 8, 155, 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 .via-primary-500\/40 {
-  --tw-gradient-via: rgba(10, 0, 137, 0.4);
+  --tw-gradient-via: rgba(10, 8, 155, 0.4);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
 }
 
@@ -130,10 +132,10 @@
 
 @keyframes pulse-glow {
   0% {
-    box-shadow: 0 0 20px rgba(10, 0, 137, 0.4);
+    box-shadow: 0 0 20px rgba(10, 8, 155, 0.4);
   }
   100% {
-    box-shadow: 0 0 40px rgba(10, 0, 137, 0.8);
+    box-shadow: 0 0 40px rgba(10, 8, 155, 0.8);
   }
 }
 
@@ -145,9 +147,9 @@
   animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
-/* Gradientes customizados para Novit - Dark Theme */
+/* Gradientes customizados para Novit - Brand Guidelines */
 .gradient-text {
-  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #f59e0b 100%);
+  background: var(--gradient-novit-logo);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
