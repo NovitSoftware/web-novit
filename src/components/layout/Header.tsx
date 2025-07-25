@@ -43,9 +43,9 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <Image
-                src="/novit-logo.svg"
+                src="/novit-icon-only.svg"
                 alt="NOVIT Software"
-                width={120}
+                width={60}
                 height={40}
                 className="h-8 lg:h-10 w-auto"
               />

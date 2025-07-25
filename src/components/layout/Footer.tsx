@@ -33,9 +33,9 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-6">
                 <Image
-                  src="/novit-logo.svg"
+                  src="/novit-icon-only.svg"
                   alt="NOVIT Software"
-                  width={120}
+                  width={60}
                   height={40}
                   className="h-8 w-auto"
                 />

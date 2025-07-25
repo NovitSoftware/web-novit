@@ -12,7 +12,7 @@ const config: Config = {
         primary: {
           50: '#f8fafc',
           100: '#f1f5f9',
-          500: '#1e293b',
+          500: '#0A089B', // Official Novit brand color
           600: '#334155',
           700: '#475569',
           800: '#64748b',

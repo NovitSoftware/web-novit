@@ -1,21 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 import { useScrollAnimation, useParallax } from '@/hooks/useAnimations';
 
 export default function Hero() {
   const { ref: heroRef, isVisible } = useScrollAnimation();
   const { ref: parallaxRef, offset } = useParallax(0.3);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // useEffect(() => {
-  //   if (videoRef.current) {
-  //     videoRef.current.play().catch(() => {
-  //       // Fallback si el video no puede reproducirse automáticamente
-  //     });
-  //   }
-  // }, []);
 
   return (
     <section
@@ -74,8 +64,14 @@ export default function Hero() {
           {/* Título principal */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             La{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-secondary-500 to-primary-700 font-black drop-shadow-lg">
-              software factory
+            <span className="relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-blue-600 font-black">
+                software factory
+              </span>
+              {/* Text shadow/outline for better visibility */}
+              <span className="absolute inset-0 text-white opacity-20 blur-sm font-black">
+                software factory
+              </span>
             </span>{' '}
             que necesitás
           </h1>
@@ -103,25 +99,6 @@ export default function Hero() {
               <Play className="w-5 h-5" />
               Ver nuestro trabajo
             </button>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-400">
-          <div className="animate-bounce">
-            <svg
-              className="w-6 h-6 mx-auto"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
           </div>
         </div>
       </div>
