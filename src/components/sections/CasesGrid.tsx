@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useScrollAnimation, useImageEffect } from '@/hooks/useAnimations';
+import { useScrollAnimation } from '@/hooks/useAnimations';
 import { CaseStudy } from '@/types';
 import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
 
@@ -80,102 +80,92 @@ const cases: CaseStudy[] = [
 ];
 
 function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
-  const { isGrayscale, setIsHovered } = useImageEffect();
   const { ref: cardRef, isVisible } = useScrollAnimation();
 
   return (
     <div
       ref={cardRef as any}
-      className={`group relative overflow-hidden rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-500 h-80 ${
+      className={`group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 ${
         isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
       }`}
       style={{ animationDelay: `${index * 100}ms` }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0">
+      {/* Image Section */}
+      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary-500 to-secondary-500">
         <Image
           src={caseStudy.image}
           alt={caseStudy.title}
           fill
-          className={`object-cover transition-all duration-700 group-hover:scale-110 ${
-            isGrayscale ? 'grayscale' : 'grayscale-0'
-          }`}
+          className="object-contain transition-transform duration-300 group-hover:scale-105 p-8"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        
+        {/* Year Badge */}
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+          <div className="flex items-center text-gray-700 text-sm font-medium">
+            <Calendar className="w-3 h-3 mr-1" />
+            {caseStudy.year}
+          </div>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-between p-6">
-        {/* Top Section - Tags */}
-        <div className="flex flex-wrap gap-2 mb-3">
+      {/* Content Section */}
+      <div className="p-6 space-y-4">
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
           {caseStudy.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full"
+              className="px-3 py-1 bg-primary-50 text-primary-600 text-xs font-medium rounded-full border border-primary-100"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* Bottom Section - Main Content */}
-        <div className="space-y-3">
-          {/* Client */}
-          <p className="text-accent-cyan font-semibold text-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
-            {caseStudy.client}
-          </p>
-
-          {/* Title */}
-          <h3 className="text-white font-bold text-xl group-hover:text-accent-cyan transition-colors duration-300 leading-tight">
-            {caseStudy.title}
-          </h3>
-
-          {/* Description */}
-          <p className="text-white/80 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-200">
-            {caseStudy.description}
-          </p>
-
-          {/* Bottom Row */}
-          <div className="flex items-center justify-between pt-2">
-            <div className="flex items-center text-white/60 text-xs">
-              <Calendar className="w-3 h-3 mr-1" />
-              {caseStudy.year}
-            </div>
-
-            {caseStudy.hasDetailPage && (
-              <Link
-                href={`/casos-exito/${caseStudy.id}`}
-                className="flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-accent-cyan hover:text-primary-500 transition-all duration-300 group/btn"
-              >
-                <ArrowUpRight className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-              </Link>
-            )}
-          </div>
-
-          {/* Results Preview - Solo para casos con página detalle */}
-          {caseStudy.hasDetailPage && caseStudy.results && (
-            <div className="mt-4 p-3 bg-black/30 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-300">
-              <div className="grid grid-cols-2 gap-2 text-center">
-                {caseStudy.results.slice(0, 2).map((result, idx) => (
-                  <div key={idx}>
-                    <div className="text-accent-cyan font-bold text-lg">
-                      {result.value}
-                    </div>
-                    <div className="text-white/60 text-xs">
-                      {result.metric}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+        {/* Client Name */}
+        <div className="text-accent-cyan font-bold text-lg">
+          {caseStudy.client}
         </div>
-      </div>
 
-      {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-gradient-novit opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+        {/* Title */}
+        <h3 className="text-gray-900 font-bold text-xl leading-tight">
+          {caseStudy.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+          {caseStudy.description}
+        </p>
+
+        {/* Results Grid - Solo para casos con página detalle */}
+        {caseStudy.hasDetailPage && caseStudy.results && (
+          <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg border">
+            {caseStudy.results.slice(0, 2).map((result, idx) => (
+              <div key={idx} className="text-center">
+                <div className="text-primary-600 font-bold text-lg">
+                  {result.value}
+                </div>
+                <div className="text-gray-500 text-xs font-medium">
+                  {result.metric}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Action Button */}
+        {caseStudy.hasDetailPage && (
+          <div className="pt-2">
+            <Link
+              href={`/casos-exito/${caseStudy.id}`}
+              className="inline-flex items-center justify-center w-full bg-gradient-novit text-white px-4 py-3 rounded-xl font-semibold text-sm hover:shadow-lg transition-all duration-300 group/btn"
+            >
+              Ver caso completo
+              <ArrowUpRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -234,8 +224,8 @@ export default function CasesGrid() {
           ))}
         </div>
 
-        {/* Cases Grid - Improved Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Cases Grid - Clean Card Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {cases.map((caseStudy, index) => (
             <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
           ))}
@@ -272,6 +262,13 @@ export default function CasesGrid() {
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
