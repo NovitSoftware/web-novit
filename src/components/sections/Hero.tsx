@@ -64,14 +64,8 @@ export default function Hero() {
           {/* Título principal */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             La{' '}
-            <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-blue-600 font-black">
-                software factory
-              </span>
-              {/* Text shadow/outline for better visibility */}
-              <span className="absolute inset-0 text-white opacity-20 blur-sm font-black">
-                software factory
-              </span>
+            <span className="text-accent-cyan font-black drop-shadow-lg">
+              software factory
             </span>{' '}
             que necesitás
           </h1>
