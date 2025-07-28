@@ -177,7 +177,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
       </div>
 
       {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-gradient-novit opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-gradient-novit-accent opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
     </div>
   );
 }
@@ -188,26 +188,26 @@ export default function CasesGrid() {
   return (
     <section 
       ref={sectionRef as any}
-      className="py-20 lg:py-32 bg-white relative overflow-hidden"
+      className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent-cyan rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit rounded-2xl mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit-accent rounded-2xl mb-6">
             <Tag className="w-8 h-8 text-white" />
           </div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
             Casos de <span className="gradient-text">Éxito</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Conocé algunos de los proyectos que hemos desarrollado y cómo hemos 
             ayudado a nuestros clientes a alcanzar sus objetivos
           </p>
@@ -231,7 +231,7 @@ export default function CasesGrid() {
               <div className="text-4xl lg:text-5xl font-bold gradient-text mb-2">
                 {stat.number}
               </div>
-              <p className="text-gray-600 font-medium">{stat.label}</p>
+              <p className="text-gray-400 font-medium">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -249,7 +249,7 @@ export default function CasesGrid() {
         <div className="text-center mt-16">
           <Link
             href="/casos-exito"
-            className="inline-flex items-center bg-gradient-novit text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             Ver todos los casos de éxito
             <ArrowUpRight className="w-5 h-5 ml-2" />

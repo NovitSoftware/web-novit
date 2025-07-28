@@ -10,25 +10,27 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: '#f0f0ff',
-          100: '#e6e6ff',
-          500: '#0A0089',
-          600: '#080072',
-          700: '#06005a',
-          800: '#040043',
-          900: '#02002c',
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          500: '#0A089B', // Official Novit brand color
+          600: '#334155',
+          700: '#475569',
+          800: '#64748b',
+          900: '#94a3b8',
         },
         secondary: {
-          500: '#FF0080',
-          600: '#e6006b',
-          700: '#cc0066',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
         },
         accent: {
-          cyan: '#00FFE1',
+          cyan: '#06b6d4',
+          gold: '#f59e0b',
         },
       },
       backgroundImage: {
-        'gradient-novit': 'linear-gradient(135deg, #0A0089 0%, #FF0080 50%, #00FFE1 100%)',
+        'gradient-novit': 'linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%)',
+        'gradient-novit-accent': 'linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #06b6d4 100%)',
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
