@@ -1,10 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
 import { CaseStudy } from '@/types';
-import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
+import { ArrowUpRight, Tag } from 'lucide-react';
 
 const cases: CaseStudy[] = [
   {
@@ -13,6 +14,8 @@ const cases: CaseStudy[] = [
     client: 'Nazca Brands',
     description: 'Desarrollo de dashboards interactivos embebidos con KPIs estratégicos usando Power BI y Microsoft Copilot para análisis conversacional.',
     image: '/images/cases/nazca.svg',
+    logoImage: '/images/cases/logos/nazca-logo.svg',
+    screenshotImage: '/images/cases/screenshots/nazca-dashboard.svg',
     tags: ['Power BI', 'Microsoft Copilot'],
     year: 2024,
     hasDetailPage: true,
@@ -28,6 +31,8 @@ const cases: CaseStudy[] = [
     client: 'Consultatio',
     description: 'Plataforma integral para gestión de proyectos inmobiliarios con análisis avanzado y dashboards de control.',
     image: '/images/cases/consultatio.svg',
+    logoImage: '/images/cases/logos/consultatio-logo.svg',
+    screenshotImage: '/images/cases/screenshots/consultatio-dashboard.svg',
     tags: ['Desarrollo Web', 'ERP'],
     year: 2024,
     hasDetailPage: true,
@@ -43,9 +48,11 @@ const cases: CaseStudy[] = [
     client: 'EB Metrics',
     description: 'Sistema avanzado de análisis de datos y métricas empresariales para optimización de procesos de negocio.',
     image: '/images/cases/ebmetrics.svg',
+    logoImage: '/images/cases/logos/ebmetrics-logo.svg',
+    screenshotImage: '/images/cases/screenshots/ebmetrics-dashboard.svg',
     tags: ['Analytics', 'Data Science'],
     year: 2023,
-    hasDetailPage: false,
+    hasDetailPage: true,
   },
   {
     id: 'gamma',
@@ -53,9 +60,11 @@ const cases: CaseStudy[] = [
     client: 'Gamma',
     description: 'Plataforma integral de dashboards y KPIs para análisis empresarial con visualizaciones interactivas avanzadas.',
     image: '/images/cases/gamma.svg',
+    logoImage: '/images/cases/logos/gamma-logo.svg',
+    screenshotImage: '/images/cases/screenshots/gamma-dashboard.svg',
     tags: ['Data Visualization', 'KPIs'],
     year: 2023,
-    hasDetailPage: false,
+    hasDetailPage: true,
   },
   {
     id: 'novopath',
@@ -63,9 +72,11 @@ const cases: CaseStudy[] = [
     client: 'NovoPath',
     description: 'Desarrollo de aplicación empresarial para gestión y análisis de flujos de procesos internos y optimización.',
     image: '/images/cases/novopath.svg',
+    logoImage: '/images/cases/logos/novopath-logo.svg',
+    screenshotImage: '/images/cases/screenshots/novopath-dashboard.svg',
     tags: ['Gestión', 'Procesos'],
     year: 2023,
-    hasDetailPage: false,
+    hasDetailPage: true,
   },
   {
     id: 'salas-bim',
@@ -73,6 +84,8 @@ const cases: CaseStudy[] = [
     client: 'Grupo Salas',
     description: 'Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción e infraestructura.',
     image: '/images/cases/salas.svg',
+    logoImage: '/images/cases/logos/salas-logo.svg',
+    screenshotImage: '/images/cases/screenshots/salas-bim.svg',
     tags: ['BIM', 'Construcción'],
     year: 2024,
     hasDetailPage: true,
@@ -81,6 +94,11 @@ const cases: CaseStudy[] = [
 
 function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
   const { ref: cardRef, isVisible } = useScrollAnimation();
+  const [showScreenshot, setShowScreenshot] = useState(false);
+
+  const currentImage = showScreenshot && caseStudy.screenshotImage 
+    ? caseStudy.screenshotImage 
+    : caseStudy.logoImage || caseStudy.image;
 
   return (
     <div
@@ -91,21 +109,18 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Image Section */}
-      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary-500 to-secondary-500">
+      <div 
+        className="relative h-48 overflow-hidden bg-gradient-to-br from-primary-500 to-secondary-500 cursor-pointer"
+        onMouseEnter={() => setShowScreenshot(true)}
+        onMouseLeave={() => setShowScreenshot(false)}
+        onTouchStart={() => setShowScreenshot(!showScreenshot)}
+      >
         <Image
-          src={caseStudy.image}
-          alt={caseStudy.title}
+          src={currentImage}
+          alt={showScreenshot ? `${caseStudy.title} - Screenshot` : `${caseStudy.client} - Logo`}
           fill
-          className="object-contain transition-transform duration-300 group-hover:scale-105 p-8"
+          className="object-contain transition-all duration-500 group-hover:scale-105 p-8"
         />
-        
-        {/* Year Badge */}
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-          <div className="flex items-center text-gray-700 text-sm font-medium">
-            <Calendar className="w-3 h-3 mr-1" />
-            {caseStudy.year}
-          </div>
-        </div>
       </div>
 
       {/* Content Section */}
@@ -153,18 +168,16 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
           </div>
         )}
 
-        {/* Action Button */}
-        {caseStudy.hasDetailPage && (
-          <div className="pt-2">
-            <Link
-              href={`/casos-exito/${caseStudy.id}`}
-              className="inline-flex items-center justify-center w-full bg-gradient-novit text-white px-4 py-3 rounded-xl font-semibold text-sm hover:shadow-lg transition-all duration-300 group/btn"
-            >
-              Ver caso completo
-              <ArrowUpRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-            </Link>
-          </div>
-        )}
+        {/* Action Button - Now for all cases */}
+        <div className="pt-2">
+          <Link
+            href={caseStudy.hasDetailPage ? `/casos-exito/${caseStudy.id}` : '/contacto'}
+            className="inline-flex items-center justify-center w-full bg-gradient-novit text-white px-4 py-3 rounded-xl font-semibold text-sm hover:shadow-lg transition-all duration-300 group/btn"
+          >
+            Ver caso completo
+            <ArrowUpRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+          </Link>
+        </div>
       </div>
     </div>
   );

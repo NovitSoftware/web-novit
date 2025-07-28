@@ -13,6 +13,8 @@ export interface CaseStudy {
   client: string;
   description: string;
   image: string;
+  logoImage?: string;
+  screenshotImage?: string;
   tags: string[];
   year: number;
   hasDetailPage: boolean;

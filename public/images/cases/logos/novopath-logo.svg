@@ -1,0 +1,35 @@
+<svg width="200" height="120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="novoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E293B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="120" fill="url(#novoGrad)" rx="8"/>
+  
+  <!-- NOVO Text -->
+  <text x="30" y="45" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">NOVO</text>
+  
+  <!-- PATH Text -->
+  <text x="30" y="65" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#06B6D4">PATH</text>
+  
+  <!-- Icon - Process Flow -->
+  <rect x="120" y="25" width="60" height="60" fill="white" fill-opacity="0.1" rx="8"/>
+  
+  <!-- Flow nodes -->
+  <circle cx="135" cy="40" r="6" fill="#06B6D4"/>
+  <circle cx="155" cy="40" r="6" fill="#10B981"/>
+  <circle cx="165" cy="60" r="6" fill="#F59E0B"/>
+  <circle cx="145" cy="70" r="6" fill="#EF4444"/>
+  
+  <!-- Flow lines -->
+  <path d="M 141 40 L 149 40" stroke="#CBD5E1" stroke-width="2"/>
+  <path d="M 155 46 L 159 54" stroke="#CBD5E1" stroke-width="2"/>
+  <path d="M 159 60 L 151 64" stroke="#CBD5E1" stroke-width="2"/>
+  
+  <!-- Start/End labels -->
+  <text x="135" y="50" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="white">Start</text>
+  <text x="145" y="80" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="white">End</text>
+</svg>
