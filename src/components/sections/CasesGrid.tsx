@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
 import { CaseStudy } from '@/types';
 import { ArrowUpRight, Tag } from 'lucide-react';
+import { calculateYearsOfExperience } from '@/utils/experience';
 
 const cases: CaseStudy[] = [
   {
@@ -99,14 +100,14 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
   return (
     <div
       ref={cardRef as any}
-      className={`group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 ${
+      className={`group bg-slate-900 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 ${
         isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
       }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Image Section */}
       <div 
-        className="relative h-48 overflow-hidden bg-gradient-to-br from-primary-500 to-secondary-500 cursor-pointer"
+        className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-700 cursor-pointer"
         onMouseEnter={() => setShowScreenshot(true)}
         onMouseLeave={() => setShowScreenshot(false)}
         onTouchStart={() => setShowScreenshot(!showScreenshot)}
@@ -117,95 +118,87 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         }`}>
           <Image
             src={caseStudy.logoImage || caseStudy.image}
-            alt={`${caseStudy.client} - Logo`}
+            alt={`${caseStudy.client} logo`}
             fill
-            className="object-contain p-8"
+            className="object-contain p-6"
             style={{
-              objectFit: 'contain',
-              background: 'transparent'
+              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+            }}
+          />
+        </div>
+
+        {/* Screenshot Image */}
+        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+          showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+        }`}>
+          <Image
+            src={caseStudy.screenshotImage || caseStudy.image}
+            alt={`${caseStudy.title} screenshot`}
+            fill
+            className="object-contain p-4"
+            style={{
+              filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))',
             }}
           />
         </div>
         
-        {/* Screenshot Image */}
-        {caseStudy.screenshotImage && (
-          <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-            showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-          }`}>
-            <Image
-              src={caseStudy.screenshotImage}
-              alt={`${caseStudy.title} - Screenshot`}
-              fill
-              className="object-contain p-4"
-              style={{
-                objectFit: 'contain',
-                background: 'transparent'
-              }}
-            />
-          </div>
-        )}
-        
-        {/* Hover indicator */}
-        <div className={`absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 ${
-          showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-        }`}>
-          <div className="w-2 h-2 bg-white rounded-full"></div>
-        </div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
       </div>
 
       {/* Content Section */}
-      <div className="p-6 space-y-4">
+      <div className="p-6">
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {caseStudy.tags.slice(0, 2).map((tag) => (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {caseStudy.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 bg-primary-50 text-primary-600 text-xs font-medium rounded-full border border-primary-100"
+              className="px-3 py-1 bg-gradient-novit-accent text-white text-xs font-medium rounded-full"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* Client Name */}
-        <div className="text-accent-cyan font-bold text-lg">
-          {caseStudy.client}
+        {/* Client and Title */}
+        <div className="mb-4">
+          <p className="text-accent-cyan font-semibold text-sm mb-2">
+            {caseStudy.client}
+          </p>
+          <h3 className="text-white font-bold text-xl leading-tight mb-3">
+            {caseStudy.title}
+          </h3>
+          <p className="text-gray-300 text-sm leading-relaxed">
+            {caseStudy.description}
+          </p>
         </div>
 
-        {/* Title */}
-        <h3 className="text-gray-900 font-bold text-xl leading-tight">
-          {caseStudy.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-          {caseStudy.description}
-        </p>
-
-        {/* Results Grid - Solo para casos con página detalle */}
-        {caseStudy.hasDetailPage && caseStudy.results && (
-          <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg border">
-            {caseStudy.results.slice(0, 2).map((result, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-primary-600 font-bold text-lg">
-                  {result.value}
+        {/* Results Section for Featured Cases */}
+        {caseStudy.results && (
+          <div className="mb-6 p-4 bg-slate-800 rounded-lg border border-slate-600">
+            <div className="grid grid-cols-2 gap-4">
+              {caseStudy.results.slice(0, 2).map((result, idx) => (
+                <div key={idx} className="text-center">
+                  <div className="text-accent-cyan font-bold text-lg">
+                    {result.value}
+                  </div>
+                  <div className="text-gray-400 text-xs">
+                    {result.metric}
+                  </div>
                 </div>
-                <div className="text-gray-500 text-xs font-medium">
-                  {result.metric}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 
-        {/* Action Button - Now for all cases */}
-        <div className="pt-2">
+        {/* Action Button */}
+        <div className="flex justify-end">
           <Link
-            href={caseStudy.hasDetailPage ? `/casos-exito/${caseStudy.id}` : '/contacto'}
-            className="inline-flex items-center justify-center w-full bg-gradient-novit text-white px-4 py-3 rounded-xl font-semibold text-sm hover:shadow-lg transition-all duration-300 group/btn"
+            href="#"
+            className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             Ver caso completo
-            <ArrowUpRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+            <ArrowUpRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
       </div>
@@ -219,26 +212,26 @@ export default function CasesGrid() {
   return (
     <section 
       ref={sectionRef as any}
-      className="py-20 lg:py-32 bg-white relative overflow-hidden"
+      className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent-cyan rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit rounded-2xl mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit-accent rounded-2xl mb-6">
             <Tag className="w-8 h-8 text-white" />
           </div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
             Casos de <span className="gradient-text">Éxito</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Conocé algunos de los proyectos que hemos desarrollado y cómo hemos 
             ayudado a nuestros clientes a alcanzar sus objetivos
           </p>
@@ -250,7 +243,7 @@ export default function CasesGrid() {
             { number: '50+', label: 'Proyectos completados' },
             { number: '35+', label: 'Clientes satisfechos' },
             { number: '31+', label: 'Países alcanzados' },
-            { number: '8+', label: 'Años de experiencia' },
+            { number: calculateYearsOfExperience(), label: 'Años de experiencia' },
           ].map((stat, index) => (
             <div
               key={index}
@@ -262,13 +255,13 @@ export default function CasesGrid() {
               <div className="text-4xl lg:text-5xl font-bold gradient-text mb-2">
                 {stat.number}
               </div>
-              <p className="text-gray-600 font-medium">{stat.label}</p>
+              <p className="text-gray-400 font-medium">{stat.label}</p>
             </div>
           ))}
         </div>
 
-        {/* Cases Grid - Clean Card Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        {/* Cases Grid - Clean Grid Layout (not masonry) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cases.map((caseStudy, index) => (
             <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
           ))}
@@ -278,7 +271,7 @@ export default function CasesGrid() {
         <div className="text-center mt-16">
           <Link
             href="/casos-exito"
-            className="inline-flex items-center bg-gradient-novit text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             Ver todos los casos de éxito
             <ArrowUpRight className="w-5 h-5 ml-2" />
@@ -305,13 +298,6 @@ export default function CasesGrid() {
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }

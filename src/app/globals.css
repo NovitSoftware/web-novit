@@ -1,22 +1,27 @@
 @import "tailwindcss";
 
-/* Custom Novit Colors and Gradients */
+/* Custom Novit Colors and Gradients - Brand Guidelines */
 :root {
-  --primary-50: #f0f0ff;
-  --primary-100: #e6e6ff;
-  --primary-500: #0A0089;
-  --primary-600: #080072;
-  --primary-700: #06005a;
-  --primary-800: #040043;
-  --primary-900: #02002c;
+  --primary-50: #f8fafc;
+  --primary-100: #f1f5f9;
+  --primary-500: #0A089B;  /* Dark blue from brand guidelines */
+  --primary-600: #1E4B8C;  /* Medium blue */
+  --primary-700: #2E7EC8;  /* Lighter blue */
+  --primary-800: #5CB3D3;  /* Cyan blue */
+  --primary-900: #94a3b8;
   
-  --secondary-500: #FF0080;
-  --secondary-600: #e6006b;
-  --secondary-700: #cc0066;
+  --secondary-500: #3B82F6;  /* Bright blue from brand guidelines */
+  --secondary-600: #2563eb;
+  --secondary-700: #1d4ed8;
   
-  --accent-cyan: #00FFE1;
+  --accent-cyan: #5CB3D3;    /* Cyan from brand guidelines */
+  --accent-magenta: #E91E63; /* Magenta for contrast */
+  --accent-gold: #f59e0b;
   
-  --gradient-novit: linear-gradient(135deg, #0A0089 0%, #FF0080 50%, #00FFE1 100%);
+  /* Brand-compliant gradients */
+  --gradient-novit: linear-gradient(135deg, #0A089B 0%, #1E4B8C 50%, #2E7EC8 100%);
+  --gradient-novit-accent: linear-gradient(135deg, #0A089B 0%, #3B82F6 50%, #5CB3D3 100%);
+  --gradient-novit-logo: linear-gradient(135deg, #5CB3D3 0%, #2E7EC8 50%, #1E4B8C 100%);
 }
 
 /* Utility classes for custom styles */
@@ -26,6 +31,136 @@
 
 .text-primary-500 {
   color: var(--primary-500);
+}
+
+.text-primary-600 {
+  color: var(--primary-600);
+}
+
+.text-secondary-500 {
+  color: var(--secondary-500);
+}
+
+.text-accent-cyan {
+  color: var(--accent-cyan);
+}
+
+.bg-primary-500 {
+  background-color: var(--primary-500);
+}
+
+.bg-secondary-500 {
+  background-color: var(--secondary-500);
+}
+
+.border-primary-500 {
+  border-color: var(--primary-500);
+}
+
+/* Gradient direction utilities */
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-l {
+  background-image: linear-gradient(to left, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-t {
+  background-image: linear-gradient(to top, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+
+/* Gradient color stops */
+.from-accent-cyan {
+  --tw-gradient-from: var(--accent-cyan);
+  --tw-gradient-to: rgba(92, 179, 211, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-secondary-500 {
+  --tw-gradient-to: var(--secondary-500);
+}
+
+.from-primary-500\/60 {
+  --tw-gradient-from: rgba(10, 8, 155, 0.6);
+  --tw-gradient-to: rgba(10, 8, 155, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-primary-500\/40 {
+  --tw-gradient-via: rgba(10, 8, 155, 0.4);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+}
+
+.to-transparent {
+  --tw-gradient-to: transparent;
+}
+
+/* Background clip utilities */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Text transparent utility */
+.text-transparent {
+  color: transparent;
+}
+
+/* White text colors with opacity */
+.text-white\/90 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.text-white\/80 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 20px rgba(10, 8, 155, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(10, 8, 155, 0.8);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+/* Gradientes customizados para Novit - Brand Guidelines */
+.gradient-text {
+  background: var(--gradient-novit-logo);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-novit {
+  background: var(--gradient-novit);
+}
+
+.bg-gradient-novit-accent {
+  background: var(--gradient-novit-accent);
 }
 
 .text-primary-600 {
