@@ -13,9 +13,9 @@ const cases: CaseStudy[] = [
     title: 'Data analytics con IA para impulsar una app de fidelización en EE.UU.',
     client: 'Nazca Brands',
     description: 'Desarrollo de dashboards interactivos embebidos con KPIs estratégicos usando Power BI y Microsoft Copilot para análisis conversacional.',
-    image: '/images/cases/nazca.svg',
-    logoImage: '/images/cases/logos/nazca-logo.svg',
-    screenshotImage: '/images/cases/screenshots/nazca-dashboard.svg',
+    image: '/images/cases/nazca.png',
+    logoImage: '/images/cases/logos/nazca-logo.png',
+    screenshotImage: '/images/cases/screenshots/nazca-dashboard.png',
     tags: ['Power BI', 'Microsoft Copilot'],
     year: 2024,
     hasDetailPage: true,
@@ -30,9 +30,9 @@ const cases: CaseStudy[] = [
     title: 'Sistema de Gestión Inmobiliaria',
     client: 'Consultatio',
     description: 'Plataforma integral para gestión de proyectos inmobiliarios con análisis avanzado y dashboards de control.',
-    image: '/images/cases/consultatio.svg',
-    logoImage: '/images/cases/logos/consultatio-logo.svg',
-    screenshotImage: '/images/cases/screenshots/consultatio-dashboard.svg',
+    image: '/images/cases/consultatio.png',
+    logoImage: '/images/cases/logos/consultatio-logo.png',
+    screenshotImage: '/images/cases/screenshots/consultatio-dashboard.png',
     tags: ['Desarrollo Web', 'ERP'],
     year: 2024,
     hasDetailPage: true,
@@ -47,9 +47,9 @@ const cases: CaseStudy[] = [
     title: 'Plataforma de Analytics',
     client: 'EB Metrics',
     description: 'Sistema avanzado de análisis de datos y métricas empresariales para optimización de procesos de negocio.',
-    image: '/images/cases/ebmetrics.svg',
-    logoImage: '/images/cases/logos/ebmetrics-logo.svg',
-    screenshotImage: '/images/cases/screenshots/ebmetrics-dashboard.svg',
+    image: '/images/cases/ebmetrics.png',
+    logoImage: '/images/cases/logos/ebmetrics-logo.png',
+    screenshotImage: '/images/cases/screenshots/ebmetrics-dashboard.png',
     tags: ['Analytics', 'Data Science'],
     year: 2023,
     hasDetailPage: true,
@@ -59,9 +59,9 @@ const cases: CaseStudy[] = [
     title: 'Sistema de Visualización de Datos',
     client: 'Gamma',
     description: 'Plataforma integral de dashboards y KPIs para análisis empresarial con visualizaciones interactivas avanzadas.',
-    image: '/images/cases/gamma.svg',
-    logoImage: '/images/cases/logos/gamma-logo.svg',
-    screenshotImage: '/images/cases/screenshots/gamma-dashboard.svg',
+    image: '/images/cases/gamma.png',
+    logoImage: '/images/cases/logos/gamma-logo.png',
+    screenshotImage: '/images/cases/screenshots/gamma-dashboard.png',
     tags: ['Data Visualization', 'KPIs'],
     year: 2023,
     hasDetailPage: true,
@@ -71,9 +71,9 @@ const cases: CaseStudy[] = [
     title: 'Aplicación de Gestión de Procesos',
     client: 'NovoPath',
     description: 'Desarrollo de aplicación empresarial para gestión y análisis de flujos de procesos internos y optimización.',
-    image: '/images/cases/novopath.svg',
-    logoImage: '/images/cases/logos/novopath-logo.svg',
-    screenshotImage: '/images/cases/screenshots/novopath-dashboard.svg',
+    image: '/images/cases/novopath.png',
+    logoImage: '/images/cases/logos/novopath-logo.png',
+    screenshotImage: '/images/cases/screenshots/novopath-dashboard.png',
     tags: ['Gestión', 'Procesos'],
     year: 2023,
     hasDetailPage: true,
@@ -83,9 +83,9 @@ const cases: CaseStudy[] = [
     title: 'Aplicación BIM Web',
     client: 'Grupo Salas',
     description: 'Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción e infraestructura.',
-    image: '/images/cases/salas.svg',
-    logoImage: '/images/cases/logos/salas-logo.svg',
-    screenshotImage: '/images/cases/screenshots/salas-bim.svg',
+    image: '/images/cases/salas.png',
+    logoImage: '/images/cases/logos/salas-logo.png',
+    screenshotImage: '/images/cases/screenshots/salas-bim.png',
     tags: ['BIM', 'Construcción'],
     year: 2024,
     hasDetailPage: true,
@@ -95,10 +95,6 @@ const cases: CaseStudy[] = [
 function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
   const { ref: cardRef, isVisible } = useScrollAnimation();
   const [showScreenshot, setShowScreenshot] = useState(false);
-
-  const currentImage = showScreenshot && caseStudy.screenshotImage 
-    ? caseStudy.screenshotImage 
-    : caseStudy.logoImage || caseStudy.image;
 
   return (
     <div
@@ -115,12 +111,46 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         onMouseLeave={() => setShowScreenshot(false)}
         onTouchStart={() => setShowScreenshot(!showScreenshot)}
       >
-        <Image
-          src={currentImage}
-          alt={showScreenshot ? `${caseStudy.title} - Screenshot` : `${caseStudy.client} - Logo`}
-          fill
-          className="object-contain transition-all duration-500 group-hover:scale-105 p-8"
-        />
+        {/* Logo Image */}
+        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+          showScreenshot ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
+        }`}>
+          <Image
+            src={caseStudy.logoImage || caseStudy.image}
+            alt={`${caseStudy.client} - Logo`}
+            fill
+            className="object-contain p-8"
+            style={{
+              objectFit: 'contain',
+              background: 'transparent'
+            }}
+          />
+        </div>
+        
+        {/* Screenshot Image */}
+        {caseStudy.screenshotImage && (
+          <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+            showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+          }`}>
+            <Image
+              src={caseStudy.screenshotImage}
+              alt={`${caseStudy.title} - Screenshot`}
+              fill
+              className="object-contain p-4"
+              style={{
+                objectFit: 'contain',
+                background: 'transparent'
+              }}
+            />
+          </div>
+        )}
+        
+        {/* Hover indicator */}
+        <div className={`absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 ${
+          showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+        }`}>
+          <div className="w-2 h-2 bg-white rounded-full"></div>
+        </div>
       </div>
 
       {/* Content Section */}
