@@ -1,7 +1,40 @@
 # Premium AI Quote Feature - Setup Instructions
 
+## ⚠️ CONFIGURACIÓN REQUERIDA
+
+**ANTES DE USAR**: Esta funcionalidad requiere configuración de OpenAI y email. 
+
+👉 **Ver [CONFIGURACION.md](./CONFIGURACION.md) para instrucciones completas**
+
 ## Overview
 This feature adds an AI-powered automatic quotation system to the Novit Software website that allows users to submit requirements and receive AI-generated commercial proposals.
+
+## Quick Setup
+
+1. **Copiar configuración de ejemplo:**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. **Configurar OpenAI API Key y credenciales de email en `.env.local`**
+
+3. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
+
+4. **Ejecutar:**
+   ```bash
+   npm run dev
+   ```
+
+## ⚠️ Problemas Comunes
+
+- **Error de email**: Verifica configuración SMTP en `.env.local`
+- **Error de OpenAI**: Verifica API key y créditos disponibles
+- **Formulario no funciona**: Usa email corporativo, no personal
+
+📚 **Documentación completa**: [CONFIGURACION.md](./CONFIGURACION.md)
 
 ## New Components Added
 

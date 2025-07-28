@@ -17,10 +17,18 @@ const createTransporter = () => {
 
 export async function POST(request: NextRequest) {
   try {
-    // Initialize OpenAI with API key check
-    if (!process.env.OPENAI_API_KEY) {
+    // Check all required environment variables
+    const missingVars = [];
+    if (!process.env.OPENAI_API_KEY) missingVars.push('OPENAI_API_KEY');
+    if (!process.env.SMTP_USER) missingVars.push('SMTP_USER');
+    if (!process.env.SMTP_PASSWORD) missingVars.push('SMTP_PASSWORD');
+    
+    if (missingVars.length > 0) {
       return NextResponse.json(
-        { error: 'OpenAI API key no configurada' },
+        { 
+          error: `Configuración incompleta. Variables faltantes: ${missingVars.join(', ')}`,
+          help: 'Ver CONFIGURACION.md para instrucciones de configuración'
+        },
         { status: 500 }
       );
     }
@@ -90,23 +98,35 @@ CONTEXTO DE NOVIT SOFTWARE:
 Genera la propuesta completa:
 `;
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4',
-      messages: [
-        {
-          role: 'system',
-          content: 'Eres un consultor senior de NOVIT Software, especializado en generar propuestas comerciales técnicas profesionales para proyectos de desarrollo de software.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      max_tokens: 3000,
-      temperature: 0.7,
-    });
+    let aiProposal;
+    try {
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4',
+        messages: [
+          {
+            role: 'system',
+            content: 'Eres un consultor senior de NOVIT Software, especializado en generar propuestas comerciales técnicas profesionales para proyectos de desarrollo de software.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 3000,
+        temperature: 0.7,
+      });
 
-    const aiProposal = completion.choices[0]?.message?.content || 'Error generando propuesta';
+      aiProposal = completion.choices[0]?.message?.content || 'Error generando propuesta';
+    } catch (openaiError: any) {
+      console.error('Error with OpenAI:', openaiError);
+      return NextResponse.json(
+        { 
+          error: 'Error con OpenAI. Verifica tu API key y créditos disponibles',
+          details: 'Ver CONFIGURACION.md para configurar OpenAI correctamente'
+        },
+        { status: 500 }
+      );
+    }
 
     // Create HTML email content
     const emailHtml = `
@@ -160,22 +180,33 @@ Genera la propuesta completa:
     `;
 
     // Send email to Rodrigo Vazquez
-    const transporter = createTransporter();
-    const mailOptions = {
-      from: process.env.SMTP_USER,
-      to: 'rodrigo.vazquez@novit.com.ar',
-      subject: `🤖 Nueva Cotización Premium IA - ${email}`,
-      html: emailHtml,
-      attachments: [
-        {
-          filename: pdfFile.name,
-          content: Buffer.from(pdfBuffer),
-          contentType: 'application/pdf',
-        },
-      ],
-    };
+    try {
+      const transporter = createTransporter();
+      const mailOptions = {
+        from: process.env.SMTP_USER,
+        to: 'rodrigo.vazquez@novit.com.ar',
+        subject: `🤖 Nueva Cotización Premium IA - ${email}`,
+        html: emailHtml,
+        attachments: [
+          {
+            filename: pdfFile.name,
+            content: Buffer.from(pdfBuffer),
+            contentType: 'application/pdf',
+          },
+        ],
+      };
 
-    await transporter.sendMail(mailOptions);
+      await transporter.sendMail(mailOptions);
+    } catch (emailError) {
+      console.error('Error sending email:', emailError);
+      return NextResponse.json(
+        { 
+          error: 'Error enviando email. Verifica configuración SMTP en .env.local',
+          details: 'Ver CONFIGURACION.md para configurar el email correctamente'
+        },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
