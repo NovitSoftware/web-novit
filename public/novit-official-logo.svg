@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 88" width="100" height="88">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 48" width="80" height="48">
   <defs>
-    <linearGradient id="novitOfficialGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="novitBrandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#5CB3D3;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#0A089B;stop-opacity:1" />
     </linearGradient>
   </defs>
   
-  <!-- Official Novit logo pattern - icon only -->
-  <g fill="url(#novitOfficialGradient)">
-    <!-- Vertical dots column -->
-    <circle cx="12" cy="20" r="3"/>
-    <circle cx="12" cy="32" r="3"/>
-    <circle cx="12" cy="44" r="3"/>
-    <circle cx="12" cy="56" r="3"/>
-    <circle cx="12" cy="68" r="3"/>
+  <!-- Official Novit brand logo - exact brand guidelines -->
+  <g fill="url(#novitBrandGradient)">
+    <!-- Vertical dots column (5 dots) -->
+    <circle cx="8" cy="9" r="2.5"/>
+    <circle cx="8" cy="18" r="2.5"/>
+    <circle cx="8" cy="27" r="2.5"/>
+    <circle cx="8" cy="36" r="2.5"/>
+    <circle cx="8" cy="45" r="2.5"/>
     
-    <!-- Horizontal lines - official pattern -->
-    <rect x="24" y="18" width="50" height="4" rx="2"/>
-    <rect x="24" y="30" width="60" height="4" rx="2"/>
-    <rect x="24" y="42" width="40" height="4" rx="2"/>
-    <rect x="24" y="54" width="55" height="4" rx="2"/>
-    <rect x="24" y="66" width="45" height="4" rx="2"/>
+    <!-- Horizontal lines pattern - brand guidelines proportions -->
+    <rect x="18" y="7" width="28" height="4" rx="2"/>
+    <rect x="18" y="16" width="35" height="4" rx="2"/>
+    <rect x="18" y="25" width="24" height="4" rx="2"/>
+    <rect x="18" y="34" width="32" height="4" rx="2"/>
+    <rect x="18" y="43" width="26" height="4" rx="2"/>
   </g>
 </svg>
