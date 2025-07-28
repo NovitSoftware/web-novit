@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { NavigationItem } from '@/types';
 
@@ -33,7 +34,7 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-lg'
+            ? 'bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-700'
             : 'bg-transparent'
         }`}
       >
@@ -41,12 +42,14 @@ export default function Header() {
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-novit rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg lg:text-xl">N</span>
-              </div>
-              <span className="text-xl lg:text-2xl font-bold gradient-text">
-                NOVIT
-              </span>
+              <Image 
+                src="/logos/novit-logo.svg"
+                alt="NOVIT Software"
+                width={120}
+                height={40}
+                className="h-8 w-auto lg:h-10"
+                priority
+              />
             </Link>
 
             {/* Navigation Desktop */}
@@ -55,7 +58,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 hover:text-primary-500 font-medium transition-colors duration-200 relative group"
+                  className="text-white/90 hover:text-white font-medium transition-colors duration-200 relative group"
                 >
                   {item.label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-novit transition-all duration-300 group-hover:w-full" />
@@ -76,7 +79,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-gray-700 hover:text-primary-500 transition-colors"
+              className="lg:hidden p-2 rounded-md text-white/90 hover:text-white transition-colors"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -93,13 +96,13 @@ export default function Header() {
             isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="bg-white/95 backdrop-blur-md border-t border-gray-200">
+          <div className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700">
             <div className="px-4 py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block text-gray-700 hover:text-primary-500 font-medium py-2 transition-colors"
+                  className="block text-white/90 hover:text-white font-medium py-2 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -118,13 +121,13 @@ export default function Header() {
       </header>
 
       {/* Sticky Bottom Navigation - Mobile Only */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 sticky-nav safe-area-inset-bottom">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-700 safe-area-inset-bottom">
         <div className="flex justify-around items-center py-2">
           {navigation.slice(0, 5).map((item, index) => (
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-col items-center p-2 text-xs font-medium text-gray-600 hover:text-primary-500 transition-colors"
+              className="flex flex-col items-center p-2 text-xs font-medium text-white/80 hover:text-white transition-colors"
             >
               <div className="w-6 h-6 mb-1 flex items-center justify-center">
                 {/* Aquí puedes agregar iconos específicos para cada navegación */}
