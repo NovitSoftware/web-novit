@@ -39,15 +39,16 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-20">
+          <div className="flex justify-between items-center h-18 lg:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <Image
                 src="/novit-logo-official.png"
                 alt="NOVIT Software"
-                width={120}
-                height={40}
-                className="h-8 lg:h-10 w-auto"
+                width={150}
+                height={50}
+                className="h-10 lg:h-12 w-auto"
+                priority
               />
             </Link>
 

@@ -33,11 +33,11 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-6">
                 <Image
-                  src="/novit-official-logo.svg"
+                  src="/novit-logo-official.png"
                   alt="NOVIT Software"
-                  width={80}
-                  height={60}
-                  className="h-8 w-auto"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto"
                 />
               </div>
               
