@@ -180,13 +180,13 @@ export default function Footer() {
                 <p className="text-gray-300 text-xs mb-3">
                   Recibí insights y tendencias del mundo tecnológico.
                 </p>
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="email"
                     placeholder="tu@email.com"
-                    className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-l-lg text-sm focus:outline-none focus:border-accent-cyan"
+                    className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg sm:rounded-l-lg sm:rounded-r-none text-sm focus:outline-none focus:border-accent-cyan"
                   />
-                  <button className="px-4 py-2 bg-gradient-novit-accent rounded-r-lg hover:shadow-lg transition-all duration-300 text-sm font-medium">
+                  <button className="px-4 py-2 bg-gradient-novit-accent rounded-lg sm:rounded-l-none sm:rounded-r-lg hover:shadow-lg transition-all duration-300 text-sm font-medium whitespace-nowrap">
                     Suscribirse
                   </button>
                 </div>

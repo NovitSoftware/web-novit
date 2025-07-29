@@ -160,11 +160,11 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
       {/* Modal */}
       <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-accent-cyan via-secondary-500 to-primary-500 p-6 text-white">
+        <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold">⚡ Cotización Premium en 24hs</h3>
-              <p className="text-white/90 mt-1 text-sm">
+              <p className="text-gray-200 mt-1 text-sm">
                 Powered by IA - Propuesta comercial personalizada
               </p>
             </div>
@@ -190,7 +190,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${
+              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="nombre@suempresa.com"
@@ -214,7 +214,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               required
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${
+              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors ${
                 errors.phone ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="+54 9 11 1234-5678"
@@ -238,7 +238,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               rows={4}
               value={formData.projectSummary}
               onChange={(e) => setFormData({ ...formData, projectSummary: e.target.value })}
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none ${
+              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors resize-none ${
                 errors.projectSummary ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="Describe brevemente qué tipo de solución necesitás, tecnologías involucradas, alcance estimado, etc."
@@ -290,7 +290,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-accent-cyan via-secondary-500 to-primary-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>
@@ -308,11 +308,11 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
 
         {/* Footer */}
         <div className="bg-gray-50 px-6 py-4 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-700">
             🤖 IA generará una propuesta comercial completa con branding Novit
           </p>
-          <p className="text-xs text-gray-500 mt-1">
-            Respuesta garantizada en menos de <span className="font-semibold text-primary-500">24 horas</span>
+          <p className="text-xs text-gray-600 mt-1">
+            Respuesta garantizada en menos de <span className="font-semibold text-slate-700">24 horas</span>
           </p>
         </div>
       </div>
