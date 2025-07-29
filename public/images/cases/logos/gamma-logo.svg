@@ -1,0 +1,31 @@
+<svg width="200" height="120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gammaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F2937;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="120" fill="url(#gammaGrad)" rx="8"/>
+  
+  <!-- Gamma Text -->
+  <text x="30" y="55" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">GAMMA</text>
+  
+  <!-- Subtitle -->
+  <text x="30" y="75" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF">Analytics</text>
+  
+  <!-- Icon - Chart representation -->
+  <rect x="130" y="30" width="50" height="50" fill="white" fill-opacity="0.1" rx="8"/>
+  
+  <!-- Chart bars in icon -->
+  <rect x="137" y="60" width="4" height="15" fill="#10B981"/>
+  <rect x="144" y="55" width="4" height="20" fill="#3B82F6"/>
+  <rect x="151" y="50" width="4" height="25" fill="#F59E0B"/>
+  <rect x="158" y="45" width="4" height="30" fill="#EF4444"/>
+  <rect x="165" y="40" width="4" height="35" fill="#8B5CF6"/>
+  
+  <!-- Pie chart section -->
+  <circle cx="155" cy="45" r="8" fill="none" stroke="#10B981" stroke-width="2" 
+          stroke-dasharray="12.56" stroke-dashoffset="3" transform="rotate(-90 155 45)"/>
+</svg>

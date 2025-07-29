@@ -1,0 +1,74 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="novoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E293B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#novoBg)"/>
+  
+  <!-- Header -->
+  <rect x="10" y="10" width="280" height="25" fill="#1E293B" rx="4"/>
+  <text x="20" y="27" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">NovoPath Dashboard - Process Management</text>
+  
+  <!-- Main Process Flow Area -->
+  <rect x="15" y="45" width="270" height="140" fill="#0F172A" stroke="#334155" stroke-width="1" rx="6"/>
+  
+  <!-- Process Flow Title -->
+  <text x="150" y="65" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#F1F5F9">Active Process Flow</text>
+  
+  <!-- Start Node -->
+  <circle cx="50" cy="100" r="15" fill="#06B6D4" stroke="#0891B2" stroke-width="2"/>
+  <text x="50" y="105" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">Start</text>
+  
+  <!-- Process Node 1 -->
+  <rect x="90" y="85" width="30" height="30" fill="#10B981" stroke="#059669" stroke-width="2" rx="4"/>
+  <text x="105" y="102" font-family="Arial, sans-serif" font-size="7" text-anchor="middle" fill="white">Proc</text>
+  
+  <!-- Decision Node -->
+  <polygon points="150,85 165,100 150,115 135,100" fill="#F59E0B" stroke="#D97706" stroke-width="2"/>
+  <text x="150" y="102" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="white">?</text>
+  
+  <!-- Process Node 2 -->
+  <rect x="185" y="85" width="30" height="30" fill="#8B5CF6" stroke="#7C3AED" stroke-width="2" rx="4"/>
+  <text x="200" y="102" font-family="Arial, sans-serif" font-size="7" text-anchor="middle" fill="white">Exec</text>
+  
+  <!-- End Node -->
+  <circle cx="250" cy="100" r="15" fill="#EF4444" stroke="#DC2626" stroke-width="2"/>
+  <text x="250" y="105" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">End</text>
+  
+  <!-- Flow Arrows -->
+  <path d="M 65 100 L 85 100" stroke="#CBD5E1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 120 100 L 135 100" stroke="#CBD5E1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 165 100 L 180 100" stroke="#CBD5E1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 215 100 L 235 100" stroke="#CBD5E1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Status indicators -->
+  <rect x="40" y="75" width="20" height="8" fill="#10B981" rx="4"/>
+  <text x="50" y="81" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="white">Active</text>
+  
+  <rect x="190" y="75" width="20" height="8" fill="#F59E0B" rx="4"/>
+  <text x="200" y="81" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="white">Pending</text>
+  
+  <!-- Process Metrics -->
+  <rect x="20" y="130" width="80" height="40" fill="#1E293B" stroke="#334155" stroke-width="1" rx="4"/>
+  <text x="30" y="145" font-family="Arial, sans-serif" font-size="9" fill="#F1F5F9">Active Processes</text>
+  <text x="30" y="160" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#06B6D4">247</text>
+  
+  <rect x="110" y="130" width="80" height="40" fill="#1E293B" stroke="#334155" stroke-width="1" rx="4"/>
+  <text x="120" y="145" font-family="Arial, sans-serif" font-size="9" fill="#F1F5F9">Completed Today</text>
+  <text x="120" y="160" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#10B981">89</text>
+  
+  <rect x="200" y="130" width="80" height="40" fill="#1E293B" stroke="#334155" stroke-width="1" rx="4"/>
+  <text x="210" y="145" font-family="Arial, sans-serif" font-size="9" fill="#F1F5F9">Avg. Duration</text>
+  <text x="210" y="160" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F59E0B">2.4h</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#CBD5E1"/>
+    </marker>
+  </defs>
+</svg>

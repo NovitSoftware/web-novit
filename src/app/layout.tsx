@@ -46,6 +46,7 @@ export default function RootLayout({
   return (
 
     <html lang="es" className="scroll-smooth dark">
+
       <body className="antialiased bg-slate-900 text-white font-sans">
         <Header />
         <main className="relative">

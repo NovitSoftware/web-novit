@@ -29,6 +29,10 @@
   background: var(--gradient-novit);
 }
 
+.bg-gradient-novit-accent {
+  background: var(--gradient-novit-accent);
+}
+
 .text-primary-500 {
   color: var(--primary-500);
 }
