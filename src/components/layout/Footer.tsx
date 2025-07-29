@@ -11,6 +11,7 @@ import {
   MessageSquare,
   ArrowUp
 } from 'lucide-react';
+import { getAssetPath } from '@/config/constants';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -33,7 +34,7 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-6">
                 <Image
-                  src="/novit-logo-official.png"
+                  src={getAssetPath("novit-logo-official.png")}
                   alt="NOVIT Software"
                   width={120}
                   height={40}

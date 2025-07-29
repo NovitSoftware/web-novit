@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 import { NavigationItem } from '@/types';
+import { getAssetPath } from '@/config/constants';
 
 const navigation: NavigationItem[] = [
   { label: 'Inicio', href: '/' },
@@ -43,9 +44,9 @@ export default function Header() {
           <div className="flex justify-between items-center h-18 lg:h-20">
             {/* Logo */}
 
-            <Link href="/" className="flex items-center space-x-2">
-              <Image 
-                src="/logos/novit-logo.png"
+            <Link href="/" className="flex items-center">
+              <Image
+                src={getAssetPath("novit-logo-official.png")}
                 alt="NOVIT Software"
                 width={120}
                 height={40}

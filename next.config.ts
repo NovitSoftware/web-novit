@@ -1,10 +1,21 @@
 import type { NextConfig } from "next";
 
+/**
+ * Whether we're in GitHub Actions building for GitHub Pages deployment
+ */
+const isGithubPages = process.env.GITHUB_ACTIONS === 'true';
+
 const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  // Configure base path for GitHub Pages deployment
+  basePath: isGithubPages ? '/web-novit' : '',
+  assetPrefix: isGithubPages ? '/web-novit' : '',
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
   images: {
+    unoptimized: true,
     domains: ['static.wixstatic.com'],
     remotePatterns: [
       {
@@ -14,27 +25,6 @@ const nextConfig: NextConfig = {
         pathname: '/media/**',
       },
     ],
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
   },
 };
 

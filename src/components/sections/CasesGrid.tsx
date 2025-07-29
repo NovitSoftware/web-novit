@@ -8,6 +8,7 @@ import { CaseStudy } from '@/types';
 
 import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
+import { getAssetPath } from '@/config/constants';
 
 const cases: CaseStudy[] = [
   {
@@ -19,6 +20,7 @@ const cases: CaseStudy[] = [
     logoImage: '/images/cases/logos/nazca-logo.png',
     screenshotImage: '/images/cases/screenshots/nazca-dashboard.png',
     tags: ['Power BI', 'Microsoft Copilot'],
+
     year: 2024,
     hasDetailPage: true,
     results: [
@@ -36,6 +38,7 @@ const cases: CaseStudy[] = [
     logoImage: '/images/cases/logos/consultatio-logo.png',
     screenshotImage: '/images/cases/screenshots/consultatio-dashboard.png',
     tags: ['Desarrollo Web', 'ERP'],
+
     year: 2024,
     hasDetailPage: true,
     results: [
@@ -53,6 +56,7 @@ const cases: CaseStudy[] = [
     logoImage: '/images/cases/logos/ebmetrics-logo.png',
     screenshotImage: '/images/cases/screenshots/ebmetrics-dashboard.png',
     tags: ['Analytics', 'Data Science'],
+
     year: 2023,
     hasDetailPage: true,
   },
@@ -145,6 +149,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
+
       </div>
 
       {/* Content Section */}
