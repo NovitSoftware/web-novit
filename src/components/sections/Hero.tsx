@@ -1,11 +1,15 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
+
 import { ArrowRight, Play } from 'lucide-react';
 import { useScrollAnimation, useParallax } from '@/hooks/useAnimations';
+import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 
 export default function Hero() {
   const { ref: heroRef, isVisible } = useScrollAnimation();
   const { ref: parallaxRef, offset } = useParallax(0.3);
+
 
   return (
     <section
@@ -84,7 +88,17 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+            <button 
+              onClick={() => setIsPremiumQuoteOpen(true)}
+              className="group bg-gradient-to-r from-accent-cyan to-secondary-500 text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-3 border-2 border-transparent hover:border-white/30"
+            >
+              ⚡ Cotización Premium en 24hs
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+            
             <button className="group bg-gradient-novit-accent text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-3">
+
               Contanos sobre tu proyecto
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -138,6 +152,12 @@ export default function Hero() {
           }
         }
       `}</style>
+
+      {/* Premium Quote Modal */}
+      <PremiumQuoteModal 
+        isOpen={isPremiumQuoteOpen}
+        onClose={() => setIsPremiumQuoteOpen(false)}
+      />
     </section>
   );
 }
