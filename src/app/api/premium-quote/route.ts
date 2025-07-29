@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import nodemailer from 'nodemailer';
 
+export const dynamic = 'force-static';
+
 // Email configuration
 const createTransporter = () => {
   return nodemailer.createTransport({
