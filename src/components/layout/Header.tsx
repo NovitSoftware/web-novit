@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { NavigationItem } from '@/types';
+import { getAssetPath } from '@/config/constants';
 
 const navigation: NavigationItem[] = [
   { label: 'Inicio', href: '/' },
@@ -43,7 +44,7 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <Image
-                src="/novit-logo-official.png"
+                src={getAssetPath("novit-logo-official.png")}
                 alt="NOVIT Software"
                 width={150}
                 height={50}

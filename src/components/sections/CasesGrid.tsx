@@ -7,6 +7,7 @@ import { useScrollAnimation, useImageEffect } from '@/hooks/useAnimations';
 import { CaseStudy } from '@/types';
 import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
+import { getAssetPath } from '@/config/constants';
 
 const cases: CaseStudy[] = [
   {
@@ -14,7 +15,7 @@ const cases: CaseStudy[] = [
     title: 'Sistema de Gestión Inmobiliaria',
     client: 'Consultatio/Nordelta',
     description: 'Desarrollo de plataforma integral para gestión de proyectos inmobiliarios con más de 1000 propiedades.',
-    image: '/images/cases/consultatio.svg',
+    image: 'images/cases/consultatio.svg',
     tags: ['Desarrollo Web', 'ERP', 'Real Estate'],
     year: 2024,
     hasDetailPage: true,
@@ -29,7 +30,7 @@ const cases: CaseStudy[] = [
     title: 'Transformación Digital',
     client: 'Nazca Brands',
     description: 'Implementación de soluciones de IA para optimización de procesos de marketing.',
-    image: '/images/cases/nazca.svg',
+    image: 'images/cases/nazca.svg',
     tags: ['IA', 'Marketing', 'Automatización'],
     year: 2024,
     hasDetailPage: true,
@@ -43,7 +44,7 @@ const cases: CaseStudy[] = [
     title: 'Plataforma de Comunicaciones',
     client: 'Tecnovoz',
     description: 'Sistema de gestión de comunicaciones empresariales con integración VoIP.',
-    image: '/images/cases/tecnovoz.svg',
+    image: 'images/cases/tecnovoz.svg',
     tags: ['VoIP', 'Comunicaciones', 'B2B'],
     year: 2023,
     hasDetailPage: false,
@@ -101,7 +102,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src={caseStudy.image}
+          src={getAssetPath(caseStudy.image)}
           alt={caseStudy.title}
           fill
           className={`object-cover transition-all duration-700 group-hover:scale-110 ${
