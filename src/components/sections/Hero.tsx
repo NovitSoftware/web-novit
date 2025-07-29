@@ -9,6 +9,7 @@ import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 export default function Hero() {
   const { ref: heroRef, isVisible } = useScrollAnimation();
   const { ref: parallaxRef, offset } = useParallax(0.3);
+  const [isPremiumQuoteOpen, setIsPremiumQuoteOpen] = useState(false);
 
 
   return (
