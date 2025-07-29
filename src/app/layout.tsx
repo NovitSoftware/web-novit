@@ -44,8 +44,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
-      <body className="antialiased">
+
+    <html lang="es" className="scroll-smooth dark">
+      <body className="antialiased bg-slate-900 text-white font-sans">
         <Header />
         <main className="relative">
           {children}

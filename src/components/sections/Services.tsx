@@ -145,26 +145,26 @@ export default function Services() {
   return (
     <section 
       ref={sectionRef as any}
-      className="py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
+      className="py-20 lg:py-32 bg-slate-900 relative overflow-hidden"
     >
       {/* Elementos decorativos de fondo */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-primary-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-secondary-500 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-cyan rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit rounded-2xl mb-6">
-            <div className="w-8 h-8 bg-white rounded-lg" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit-accent rounded-2xl mb-6">
+            <div className="w-8 h-8 bg-slate-900 rounded-lg" />
           </div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
             <span className="gradient-text">Qué hacemos</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ofrecemos soluciones tecnológicas integrales para transformar tu negocio
             y llevarlo al siguiente nivel
           </p>
@@ -187,22 +187,22 @@ export default function Services() {
                 }`}
                 onClick={() => handleCardClick(index)}
               >
-                <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-500 border border-gray-100 relative overflow-hidden">
+                <div className="bg-slate-800 rounded-2xl p-8 shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 border border-slate-700 relative overflow-hidden group-hover:border-accent-cyan/30">
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-novit opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-novit-accent opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
                   
                   {/* Icon */}
-                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-novit rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-novit-accent rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary-500 transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent-cyan transition-colors duration-300">
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-gray-300 mb-6 leading-relaxed">
                     {service.description}
                   </p>
 
@@ -210,14 +210,14 @@ export default function Services() {
                   <div className={`transition-all duration-500 overflow-hidden ${
                     isActive ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}>
-                    <div className="border-t border-gray-200 pt-6">
-                      <h4 className="font-semibold text-gray-900 mb-3">
+                    <div className="border-t border-slate-700 pt-6">
+                      <h4 className="font-semibold text-white mb-3">
                         Servicios incluidos:
                       </h4>
                       <ul className="space-y-2">
                         {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-center text-gray-600">
-                            <div className="w-2 h-2 bg-gradient-novit rounded-full mr-3" />
+                          <li key={featureIndex} className="flex items-center text-gray-300">
+                            <div className="w-2 h-2 bg-gradient-novit-accent rounded-full mr-3" />
                             {feature}
                           </li>
                         ))}
@@ -227,7 +227,7 @@ export default function Services() {
 
                   {/* CTA Button */}
                   <div className="mt-6 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <button className="flex items-center text-primary-500 font-semibold hover:text-primary-600 transition-colors">
+                    <button className="flex items-center text-accent-cyan font-semibold hover:text-secondary-500 transition-colors">
                       {isActive ? 'Ver menos' : 'Conocer más'}
                       <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
                         isActive ? 'rotate-90' : ''
@@ -242,14 +242,14 @@ export default function Services() {
 
         {/* CTA Section */}
         <div className="text-center">
-          <div className="bg-gradient-novit rounded-3xl p-8 lg:p-12 text-white">
+          <div className="bg-gradient-novit-accent rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-2xl lg:text-3xl font-bold mb-4">
               ¿Necesitás una solución personalizada?
             </h3>
             <p className="text-lg lg:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
               Contanos sobre tu proyecto y te ayudamos a encontrar la mejor solución tecnológica
             </p>
-            <button className="bg-white text-primary-500 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <button className="bg-white text-slate-900 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
               Solicitar asesoría
             </button>
           </div>
