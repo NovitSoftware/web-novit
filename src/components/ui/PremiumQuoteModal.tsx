@@ -158,19 +158,27 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
       />
       
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 overflow-hidden">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 overflow-hidden border border-gray-200">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 p-6 text-white">
-          <div className="flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-6 text-white relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-xl transform translate-x-16 -translate-y-16" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-cyan-300 rounded-full blur-lg transform -translate-x-12 translate-y-12" />
+          </div>
+          <div className="flex items-center justify-between relative z-10">
             <div>
-              <h3 className="text-xl font-bold">⚡ Cotización Premium en 24hs</h3>
-              <p className="text-gray-200 mt-1 text-sm">
+              <h3 className="text-xl font-bold flex items-center gap-2">
+                <span className="text-2xl">⚡</span>
+                Cotización Premium en 24hs
+              </h3>
+              <p className="text-blue-100 mt-1 text-sm font-medium">
                 Powered by IA - Propuesta comercial personalizada
               </p>
             </div>
             <button
               onClick={onClose}
-              className="p-1 hover:bg-white/20 rounded-full transition-colors"
+              className="p-2 hover:bg-white/20 rounded-full transition-all duration-200 hover:rotate-90"
               disabled={isSubmitting}
             >
               <X className="w-5 h-5" />
@@ -179,10 +187,10 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-5 bg-gradient-to-b from-gray-50 to-white">
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Email Corporativo *
             </label>
             <input
@@ -190,23 +198,23 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors ${
-                errors.email ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 bg-white ${
+                errors.email ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200 hover:border-gray-300'
               }`}
               placeholder="nombre@suempresa.com"
               disabled={isSubmitting}
             />
             {errors.email && (
-              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+              <p className="text-red-600 text-xs mt-2 font-medium">{errors.email}</p>
             )}
-            <p className="text-gray-500 text-xs mt-1">
+            <p className="text-gray-500 text-xs mt-2">
               No se permiten emails personales (Gmail, Outlook, etc.)
             </p>
           </div>
 
           {/* Phone */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Teléfono/WhatsApp *
             </label>
             <input
@@ -214,23 +222,23 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               required
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors ${
-                errors.phone ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 bg-white ${
+                errors.phone ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200 hover:border-gray-300'
               }`}
               placeholder="+54 9 11 1234-5678"
               disabled={isSubmitting}
             />
             {errors.phone && (
-              <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+              <p className="text-red-600 text-xs mt-2 font-medium">{errors.phone}</p>
             )}
-            <p className="text-gray-500 text-xs mt-1">
+            <p className="text-gray-500 text-xs mt-2">
               Solo para mensajes de WhatsApp si es necesario (no llamaremos)
             </p>
           </div>
 
           {/* Project Summary */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Resumen del Proyecto *
             </label>
             <textarea
@@ -238,26 +246,26 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               rows={4}
               value={formData.projectSummary}
               onChange={(e) => setFormData({ ...formData, projectSummary: e.target.value })}
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors resize-none ${
-                errors.projectSummary ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 resize-none bg-white ${
+                errors.projectSummary ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200 hover:border-gray-300'
               }`}
               placeholder="Describe brevemente qué tipo de solución necesitás, tecnologías involucradas, alcance estimado, etc."
               disabled={isSubmitting}
             />
             {errors.projectSummary && (
-              <p className="text-red-500 text-xs mt-1">{errors.projectSummary}</p>
+              <p className="text-red-600 text-xs mt-2 font-medium">{errors.projectSummary}</p>
             )}
           </div>
 
           {/* PDF Upload */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Requerimientos (PDF) *
             </label>
             <div 
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors hover:bg-gray-50 ${
-                errors.pdfFile ? 'border-red-500' : 'border-gray-300'
+              className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all duration-200 hover:bg-blue-50 ${
+                errors.pdfFile ? 'border-red-400 bg-red-50' : 'border-blue-300 hover:border-blue-400'
               } ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
             >
               <input
@@ -270,19 +278,19 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               />
               
               {formData.pdfFile ? (
-                <div className="flex items-center justify-center gap-2 text-green-600">
-                  <FileText className="w-5 h-5" />
-                  <span className="text-sm font-medium">{formData.pdfFile.name}</span>
+                <div className="flex items-center justify-center gap-3 text-green-600">
+                  <FileText className="w-6 h-6" />
+                  <span className="text-sm font-semibold">{formData.pdfFile.name}</span>
                 </div>
               ) : (
-                <div className="flex items-center justify-center gap-2 text-gray-500">
-                  <Upload className="w-5 h-5" />
-                  <span className="text-sm">Hacer clic para adjuntar PDF (máx. 10MB)</span>
+                <div className="flex items-center justify-center gap-3 text-blue-600">
+                  <Upload className="w-6 h-6" />
+                  <span className="text-sm font-medium">Hacer clic para adjuntar PDF (máx. 10MB)</span>
                 </div>
               )}
             </div>
             {errors.pdfFile && (
-              <p className="text-red-500 text-xs mt-1">{errors.pdfFile}</p>
+              <p className="text-red-600 text-xs mt-2 font-medium">{errors.pdfFile}</p>
             )}
           </div>
 
@@ -290,16 +298,16 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
           >
             {isSubmitting ? (
               <>
-                <Loader className="w-4 h-4 animate-spin" />
+                <Loader className="w-5 h-5 animate-spin" />
                 Procesando con IA...
               </>
             ) : (
               <>
-                <Send className="w-4 h-4" />
+                <Send className="w-5 h-5" />
                 Generar Cotización Premium
               </>
             )}
@@ -307,12 +315,15 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
         </form>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 text-center">
-          <p className="text-sm text-gray-700">
-            🤖 IA generará una propuesta comercial completa con branding Novit
-          </p>
-          <p className="text-xs text-gray-600 mt-1">
-            Respuesta garantizada en menos de <span className="font-semibold text-slate-700">24 horas</span>
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-5 text-center border-t border-blue-100">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="text-2xl">🤖</span>
+            <p className="text-gray-700 font-semibold">
+              IA generará una propuesta comercial completa con branding Novit
+            </p>
+          </div>
+          <p className="text-sm text-gray-600">
+            Respuesta garantizada en menos de <span className="font-bold text-blue-600">24 horas</span>
           </p>
         </div>
       </div>
