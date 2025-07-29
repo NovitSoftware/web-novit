@@ -158,3 +158,11 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.bg-gradient-novit {
+  background: var(--gradient-novit);
+}
+
+.bg-gradient-novit-accent {
+  background: var(--gradient-novit-accent);
+}

@@ -5,7 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
 import { CaseStudy } from '@/types';
-import { ArrowUpRight, Tag } from 'lucide-react';
+
+import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
 
 const cases: CaseStudy[] = [
@@ -191,6 +192,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
           </div>
         )}
 
+
         {/* Action Button */}
         <div className="flex justify-end">
           <Link
@@ -202,6 +204,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
           </Link>
         </div>
       </div>
+
     </div>
   );
 }

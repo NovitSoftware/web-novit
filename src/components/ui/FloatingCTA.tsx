@@ -12,7 +12,7 @@ export default function FloatingCTA() {
       <div className="floating-cta">
         <button
           onClick={() => setIsOpen(true)}
-          className="group bg-gradient-novit text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 font-semibold"
+          className="group bg-gradient-novit-accent text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 font-semibold"
         >
           <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
           <span className="hidden sm:block">Necesito un presupuesto en 36hs</span>
@@ -32,7 +32,7 @@ export default function FloatingCTA() {
           {/* Modal */}
           <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
             {/* Header */}
-            <div className="bg-gradient-novit p-6 text-white">
+            <div className="bg-gradient-novit-accent p-6 text-white">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-bold">Presupuesto Rápido</h3>
                 <button
@@ -57,7 +57,7 @@ export default function FloatingCTA() {
                   <input
                     type="text"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-cyan focus:border-accent-cyan transition-colors"
                     placeholder="Tu nombre"
                   />
                 </div>
@@ -152,7 +152,7 @@ export default function FloatingCTA() {
                 />
                 <label htmlFor="privacy" className="text-sm text-gray-600">
                   Acepto la{' '}
-                  <a href="/privacy" className="text-primary-500 hover:underline">
+                  <a href="/privacy" className="text-accent-cyan hover:underline">
                     política de privacidad
                   </a>{' '}
                   y el tratamiento de mis datos personales
@@ -161,7 +161,7 @@ export default function FloatingCTA() {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-novit text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-novit-accent text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4" />
                 Enviar solicitud
@@ -172,7 +172,7 @@ export default function FloatingCTA() {
             <div className="bg-gray-50 px-6 py-4 text-center">
               <p className="text-sm text-gray-600">
                 ⚡ Respuesta garantizada en menos de{' '}
-                <span className="font-semibold text-primary-500">36 horas</span>
+                <span className="font-semibold text-accent-cyan">36 horas</span>
               </p>
             </div>
           </div>
