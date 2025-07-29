@@ -9,8 +9,8 @@ const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   // Configure base path for GitHub Pages deployment
-  basePath: isGithubPages ? '/web-novit' : '',
-  assetPrefix: isGithubPages ? '/web-novit' : '',
+  basePath: '',
+  assetPrefix: '',
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
