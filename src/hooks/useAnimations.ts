@@ -20,13 +20,14 @@ export function useScrollAnimation(threshold = 0.1) {
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [threshold]);
@@ -41,7 +42,6 @@ export function useParallax(speed = 0.5) {
   useEffect(() => {
     const handleScroll = () => {
       if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
         const scrolled = window.pageYOffset;
         const parallax = scrolled * speed;
         setOffset(parallax);
@@ -56,7 +56,7 @@ export function useParallax(speed = 0.5) {
 }
 
 export function useGSAP() {
-  const [gsap, setGsap] = useState<any>(null);
+  const [gsap, setGsap] = useState<typeof import('gsap').gsap | null>(null);
 
   useEffect(() => {
     import('gsap').then((gsapModule) => {
@@ -80,13 +80,14 @@ export function useImageEffect() {
       { threshold: 0.3 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

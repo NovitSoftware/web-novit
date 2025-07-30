@@ -30,6 +30,7 @@
   "services": {
     "included_services": "Serveis inclosos:"
   },
+  "footer": {
     "company_description": "La software factory que necessites perquè les teves idees es facin realitat de forma simple i pràctica.",
     "address_line1": "Av. Córdoba 1351, pis #3",
     "address_line2": "Ciutat de Buenos Aires",

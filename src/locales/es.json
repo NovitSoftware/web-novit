@@ -30,6 +30,7 @@
   "services": {
     "included_services": "Servicios incluidos:"
   },
+  "footer": {
     "company_description": "La software factory que necesitás para que tus ideas se hagan realidad de forma simple y práctica.",
     "address_line1": "Av. Córdoba 1351, piso #3",
     "address_line2": "Ciudad de Buenos Aires",

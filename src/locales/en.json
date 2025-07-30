@@ -30,6 +30,7 @@
   "services": {
     "included_services": "Included services:"
   },
+  "footer": {
     "company_description": "The software factory you need to make your ideas come to life in a simple and practical way.",
     "address_line1": "Av. Córdoba 1351, floor #3",
     "address_line2": "Buenos Aires City",

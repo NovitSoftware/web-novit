@@ -6,9 +6,8 @@ import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
 import { CaseStudy } from '@/types';
 
-import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
+import { ArrowUpRight, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
-import { getAssetPath } from '@/config/constants';
 
 const cases: CaseStudy[] = [
   {
