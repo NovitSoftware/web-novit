@@ -5,8 +5,13 @@ import Footer from "@/components/layout/Footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
+import {locales} from '../../i18n';
 
-const locales = ['es', 'en', 'ca'];
+export function generateStaticParams() {
+  return locales.map((locale) => ({
+    locale: locale
+  }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -58,7 +63,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale)) {
+  if (!locales.includes(locale as any)) {
     notFound();
   }
 

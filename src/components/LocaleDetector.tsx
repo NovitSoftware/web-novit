@@ -1,10 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-
-// Supported locales
-const locales = ['es', 'en', 'ca'];
-const defaultLocale = 'es';
+import { locales, defaultLocale } from '../i18n';
 
 export default function LocaleDetector() {
   useEffect(() => {
@@ -18,13 +15,13 @@ export default function LocaleDetector() {
     };
 
     // Find the best matching locale
-    let detectedLocale = defaultLocale;
+    let detectedLocale: string = defaultLocale;
     
     for (const browserLang of browserLanguages) {
       const normalizedLang = normalizeLanguage(browserLang);
       
       // Direct match
-      if (locales.includes(normalizedLang)) {
+      if (locales.includes(normalizedLang as any)) {
         detectedLocale = normalizedLang;
         break;
       }
@@ -38,7 +35,7 @@ export default function LocaleDetector() {
 
     // Check if user has a previously stored locale preference
     const storedLocale = localStorage.getItem('preferred-locale');
-    if (storedLocale && locales.includes(storedLocale)) {
+    if (storedLocale && locales.includes(storedLocale as any)) {
       detectedLocale = storedLocale;
     }
 
