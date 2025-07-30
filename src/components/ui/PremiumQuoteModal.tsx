@@ -182,7 +182,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
 
             {/* Header */}
             <div className="bg-blue-600 p-6 text-white relative overflow-hidden" style={{
-              background: 'linear-gradient(to right, #2563eb, #4338ca)'
+              background: 'linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #06b6d4 100%)'
             }}>              
               <div className="flex items-center justify-between relative z-10">
                 <div className="flex items-center gap-3">
