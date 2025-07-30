@@ -1,4 +1,3 @@
-import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
 
 // Define available locales
@@ -6,11 +5,11 @@ export const locales = ['es', 'en', 'ca'] as const;
 export const defaultLocale = 'es' as const;
 
 export default getRequestConfig(async ({locale}) => {
-  // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
-
+  // Fallback to default locale if undefined during static generation
+  const actualLocale = locale || defaultLocale;
+  
   return {
-    locale: locale!,
-    messages: (await import(`./locales/${locale}.json`)).default
+    locale: actualLocale,
+    messages: (await import(`./locales/${actualLocale}.json`)).default
   };
 });
