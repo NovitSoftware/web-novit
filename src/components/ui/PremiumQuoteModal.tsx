@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Upload, FileText, Send, Loader } from 'lucide-react';
 
 interface PremiumQuoteModalProps {
@@ -12,6 +13,7 @@ interface FormData {
   email: string;
   phone: string;
   projectSummary: string;
+  specialRequirements: string;
   pdfFile: File | null;
 }
 
@@ -31,6 +33,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
     email: '',
     phone: '',
     projectSummary: '',
+    specialRequirements: '',
     pdfFile: null
   });
   
@@ -113,6 +116,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
       submitData.append('email', formData.email);
       submitData.append('phone', formData.phone);
       submitData.append('projectSummary', formData.projectSummary);
+      submitData.append('specialRequirements', formData.specialRequirements);
       if (formData.pdfFile) {
         submitData.append('pdfFile', formData.pdfFile);
       }
@@ -136,6 +140,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
         email: '',
         phone: '',
         projectSummary: '',
+        specialRequirements: '',
         pdfFile: null
       });
       
@@ -147,58 +152,66 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      
-      {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <motion.div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={onClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+          
+          {/* Modal */}
+          <motion.div 
+            className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 300,
+              damping: 30,
+              duration: 0.4
+            }}
+          >
 
-        {/* Header */}
-        <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-6 text-white relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-2xl transform translate-x-16 -translate-y-16" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500 rounded-full blur-lg transform -translate-x-12 translate-y-12" />
-            <div className="absolute center w-20 h-20 bg-cyan-400 rounded-full blur-xl opacity-50" />
-          </div>
-          
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-4 -right-4 w-16 h-16 bg-blue-400/20 rounded-full animate-pulse" />
-            <div className="absolute -bottom-2 -left-2 w-12 h-12 bg-purple-400/20 rounded-full animate-pulse animation-delay-1000" />
-          </div>
-          
-          <div className="flex items-center justify-between relative z-10">
-            <div>
-              <h3 className="text-xl font-bold flex items-center gap-2 text-white drop-shadow-lg">
-                <span className="text-2xl animate-pulse">⚡</span>
-                <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-                  Cotización Premium en 24hs
-                </span>
-              </h3>
-              <p className="text-blue-200 mt-1 text-sm font-medium drop-shadow">
-                <span className="inline-flex items-center gap-1">
-                  <span className="text-xs">🤖</span>
-                  Powered by IA - Propuesta comercial personalizada
-                </span>
-              </p>
+            {/* Header */}
+            <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-6 text-white relative overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-2xl transform translate-x-16 -translate-y-16" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500 rounded-full blur-lg transform -translate-x-12 translate-y-12" />
+                <div className="absolute center w-20 h-20 bg-cyan-400 rounded-full blur-xl opacity-50" />
+              </div>
+              
+              {/* Animated Background Elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-blue-400/20 rounded-full animate-pulse" />
+                <div className="absolute -bottom-2 -left-2 w-12 h-12 bg-purple-400/20 rounded-full animate-pulse animation-delay-1000" />
+              </div>
+              
+              <div className="flex items-center justify-between relative z-10">
+                <div>
+                  <h3 className="text-xl font-bold text-white drop-shadow-lg">
+                    <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">
+                      Propuesta comercial personalizada
+                    </span>
+                  </h3>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="p-2 hover:bg-white/20 rounded-full transition-all duration-200 hover:rotate-90 text-white hover:text-blue-200"
+                  disabled={isSubmitting}
+                >
+                  <X className="w-5 h-5 drop-shadow" />
+                </button>
+              </div>
             </div>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-white/20 rounded-full transition-all duration-200 hover:rotate-90 text-white hover:text-blue-200"
-              disabled={isSubmitting}
-            >
-              <X className="w-5 h-5 drop-shadow" />
-            </button>
-          </div>
-        </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto flex-1">
@@ -283,6 +296,25 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             )}
           </div>
 
+          {/* Special Requirements */}
+          <div>
+            <label className="block text-sm font-bold text-slate-800 mb-2">
+              ¿Hay algo en especial que necesitas que este aclarado en la propuesta comercial?
+            </label>
+            <textarea
+              rows={3}
+              value={formData.specialRequirements}
+              onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
+              className="w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-slate-500/20 focus:border-slate-600 transition-all duration-200 resize-none bg-white shadow-sm border-slate-300 hover:border-slate-400"
+              placeholder="Garantía, Mantenimiento post-productivo, costo de licencias, términos de pago, soporte técnico, etc."
+              disabled={isSubmitting}
+            />
+            <p className="text-slate-600 text-xs mt-2 flex items-center gap-1">
+              <span className="text-xs">💡</span>
+              Campo opcional - Ayúdanos a personalizar mejor tu propuesta
+            </p>
+          </div>
+
           {/* PDF Upload */}
           <div>
             <label className="block text-sm font-bold text-slate-800 mb-2">
@@ -355,7 +387,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-2xl animate-pulse">🤖</span>
             <p className="text-slate-800 font-bold">
-              IA generará una propuesta comercial completa con branding Novit
+              Nuestra IA especializada, asistida por un ingeniero de nuestro equipo técnico, generará la propuesta comercial completa y personalizada
             </p>
           </div>
           <p className="text-sm text-slate-700 flex items-center justify-center gap-1">
@@ -364,7 +396,9 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             <span className="text-xs">⚡</span>
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
+      )}
+    </AnimatePresence>
   );
 }
