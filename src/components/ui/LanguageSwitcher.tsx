@@ -27,6 +27,9 @@ export default function LanguageSwitcher() {
     // Construct new path with new locale
     const newPath = `/${newLocale}${pathWithoutLocale ? '/' + pathWithoutLocale : ''}`;
     
+    // Store the user's language preference for future visits
+    localStorage.setItem('preferred-locale', newLocale);
+    
     setIsOpen(false);
     router.push(newPath);
   };
