@@ -181,32 +181,27 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           >
 
             {/* Header */}
-            <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-6 text-white relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-2xl transform translate-x-16 -translate-y-16" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500 rounded-full blur-lg transform -translate-x-12 translate-y-12" />
-                <div className="absolute center w-20 h-20 bg-cyan-400 rounded-full blur-xl opacity-50" />
-              </div>
-              
-              {/* Animated Background Elements */}
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-blue-400/20 rounded-full animate-pulse" />
-                <div className="absolute -bottom-2 -left-2 w-12 h-12 bg-purple-400/20 rounded-full animate-pulse animation-delay-1000" />
-              </div>
-              
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white relative overflow-hidden">              
               <div className="flex items-center justify-between relative z-10">
-                <div>
-                  <h3 className="text-xl font-bold text-white drop-shadow-lg">
-                    Propuesta comercial personalizada
-                  </h3>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                    <span className="text-xl">📋</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white tracking-tight">
+                      Propuesta comercial personalizada
+                    </h3>
+                    <p className="text-blue-100 text-sm font-medium">
+                      Cotización premium con IA
+                    </p>
+                  </div>
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-white/20 rounded-full transition-all duration-200 hover:rotate-90 text-white hover:text-blue-200"
+                  className="p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/80 hover:text-white"
                   disabled={isSubmitting}
                 >
-                  <X className="w-5 h-5 drop-shadow" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -216,7 +211,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-bold text-slate-800 mb-2">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Email Corporativo *
             </label>
             <input
@@ -224,8 +219,8 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-slate-500/20 focus:border-slate-600 transition-all duration-200 bg-white shadow-sm ${
-                errors.email ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-300 hover:border-slate-400'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 bg-white shadow-sm text-gray-900 placeholder-gray-500 ${
+                errors.email ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-300 hover:border-gray-400'
               }`}
               placeholder="nombre@suempresa.com"
               disabled={isSubmitting}
@@ -236,7 +231,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
                 {errors.email}
               </p>
             )}
-            <p className="text-slate-600 text-xs mt-2 flex items-center gap-1">
+            <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
               <span className="text-xs">ℹ️</span>
               No se permiten emails personales (Gmail, Outlook, etc.)
             </p>
@@ -244,7 +239,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
 
           {/* Phone */}
           <div>
-            <label className="block text-sm font-bold text-slate-800 mb-2">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Teléfono/WhatsApp *
             </label>
             <input
@@ -252,8 +247,8 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               required
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-slate-500/20 focus:border-slate-600 transition-all duration-200 bg-white shadow-sm ${
-                errors.phone ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-300 hover:border-slate-400'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 bg-white shadow-sm text-gray-900 placeholder-gray-500 ${
+                errors.phone ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-300 hover:border-gray-400'
               }`}
               placeholder="+54 9 11 1234-5678"
               disabled={isSubmitting}
@@ -264,7 +259,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
                 {errors.phone}
               </p>
             )}
-            <p className="text-slate-600 text-xs mt-2 flex items-center gap-1">
+            <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
               <span className="text-xs">💬</span>
               Solo para mensajes de WhatsApp si es necesario (no llamaremos)
             </p>
@@ -272,7 +267,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
 
           {/* Project Summary */}
           <div>
-            <label className="block text-sm font-bold text-slate-800 mb-2">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Resumen del Proyecto *
             </label>
             <textarea
@@ -280,8 +275,8 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               rows={4}
               value={formData.projectSummary}
               onChange={(e) => setFormData({ ...formData, projectSummary: e.target.value })}
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-slate-500/20 focus:border-slate-600 transition-all duration-200 resize-none bg-white shadow-sm ${
-                errors.projectSummary ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-300 hover:border-slate-400'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 resize-none bg-white shadow-sm text-gray-900 placeholder-gray-500 ${
+                errors.projectSummary ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-300 hover:border-gray-400'
               }`}
               placeholder="Describe brevemente qué tipo de solución necesitás, tecnologías involucradas, alcance estimado, etc."
               disabled={isSubmitting}
@@ -296,18 +291,18 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
 
           {/* Special Requirements */}
           <div>
-            <label className="block text-sm font-bold text-slate-800 mb-2">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               ¿Hay algo en especial que necesitas que este aclarado en la propuesta comercial?
             </label>
             <textarea
               rows={3}
               value={formData.specialRequirements}
               onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
-              className="w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-slate-500/20 focus:border-slate-600 transition-all duration-200 resize-none bg-white shadow-sm border-slate-300 hover:border-slate-400"
+              className="w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 resize-none bg-white shadow-sm border-gray-300 hover:border-gray-400 text-gray-900 placeholder-gray-500"
               placeholder="Garantía, Mantenimiento post-productivo, costo de licencias, términos de pago, soporte técnico, etc."
               disabled={isSubmitting}
             />
-            <p className="text-slate-600 text-xs mt-2 flex items-center gap-1">
+            <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
               <span className="text-xs">💡</span>
               Campo opcional - Ayúdanos a personalizar mejor tu propuesta
             </p>
@@ -315,13 +310,13 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
 
           {/* PDF Upload */}
           <div>
-            <label className="block text-sm font-bold text-slate-800 mb-2">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Requerimientos (PDF) *
             </label>
             <div 
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all duration-200 hover:bg-slate-50 shadow-sm ${
-                errors.pdfFile ? 'border-red-400 bg-red-50' : 'border-slate-400 hover:border-slate-500'
+              className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all duration-200 hover:bg-gray-50 shadow-sm ${
+                errors.pdfFile ? 'border-red-400 bg-red-50' : 'border-gray-400 hover:border-gray-500'
               } ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
             >
               <input
@@ -340,12 +335,12 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
                   <span className="text-xs">✅</span>
                 </div>
               ) : (
-                <div className="flex items-center justify-center gap-3 text-slate-600">
+                <div className="flex items-center justify-center gap-3 text-gray-700">
                   <Upload className="w-6 h-6" />
                   <div className="text-sm">
-                    <span className="font-medium">Hacer clic para adjuntar PDF</span>
+                    <span className="font-medium text-gray-900">Hacer clic para adjuntar PDF</span>
                     <br />
-                    <span className="text-xs text-slate-500">(máx. 10MB)</span>
+                    <span className="text-xs text-gray-600">(máx. 10MB)</span>
                   </div>
                 </div>
               )}
@@ -362,7 +357,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-slate-800 to-slate-900 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-slate-500/25 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] border border-slate-700"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] border border-blue-700 shadow-lg"
           >
             {isSubmitting ? (
               <>
@@ -381,16 +376,16 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
         </form>
 
         {/* Footer */}
-        <div className="bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100 px-6 py-4 text-center border-t border-slate-200">
+        <div className="bg-gradient-to-r from-gray-50 via-white to-gray-50 px-6 py-4 text-center border-t border-gray-200">
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-lg">🤖</span>
-            <p className="text-slate-700 text-sm">
+            <p className="text-gray-800 text-sm font-medium">
               Nuestra IA especializada, asistida por un ingeniero de nuestro equipo técnico, generará la propuesta comercial completa y personalizada
             </p>
           </div>
-          <p className="text-sm text-slate-600 flex items-center justify-center gap-1">
+          <p className="text-sm text-gray-700 flex items-center justify-center gap-1">
             <span className="text-xs">⏱️</span>
-            Respuesta garantizada en menos de <span className="font-medium text-slate-800 px-2 py-1 bg-slate-200 rounded-full">24 horas</span>
+            Respuesta garantizada en menos de <span className="font-semibold text-gray-900 px-2 py-1 bg-gray-200 rounded-full">24 horas</span>
             <span className="text-xs">⚡</span>
           </p>
         </div>
