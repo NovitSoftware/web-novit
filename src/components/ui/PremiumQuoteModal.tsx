@@ -158,7 +158,8 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
       />
       
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 overflow-hidden border border-gray-200">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+
         {/* Header */}
         <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-6 text-white relative overflow-hidden">
           {/* Background Pattern */}
@@ -200,7 +201,8 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-5 bg-gradient-to-b from-slate-50 via-white to-slate-50">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto flex-1">
+
           {/* Email */}
           <div>
             <label className="block text-sm font-bold text-slate-800 mb-2">
