@@ -76,7 +76,7 @@ export default function Header() {
             <div className="hidden lg:flex items-center space-x-4">
               <button
                 onClick={() => setIsPremiumQuoteOpen(true)}
-                className="bg-gradient-novit-accent text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="bg-gradient-novit-accent text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
               >
                 Necesito un presupuesto
               </button>
@@ -85,8 +85,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-white/90 hover:text-white transition-colors"
-
+              className="lg:hidden p-2 rounded-md text-white/90 hover:text-white transition-colors cursor-pointer"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -121,7 +120,7 @@ export default function Header() {
                   setIsPremiumQuoteOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
-                className="block bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-medium text-center mt-6"
+                className="block bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-medium text-center mt-6 cursor-pointer"
               >
                 Necesito un presupuesto
               </button>
