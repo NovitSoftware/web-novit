@@ -198,9 +198,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               <div className="flex items-center justify-between relative z-10">
                 <div>
                   <h3 className="text-xl font-bold text-white drop-shadow-lg">
-                    <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">
-                      Propuesta comercial personalizada
-                    </span>
+                    Propuesta comercial personalizada
                   </h3>
                 </div>
                 <button
@@ -383,16 +381,16 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
         </form>
 
         {/* Footer */}
-        <div className="bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100 px-6 py-5 text-center border-t border-slate-200">
+        <div className="bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100 px-6 py-4 text-center border-t border-slate-200">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="text-2xl animate-pulse">🤖</span>
-            <p className="text-slate-800 font-bold">
+            <span className="text-lg">🤖</span>
+            <p className="text-slate-700 text-sm">
               Nuestra IA especializada, asistida por un ingeniero de nuestro equipo técnico, generará la propuesta comercial completa y personalizada
             </p>
           </div>
-          <p className="text-sm text-slate-700 flex items-center justify-center gap-1">
+          <p className="text-sm text-slate-600 flex items-center justify-center gap-1">
             <span className="text-xs">⏱️</span>
-            Respuesta garantizada en menos de <span className="font-bold text-slate-900 px-2 py-1 bg-slate-200 rounded-full">24 horas</span>
+            Respuesta garantizada en menos de <span className="font-medium text-slate-800 px-2 py-1 bg-slate-200 rounded-full">24 horas</span>
             <span className="text-xs">⚡</span>
           </p>
         </div>
