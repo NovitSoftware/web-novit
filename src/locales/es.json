@@ -1,0 +1,35 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "continue": "Continuar",
+    "back": "Volver"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "services": "Qué hacemos",
+    "cases": "Casos de Éxito",
+    "technologies": "Tecnologías",
+    "academy": "Academia Novit",
+    "contact": "Contacto",
+    "quote": "Necesito un presupuesto"
+  },
+  "hero": {
+    "title_part1": "La",
+    "title_highlight": "software factory",
+    "title_part2": "que necesitás",
+    "subtitle": "Para que tus ideas se hagan realidad de forma simple y práctica",
+    "description": "El partner tecnológico ideal para acompañar tu proceso de transformación digital",
+    "cta_premium": "⚡ Cotización Premium en 24hs",
+    "cta_work": "Ver nuestro trabajo"
+  },
+  "metadata": {
+    "title": "NOVIT Software | La software factory que necesitás",
+    "description": "Partner tecnológico ideal para acompañar tu proceso de transformación digital. Desarrollo de software, IA, consultoría IT y más.",
+    "keywords": "desarrollo software, software factory, transformación digital, inteligencia artificial, consultoría IT"
+  }
+}
