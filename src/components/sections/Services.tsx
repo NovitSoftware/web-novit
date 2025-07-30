@@ -227,7 +227,7 @@ export default function Services() {
 
                   {/* CTA Button */}
                   <div className="mt-6 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <button className="flex items-center text-accent-cyan font-semibold hover:text-secondary-500 transition-colors">
+                    <button className="flex items-center text-accent-cyan font-semibold hover:text-secondary-500 transition-colors cursor-pointer">
                       {isActive ? 'Ver menos' : 'Conocer más'}
                       <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
                         isActive ? 'rotate-90' : ''
@@ -249,7 +249,7 @@ export default function Services() {
             <p className="text-lg lg:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
               Contanos sobre tu proyecto y te ayudamos a encontrar la mejor solución tecnológica
             </p>
-            <button className="bg-white text-slate-900 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <button className="bg-white text-slate-900 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
               Solicitar asesoría
             </button>
           </div>
