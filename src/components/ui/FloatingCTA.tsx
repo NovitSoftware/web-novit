@@ -12,7 +12,7 @@ export default function FloatingCTA() {
       <div className="floating-cta">
         <button
           onClick={() => setIsOpen(true)}
-          className="group bg-gradient-novit-accent text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 font-semibold"
+          className="group bg-gradient-novit-accent text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 font-semibold cursor-pointer"
         >
           <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
           <span className="hidden sm:block">Necesito un presupuesto en 36hs</span>
@@ -37,7 +37,7 @@ export default function FloatingCTA() {
                 <h3 className="text-xl font-bold">Presupuesto Rápido</h3>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-1 hover:bg-white/20 rounded-full transition-colors"
+                  className="p-1 hover:bg-white/20 rounded-full transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -161,7 +161,7 @@ export default function FloatingCTA() {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-novit-accent text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-novit-accent text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
                 Enviar solicitud

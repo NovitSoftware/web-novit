@@ -208,6 +208,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               </div>
             </div>
 
+
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto flex-1">
 
@@ -366,7 +367,8 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             style={{
               background: 'linear-gradient(to right, #2563eb, #4f46e5)'
             }}
-            className="w-full text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] border border-blue-700 shadow-lg"
+            className="w-full text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] border border-blue-700 shadow-lg cursor-pointer"
+
           >
             {isSubmitting ? (
               <>

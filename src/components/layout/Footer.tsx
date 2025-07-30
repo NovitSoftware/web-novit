@@ -186,7 +186,7 @@ export default function Footer() {
                     placeholder="tu@email.com"
                     className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:border-accent-cyan transition-colors"
                   />
-                  <button className="w-full px-4 py-2 bg-gradient-novit-accent rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium">
+                  <button className="w-full px-4 py-2 bg-gradient-novit-accent rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium cursor-pointer">
                     Suscribirse
                   </button>
                 </div>
@@ -218,7 +218,7 @@ export default function Footer() {
                 </Link>
                 <button
                   onClick={scrollToTop}
-                  className="flex items-center space-x-1 hover:text-accent-cyan transition-colors group"
+                  className="flex items-center space-x-1 hover:text-accent-cyan transition-colors group cursor-pointer"
                 >
                   <span>Volver arriba</span>
                   <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
