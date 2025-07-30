@@ -377,7 +377,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             ) : (
               <>
                 <Send className="w-5 h-5" />
-                <span>Generar Cotización Premium</span>
+                <span>Generar Propuesta Comercial</span>
                 <span className="text-lg">⚡</span>
               </>
             )}
