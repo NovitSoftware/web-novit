@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
     const email = formData.get('email') as string;
     const phone = formData.get('phone') as string;
     const projectSummary = formData.get('projectSummary') as string;
+    const specialRequirements = formData.get('specialRequirements') as string;
     const pdfFile = formData.get('pdfFile') as File;
 
     // Validate required fields
@@ -78,6 +79,9 @@ INFORMACIÓN DEL CLIENTE:
 
 DESCRIPCIÓN DEL PROYECTO:
 ${projectSummary}
+
+REQUERIMIENTOS ESPECIALES:
+${specialRequirements || 'No se especificaron requerimientos especiales'}
 
 ARCHIVO ADJUNTO:
 ${pdfText}
@@ -160,6 +164,11 @@ Genera la propuesta completa:
             <div class="section">
               <h2>📝 Resumen del Proyecto</h2>
               <p>${projectSummary}</p>
+            </div>
+            
+            <div class="section">
+              <h2>📋 Requerimientos Especiales</h2>
+              <p>${specialRequirements || 'No se especificaron requerimientos especiales'}</p>
             </div>
             
             <div class="section">
