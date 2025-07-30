@@ -27,6 +27,63 @@
     "cta_premium": "⚡ Premium Quote in 24h",
     "cta_work": "See our work"
   },
+  "services": {
+    "included_services": "Included services:"
+  },
+    "company_description": "The software factory you need to make your ideas come to life in a simple and practical way.",
+    "address_line1": "Av. Córdoba 1351, floor #3",
+    "address_line2": "Buenos Aires City",
+    "services_title": "Services",
+    "services": {
+      "software_development": "Software Development",
+      "artificial_intelligence": "Artificial Intelligence",
+      "it_consulting": "IT Consulting",
+      "qa_testing": "QA & Testing",
+      "ux_ui_design": "UX/UI Design",
+      "data_science": "Data Science"
+    },
+    "company_title": "Company",
+    "company_links": {
+      "about": "About Us",
+      "success_cases": "Success Cases",
+      "technologies": "Technologies",
+      "academy": "Novit Academy",
+      "blog": "Blog",
+      "careers": "Careers"
+    },
+    "connect_title": "Connect with us",
+    "social_description": "Follow us on our social networks to stay up to date with the latest news from the tech world.",
+    "newsletter_title": "Tech Newsletter",
+    "newsletter_description": "Get insights and trends from the technology world.",
+    "newsletter_placeholder": "your@email.com",
+    "newsletter_subscribe": "Subscribe",
+    "copyright": "© 2024 NOVIT | All rights reserved.",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_use": "Terms of Use",
+    "back_to_top": "Back to top"
+  },
+  "floating_cta": {
+    "privacy_acceptance": "I accept the",
+    "privacy_policy": "privacy policy",
+    "privacy_text": "and the processing of my personal data",
+    "button_text": "I need a quote in 36h",
+    "button_text_short": "Quote",
+    "lastname": "Last Name",
+    "email": "Email",
+    "company": "Company",
+    "email_placeholder": "your@email.com",
+    "services": {
+      "web_development": "Web Development",
+      "mobile_development": "Mobile Development",
+      "artificial_intelligence": "Artificial Intelligence",
+      "consulting": "IT Consulting",
+      "qa_testing": "QA & Testing",
+      "ux_ui_design": "UX/UI Design",
+      "data_science": "Data Science",
+      "other": "Other",
+      "select_project": "Select project type"
+    }
+  },
   "metadata": {
     "title": "NOVIT Software | The software factory you need",
     "description": "Ideal technology partner to accompany your digital transformation process. Software development, AI, IT consulting and more.",

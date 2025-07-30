@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useScrollAnimation, useGSAP } from '@/hooks/useAnimations';
+import { useTranslations } from 'next-intl';
 import { Service } from '@/types';
 import { 
   Code2, 
@@ -102,6 +103,7 @@ export default function Services() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const gsap = useGSAP();
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const t = useTranslations('services');
 
   useEffect(() => {
     if (gsap && isVisible && cardsRef.current.length > 0) {
@@ -212,7 +214,7 @@ export default function Services() {
                   }`}>
                     <div className="border-t border-slate-700 pt-6">
                       <h4 className="font-semibold text-white mb-3">
-                        Servicios incluidos:
+                        {t('included_services')}
                       </h4>
                       <ul className="space-y-2">
                         {service.features.map((feature, featureIndex) => (

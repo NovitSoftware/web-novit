@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations, useLocale } from 'next-intl';
 import { 
   Mail, 
   Phone, 
@@ -14,6 +15,9 @@ import {
 import { getAssetPath } from '@/config/constants';
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  const locale = useLocale();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -43,16 +47,15 @@ export default function Footer() {
               </div>
               
               <p className="text-gray-300 mb-6 leading-relaxed">
-                La software factory que necesitás para que tus ideas se hagan realidad 
-                de forma simple y práctica.
+                {t('company_description')}
               </p>
 
               <div className="space-y-3">
                 <div className="flex items-center text-gray-300">
                   <MapPin className="w-4 h-4 mr-3 text-accent-cyan" />
                   <span className="text-sm">
-                    Av. Córdoba 1351, piso #3<br />
-                    Ciudad de Buenos Aires
+                    {t('address_line1')}<br />
+                    {t('address_line2')}
                   </span>
                 </div>
                 
@@ -81,23 +84,23 @@ export default function Footer() {
             {/* Services */}
             <div>
               <h3 className="text-xl font-semibold mb-6">
-                Servicios
+                {t('services_title')}
               </h3>
               <ul className="space-y-3">
                 {[
-                  'Desarrollo de Software',
-                  'Inteligencia Artificial',
-                  'Consultoría IT',
-                  'QA & Testing',
-                  'Diseño UX/UI',
-                  'Data Science',
+                  { key: 'software_development', href: '/servicios' },
+                  { key: 'artificial_intelligence', href: '/servicios' },
+                  { key: 'it_consulting', href: '/servicios' },
+                  { key: 'qa_testing', href: '/servicios' },
+                  { key: 'ux_ui_design', href: '/servicios' },
+                  { key: 'data_science', href: '/servicios' },
                 ].map((service) => (
-                  <li key={service}>
+                  <li key={service.key}>
                     <Link 
-                      href="/servicios"
+                      href={`/${locale}${service.href}`}
                       className="text-gray-300 hover:text-accent-cyan transition-colors text-sm"
                     >
-                      {service}
+                      {t(`services.${service.key}`)}
                     </Link>
                   </li>
                 ))}
@@ -107,23 +110,23 @@ export default function Footer() {
             {/* Company */}
             <div>
               <h3 className="text-xl font-semibold mb-6">
-                Empresa
+                {t('company_title')}
               </h3>
               <ul className="space-y-3">
                 {[
-                  { label: 'Nosotros', href: '/nosotros' },
-                  { label: 'Casos de Éxito', href: '/casos-exito' },
-                  { label: 'Tecnologías', href: '/tecnologias' },
-                  { label: 'Academia Novit', href: '/academia' },
-                  { label: 'Blog', href: '/blog' },
-                  { label: 'Carreras', href: '/carreras' },
+                  { key: 'about', href: '/nosotros' },
+                  { key: 'success_cases', href: '/casos-exito' },
+                  { key: 'technologies', href: '/tecnologias' },
+                  { key: 'academy', href: '/academia' },
+                  { key: 'blog', href: '/blog' },
+                  { key: 'careers', href: '/carreras' },
                 ].map((item) => (
-                  <li key={item.label}>
+                  <li key={item.key}>
                     <Link 
-                      href={item.href}
+                      href={`/${locale}${item.href}`}
                       className="text-gray-300 hover:text-accent-cyan transition-colors text-sm"
                     >
-                      {item.label}
+                      {t(`company_links.${item.key}`)}
                     </Link>
                   </li>
                 ))}
@@ -133,13 +136,12 @@ export default function Footer() {
             {/* Contact & Social */}
             <div>
               <h3 className="text-xl font-semibold mb-6">
-                Conectá con nosotros
+                {t('connect_title')}
               </h3>
               
               <div className="space-y-4 mb-6">
                 <p className="text-gray-300 text-sm">
-                  Seguinos en nuestras redes sociales para estar al día con las 
-                  últimas novedades del mundo tech.
+                  {t('social_description')}
                 </p>
                 
                 <div className="flex space-x-4">
@@ -175,19 +177,19 @@ export default function Footer() {
               {/* Newsletter */}
               <div className="bg-white/5 rounded-lg p-4">
                 <h4 className="font-semibold mb-2 text-sm">
-                  Newsletter Tech
+                  {t('newsletter_title')}
                 </h4>
                 <p className="text-gray-300 text-xs mb-3">
-                  Recibí insights y tendencias del mundo tecnológico.
+                  {t('newsletter_description')}
                 </p>
                 <div className="flex flex-col gap-2">
                   <input
                     type="email"
-                    placeholder="tu@email.com"
+                    placeholder={t('newsletter_placeholder')}
                     className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:border-accent-cyan transition-colors"
                   />
                   <button className="w-full px-4 py-2 bg-gradient-novit-accent rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium cursor-pointer">
-                    Suscribirse
+                    {t('newsletter_subscribe')}
                   </button>
                 </div>
               </div>
@@ -200,27 +202,27 @@ export default function Footer() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-sm text-gray-400 text-center md:text-left">
-                © 2024 NOVIT | Todos los derechos reservados.
+                {t('copyright')}
               </div>
               
               <div className="flex items-center space-x-6 text-sm text-gray-400">
                 <Link 
-                  href="/privacy"
+                  href={`/${locale}/privacy`}
                   className="hover:text-accent-cyan transition-colors"
                 >
-                  Política de Privacidad
+                  {t('privacy_policy')}
                 </Link>
                 <Link 
-                  href="/terms"
+                  href={`/${locale}/terms`}
                   className="hover:text-accent-cyan transition-colors"
                 >
-                  Términos de Uso
+                  {t('terms_of_use')}
                 </Link>
                 <button
                   onClick={scrollToTop}
                   className="flex items-center space-x-1 hover:text-accent-cyan transition-colors group cursor-pointer"
                 >
-                  <span>Volver arriba</span>
+                  <span>{t('back_to_top')}</span>
                   <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                 </button>
               </div>

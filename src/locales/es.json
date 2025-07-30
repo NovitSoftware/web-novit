@@ -27,6 +27,63 @@
     "cta_premium": "⚡ Cotización Premium en 24hs",
     "cta_work": "Ver nuestro trabajo"
   },
+  "services": {
+    "included_services": "Servicios incluidos:"
+  },
+    "company_description": "La software factory que necesitás para que tus ideas se hagan realidad de forma simple y práctica.",
+    "address_line1": "Av. Córdoba 1351, piso #3",
+    "address_line2": "Ciudad de Buenos Aires",
+    "services_title": "Servicios",
+    "services": {
+      "software_development": "Desarrollo de Software",
+      "artificial_intelligence": "Inteligencia Artificial", 
+      "it_consulting": "Consultoría IT",
+      "qa_testing": "QA & Testing",
+      "ux_ui_design": "Diseño UX/UI",
+      "data_science": "Data Science"
+    },
+    "company_title": "Empresa",
+    "company_links": {
+      "about": "Nosotros",
+      "success_cases": "Casos de Éxito",
+      "technologies": "Tecnologías",
+      "academy": "Academia Novit",
+      "blog": "Blog",
+      "careers": "Carreras"
+    },
+    "connect_title": "Conectá con nosotros",
+    "social_description": "Seguinos en nuestras redes sociales para estar al día con las últimas novedades del mundo tech.",
+    "newsletter_title": "Newsletter Tech",
+    "newsletter_description": "Recibí insights y tendencias del mundo tecnológico.",
+    "newsletter_placeholder": "tu@email.com",
+    "newsletter_subscribe": "Suscribirse",
+    "copyright": "© 2024 NOVIT | Todos los derechos reservados.",
+    "privacy_policy": "Política de Privacidad",
+    "terms_of_use": "Términos de Uso",
+    "back_to_top": "Volver arriba"
+  },
+  "floating_cta": {
+    "privacy_acceptance": "Acepto la",
+    "privacy_policy": "política de privacidad",
+    "privacy_text": "y el tratamiento de mis datos personales",
+    "button_text": "Necesito un presupuesto en 36hs",
+    "button_text_short": "Presupuesto",
+    "lastname": "Apellido",
+    "email": "Email",
+    "company": "Empresa",
+    "email_placeholder": "tu@email.com",
+    "services": {
+      "web_development": "Desarrollo Web",
+      "mobile_development": "Desarrollo Móvil",
+      "artificial_intelligence": "Inteligencia Artificial",
+      "consulting": "Consultoría IT",
+      "qa_testing": "QA & Testing",
+      "ux_ui_design": "Diseño UX/UI",
+      "data_science": "Data Science",
+      "other": "Otro",
+      "select_project": "Seleccionar tipo de proyecto"
+    }
+  },
   "metadata": {
     "title": "NOVIT Software | La software factory que necesitás",
     "description": "Partner tecnológico ideal para acompañar tu proceso de transformación digital. Desarrollo de software, IA, consultoría IT y más.",

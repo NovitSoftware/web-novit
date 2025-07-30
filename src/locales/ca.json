@@ -27,6 +27,63 @@
     "cta_premium": "⚡ Cotització Premium en 24h",
     "cta_work": "Veure el nostre treball"
   },
+  "services": {
+    "included_services": "Serveis inclosos:"
+  },
+    "company_description": "La software factory que necessites perquè les teves idees es facin realitat de forma simple i pràctica.",
+    "address_line1": "Av. Córdoba 1351, pis #3",
+    "address_line2": "Ciutat de Buenos Aires",
+    "services_title": "Serveis",
+    "services": {
+      "software_development": "Desenvolupament de Software",
+      "artificial_intelligence": "Intel·ligència Artificial",
+      "it_consulting": "Consultoria IT",
+      "qa_testing": "QA & Testing",
+      "ux_ui_design": "Disseny UX/UI",
+      "data_science": "Ciència de Dades"
+    },
+    "company_title": "Empresa",
+    "company_links": {
+      "about": "Nosaltres",
+      "success_cases": "Casos d'Èxit",
+      "technologies": "Tecnologies",
+      "academy": "Acadèmia Novit",
+      "blog": "Blog",
+      "careers": "Carreres"
+    },
+    "connect_title": "Connecta amb nosaltres",
+    "social_description": "Segueix-nos a les nostres xarxes socials per estar al dia amb les últimes novetats del món tech.",
+    "newsletter_title": "Newsletter Tech",
+    "newsletter_description": "Rep insights i tendències del món tecnològic.",
+    "newsletter_placeholder": "el_teu@email.com",
+    "newsletter_subscribe": "Subscriure's",
+    "copyright": "© 2024 NOVIT | Tots els drets reservats.",
+    "privacy_policy": "Política de Privacitat",
+    "terms_of_use": "Termes d'Ús",
+    "back_to_top": "Tornar a dalt"
+  },
+  "floating_cta": {
+    "privacy_acceptance": "Accepto la",
+    "privacy_policy": "política de privacitat",
+    "privacy_text": "i el tractament de les meves dades personals",
+    "button_text": "Necessito un pressupost en 36h",
+    "button_text_short": "Pressupost",
+    "lastname": "Cognom",
+    "email": "Email",
+    "company": "Empresa",
+    "email_placeholder": "el_teu@email.com",
+    "services": {
+      "web_development": "Desenvolupament Web",
+      "mobile_development": "Desenvolupament Mòbil",
+      "artificial_intelligence": "Intel·ligència Artificial",
+      "consulting": "Consultoria IT",
+      "qa_testing": "QA & Testing",
+      "ux_ui_design": "Disseny UX/UI",
+      "data_science": "Ciència de Dades",
+      "other": "Altre",
+      "select_project": "Seleccionar tipus de projecte"
+    }
+  },
   "metadata": {
     "title": "NOVIT Software | La software factory que necessites",
     "description": "Partner tecnològic ideal per acompanyar el teu procés de transformació digital. Desenvolupament de software, IA, consultoria IT i més.",
