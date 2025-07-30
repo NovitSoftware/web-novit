@@ -98,12 +98,6 @@ export default function Hero() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             
-            <button className="group bg-gradient-novit-accent text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-3">
-
-              Contanos sobre tu proyecto
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            
             <button className="group bg-transparent border-2 border-gray-300 text-gray-300 px-8 py-4 sm:px-10 sm:py-5 rounded-full font-semibold text-lg hover:bg-gray-300 hover:text-slate-900 transition-all duration-300 flex items-center gap-3">
               <Play className="w-5 h-5" />
               Ver nuestro trabajo

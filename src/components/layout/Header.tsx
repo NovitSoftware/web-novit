@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 
 import { NavigationItem } from '@/types';
 import { getAssetPath } from '@/config/constants';
+import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 
 const navigation: NavigationItem[] = [
   { label: 'Inicio', href: '/' },
@@ -20,6 +21,7 @@ const navigation: NavigationItem[] = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPremiumQuoteOpen, setIsPremiumQuoteOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,12 +74,12 @@ export default function Header() {
 
             {/* CTA Button Desktop */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Link
-                href="/contacto"
+              <button
+                onClick={() => setIsPremiumQuoteOpen(true)}
                 className="bg-gradient-novit-accent text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 Necesito un presupuesto
-              </Link>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -114,13 +116,15 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/contacto"
+              <button
+                onClick={() => {
+                  setIsPremiumQuoteOpen(true);
+                  setIsMobileMenuOpen(false);
+                }}
                 className="block bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-medium text-center mt-6"
-                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Necesito un presupuesto
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -147,6 +151,12 @@ export default function Header() {
           ))}
         </div>
       </nav>
+
+      {/* Premium Quote Modal */}
+      <PremiumQuoteModal 
+        isOpen={isPremiumQuoteOpen}
+        onClose={() => setIsPremiumQuoteOpen(false)}
+      />
     </>
   );
 }
