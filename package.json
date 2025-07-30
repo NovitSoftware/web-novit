@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "serve": "./dev-serve.sh"
+    "serve": "npm run build && echo \"🌐 Testing locale routes at:\" && echo \"📍 Root (auto-detect): http://localhost:8000\" && echo \"🇪🇸 Spanish: http://localhost:8000/es/\" && echo \"🇺🇸 English: http://localhost:8000/en/\" && echo \"🏴󠁧󠁢󠁣󠁴󠁿 Catalan: http://localhost:8000/ca/\" && echo \"\" && serve out -p 8000"
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.17",
@@ -31,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.3",
     "postcss": "^8.5.6",
+    "serve": "^14.2.4",
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   }
