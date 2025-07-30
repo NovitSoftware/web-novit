@@ -191,10 +191,10 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-white tracking-tight">
-                      Propuesta comercial personalizada
+                      Propuesta comercial premium
                     </h3>
                     <p className="text-blue-100 text-sm font-medium">
-                      Cotización premium con IA
+                      Cotización personalizada
                     </p>
                   </div>
                 </div>
@@ -294,7 +294,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           {/* Special Requirements */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              ¿Hay algo en especial que necesitas que este aclarado en la propuesta comercial?
+              ¿Hay algo en especial que necesitás que este aclarado en la propuesta comercial?
             </label>
             <textarea
               rows={3}
@@ -353,6 +353,10 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
                 {errors.pdfFile}
               </p>
             )}
+            <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
+              <span className="text-xs">🔒</span>
+              Tu información está segura y solo la usaremos para generar tu propuesta comercial. Nos comprometemos a no compartirla con terceros, y podés solicitar la eliminación de tus datos en cualquier momento.
+            </p>
           </div>
 
           {/* Submit Button */}
