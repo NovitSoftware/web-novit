@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import FloatingCTA from "@/components/ui/FloatingCTA";
 
 export const metadata: Metadata = {
   title: "NOVIT Software | La software factory que necesitás",
@@ -53,7 +52,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <FloatingCTA />
       </body>
     </html>
   );
