@@ -2,9 +2,13 @@
 
 import { useState } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
+import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function FloatingCTA() {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations('floating_cta');
+  const locale = useLocale();
 
   return (
     <>
@@ -15,8 +19,8 @@ export default function FloatingCTA() {
           className="group bg-gradient-novit-accent text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 font-semibold cursor-pointer"
         >
           <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
-          <span className="hidden sm:block">Necesito un presupuesto en 36hs</span>
-          <span className="sm:hidden">Presupuesto</span>
+          <span className="hidden sm:block">{t('button_text')}</span>
+          <span className="sm:hidden">{t('button_text_short')}</span>
         </button>
       </div>
 
@@ -63,7 +67,7 @@ export default function FloatingCTA() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Apellido *
+                    {t('lastname')} *
                   </label>
                   <input
                     type="text"
@@ -76,19 +80,19 @@ export default function FloatingCTA() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email *
+                  {t('email')} *
                 </label>
                 <input
                   type="email"
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                  placeholder="tu@email.com"
+                  placeholder={t('email_placeholder')}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Empresa
+                  {t('company')}
                 </label>
                 <input
                   type="text"
@@ -105,15 +109,15 @@ export default function FloatingCTA() {
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 >
-                  <option value="">Seleccionar tipo de proyecto</option>
-                  <option value="desarrollo-web">Desarrollo Web</option>
-                  <option value="desarrollo-movil">Desarrollo Móvil</option>
-                  <option value="inteligencia-artificial">Inteligencia Artificial</option>
-                  <option value="consultoria">Consultoría IT</option>
-                  <option value="qa-testing">QA & Testing</option>
-                  <option value="diseno-ux-ui">Diseño UX/UI</option>
-                  <option value="data-science">Data Science</option>
-                  <option value="otro">Otro</option>
+                  <option value="">{t('services.select_project')}</option>
+                  <option value="desarrollo-web">{t('services.web_development')}</option>
+                  <option value="desarrollo-movil">{t('services.mobile_development')}</option>
+                  <option value="inteligencia-artificial">{t('services.artificial_intelligence')}</option>
+                  <option value="consultoria">{t('services.consulting')}</option>
+                  <option value="qa-testing">{t('services.qa_testing')}</option>
+                  <option value="diseno-ux-ui">{t('services.ux_ui_design')}</option>
+                  <option value="data-science">{t('services.data_science')}</option>
+                  <option value="otro">{t('services.other')}</option>
                 </select>
               </div>
 
@@ -151,11 +155,11 @@ export default function FloatingCTA() {
                   className="mt-1 w-4 h-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500"
                 />
                 <label htmlFor="privacy" className="text-sm text-gray-600">
-                  Acepto la{' '}
-                  <a href="/privacy" className="text-accent-cyan hover:underline">
-                    política de privacidad
-                  </a>{' '}
-                  y el tratamiento de mis datos personales
+                  {t('privacy_acceptance')}{' '}
+                  <Link href={`/${locale}/privacy`} className="text-accent-cyan hover:underline">
+                    {t('privacy_policy')}
+                  </Link>{' '}
+                  {t('privacy_text')}
                 </label>
               </div>
 

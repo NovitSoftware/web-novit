@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
 
 /**
  * Whether we're in GitHub Actions building for GitHub Pages deployment
+ * Only apply GitHub Pages config when explicitly deploying to GitHub Pages
  */
-const isGithubPages = process.env.GITHUB_ACTIONS === 'true';
+const isGithubPages = process.env.GITHUB_ACTIONS === 'true' && process.env.NODE_ENV === 'production' && process.env.DEPLOY_TARGET === 'github-pages';
+
+const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 const nextConfig: NextConfig = {
   output: 'export',
@@ -28,4 +32,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

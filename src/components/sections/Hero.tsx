@@ -1,16 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-
+import { useState } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 import { useScrollAnimation, useParallax } from '@/hooks/useAnimations';
+import { useTranslations } from 'next-intl';
 import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 
 export default function Hero() {
   const { ref: heroRef, isVisible } = useScrollAnimation();
   const { ref: parallaxRef, offset } = useParallax(0.3);
   const [isPremiumQuoteOpen, setIsPremiumQuoteOpen] = useState(false);
-
+  
+  const t = useTranslations('hero');
 
   return (
     <section
@@ -68,39 +69,40 @@ export default function Hero() {
         >
           {/* Título principal */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            La{' '}
+            {t('title_part1')}{' '}
             <span className="text-accent-cyan font-black drop-shadow-lg">
-              software factory
+              {t('title_highlight')}
             </span>{' '}
-            que necesitás
+            {t('title_part2')}
           </h1>
 
           {/* Subtítulo */}
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Para que tus ideas se hagan realidad de forma{' '}
-            <span className="text-accent-cyan font-semibold">simple</span> y{' '}
-            <span className="text-accent-cyan font-semibold">práctica</span>
+            {t('subtitle_part1')}{' '}
+            <span className="text-accent-cyan font-semibold">{t('subtitle_highlight1')}</span>{' '}
+            {t('subtitle_middle')}{' '}
+            <span className="text-accent-cyan font-semibold">{t('subtitle_highlight2')}</span>
+            {t.has('subtitle_part2') ? ` ${t('subtitle_part2')}` : ''}
           </p>
 
           {/* Descripción */}
           <p className="text-lg lg:text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
-            El partner tecnológico ideal para acompañar tu proceso de transformación digital
+            {t('description')}
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-
             <button 
               onClick={() => setIsPremiumQuoteOpen(true)}
               className="group bg-gradient-to-r from-accent-cyan to-secondary-500 text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-3 border-2 border-transparent hover:border-white/30 cursor-pointer"
             >
-              ⚡ Cotización Premium en 24hs
+              {t('cta_premium')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             
             <button className="group bg-transparent border-2 border-gray-300 text-gray-300 px-8 py-4 sm:px-10 sm:py-5 rounded-full font-semibold text-lg hover:bg-gray-300 hover:text-slate-900 transition-all duration-300 flex items-center gap-3 cursor-pointer">
               <Play className="w-5 h-5" />
-              Ver nuestro trabajo
+              {t('cta_work')}
             </button>
           </div>
         </div>

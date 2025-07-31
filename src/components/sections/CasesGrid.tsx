@@ -4,67 +4,64 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
+import { useTranslations } from 'next-intl';
 import { CaseStudy } from '@/types';
 
-import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
+import { ArrowUpRight, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
-import { getAssetPath } from '@/config/constants';
 
 const cases: CaseStudy[] = [
   {
     id: 'nazca-brands',
-    title: 'Data analytics con IA para impulsar una app de fidelización en EE.UU.',
+    titleKey: 'cases.studies.nazca-brands.title',
+    descriptionKey: 'cases.studies.nazca-brands.description',
     client: 'Nazca Brands',
-    description: 'Desarrollo de dashboards interactivos embebidos con KPIs estratégicos usando Power BI y Microsoft Copilot para análisis conversacional.',
     image: '/images/cases/nazca.png',
     logoImage: '/images/cases/logos/nazca-logo.png',
     screenshotImage: '/images/cases/screenshots/nazca-dashboard.png',
     tags: ['Power BI', 'Microsoft Copilot'],
-
     year: 2024,
     hasDetailPage: true,
     results: [
-      { metric: 'Integración exitosa', value: '100%' },
-      { metric: 'Métricas en tiempo real', value: 'Activo' },
-      { metric: 'Solución escalable', value: 'Nacional' },
+      { metricKey: 'cases.studies.nazca-brands.results.integration', value: '100%' },
+      { metricKey: 'cases.studies.nazca-brands.results.metrics', value: 'Activo' },
+      { metricKey: 'cases.studies.nazca-brands.results.solution', value: 'Nacional' },
     ],
   },
   {
     id: 'consultatio',
-    title: 'Sistema de Gestión Inmobiliaria',
+    titleKey: 'cases.studies.consultatio.title',
+    descriptionKey: 'cases.studies.consultatio.description',
     client: 'Consultatio',
-    description: 'Plataforma integral para gestión de proyectos inmobiliarios con análisis avanzado y dashboards de control.',
     image: '/images/cases/consultatio.png',
     logoImage: '/images/cases/logos/consultatio-logo.png',
     screenshotImage: '/images/cases/screenshots/consultatio-dashboard.png',
     tags: ['Desarrollo Web', 'ERP'],
-
     year: 2024,
     hasDetailPage: true,
     results: [
-      { metric: 'Propiedades gestionadas', value: '1000+' },
-      { metric: 'Usuarios activos', value: '200+' },
-      { metric: 'Reducción de tiempo', value: '60%' },
+      { metricKey: 'cases.studies.consultatio.results.properties', value: '1000+' },
+      { metricKey: 'cases.studies.consultatio.results.users', value: '200+' },
+      { metricKey: 'cases.studies.consultatio.results.time_reduction', value: '60%' },
     ],
   },
   {
     id: 'ebmetrics',
-    title: 'Plataforma de Analytics',
+    titleKey: 'cases.studies.ebmetrics.title',
+    descriptionKey: 'cases.studies.ebmetrics.description',
     client: 'EB Metrics',
-    description: 'Sistema avanzado de análisis de datos y métricas empresariales para optimización de procesos de negocio.',
     image: '/images/cases/ebmetrics.png',
     logoImage: '/images/cases/logos/ebmetrics-logo.png',
     screenshotImage: '/images/cases/screenshots/ebmetrics-dashboard.png',
     tags: ['Analytics', 'Data Science'],
-
     year: 2023,
     hasDetailPage: true,
   },
   {
     id: 'gamma',
-    title: 'Sistema de Visualización de Datos',
+    titleKey: 'cases.studies.gamma.title',
+    descriptionKey: 'cases.studies.gamma.description',
     client: 'Gamma',
-    description: 'Plataforma integral de dashboards y KPIs para análisis empresarial con visualizaciones interactivas avanzadas.',
     image: '/images/cases/gamma.png',
     logoImage: '/images/cases/logos/gamma-logo.png',
     screenshotImage: '/images/cases/screenshots/gamma-dashboard.png',
@@ -74,9 +71,9 @@ const cases: CaseStudy[] = [
   },
   {
     id: 'novopath',
-    title: 'Aplicación de Gestión de Procesos',
+    titleKey: 'cases.studies.novopath.title',
+    descriptionKey: 'cases.studies.novopath.description',
     client: 'NovoPath',
-    description: 'Desarrollo de aplicación empresarial para gestión y análisis de flujos de procesos internos y optimización.',
     image: '/images/cases/novopath.png',
     logoImage: '/images/cases/logos/novopath-logo.png',
     screenshotImage: '/images/cases/screenshots/novopath-dashboard.png',
@@ -86,9 +83,9 @@ const cases: CaseStudy[] = [
   },
   {
     id: 'salas-bim',
-    title: 'Aplicación BIM Web',
+    titleKey: 'cases.studies.salas-bim.title',
+    descriptionKey: 'cases.studies.salas-bim.description',
     client: 'Grupo Salas',
-    description: 'Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción e infraestructura.',
     image: '/images/cases/salas.png',
     logoImage: '/images/cases/logos/salas-logo.png',
     screenshotImage: '/images/cases/screenshots/salas-bim.png',
@@ -99,28 +96,27 @@ const cases: CaseStudy[] = [
 ];
 
 function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
+  const t = useTranslations();
   const { ref: cardRef, isVisible } = useScrollAnimation();
   const [showScreenshot, setShowScreenshot] = useState(false);
 
   return (
     <div
       ref={cardRef as any}
-      className={`group bg-slate-900 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 ${
-        isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
-      }`}
+      className={`group bg-slate-900 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
+        }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Image Section */}
-      <div 
+      <div
         className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-700 cursor-pointer"
         onMouseEnter={() => setShowScreenshot(true)}
         onMouseLeave={() => setShowScreenshot(false)}
         onTouchStart={() => setShowScreenshot(!showScreenshot)}
       >
         {/* Logo Image */}
-        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-          showScreenshot ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
-        }`}>
+        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${showScreenshot ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
+          }`}>
           <Image
             src={caseStudy.logoImage || caseStudy.image}
             alt={`${caseStudy.client} logo`}
@@ -133,12 +129,11 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         </div>
 
         {/* Screenshot Image */}
-        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-          showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-        }`}>
+        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+          }`}>
           <Image
             src={caseStudy.screenshotImage || caseStudy.image}
-            alt={`${caseStudy.title} screenshot`}
+            alt={`${caseStudy.client} screenshot`}
             fill
             className="object-contain p-4"
             style={{
@@ -146,7 +141,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
             }}
           />
         </div>
-        
+
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
 
@@ -172,10 +167,10 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
             {caseStudy.client}
           </p>
           <h3 className="text-white font-bold text-xl leading-tight mb-3">
-            {caseStudy.title}
+            {t(caseStudy.titleKey)}
           </h3>
           <p className="text-gray-300 text-sm leading-relaxed">
-            {caseStudy.description}
+            {t(caseStudy.descriptionKey)}
           </p>
         </div>
 
@@ -189,7 +184,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
                     {result.value}
                   </div>
                   <div className="text-gray-400 text-xs">
-                    {result.metric}
+                    {t(result.metricKey)}
                   </div>
                 </div>
               ))}
@@ -204,7 +199,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
             href="#"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
-            Ver caso completo
+            {t('cases.view_case')}
             <ArrowUpRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
@@ -216,9 +211,10 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
 
 export default function CasesGrid() {
   const { ref: sectionRef, isVisible } = useScrollAnimation();
+  const t = useTranslations();
 
   return (
-    <section 
+    <section
       ref={sectionRef as any}
       className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
     >
@@ -234,30 +230,35 @@ export default function CasesGrid() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit-accent rounded-2xl mb-6">
             <Tag className="w-8 h-8 text-white" />
           </div>
-          
+
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
-            Casos de <span className="gradient-text">Éxito</span>
+            {t('cases.section_title').split(' ').map((word, index) =>
+              index === 1 ? (
+                <span key={index} className="gradient-text">{word}</span>
+              ) : (
+                <span key={index}>{word} </span>
+              )
+            )}
           </h2>
-          
+
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Conocé algunos de los proyectos que hemos desarrollado y cómo hemos 
-            ayudado a nuestros clientes a alcanzar sus objetivos
+            {t('cases.section_description')}
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
-            { number: '50+', label: 'Proyectos completados' },
-            { number: '35+', label: 'Clientes satisfechos' },
-            { number: '31+', label: 'Países alcanzados' },
-            { number: calculateYearsOfExperience(), label: 'Años de experiencia' },
+            { number: '50+', label: t('cases.stats.projects') },
+            { number: '35+', label: t('cases.stats.clients') },
+            { number: '8+', label: t('cases.stats.countries') },
+            { number: calculateYearsOfExperience(), label: t('cases.stats.experience') },
+
           ].map((stat, index) => (
             <div
               key={index}
-              className={`text-center transform transition-all duration-500 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`}
+              className={`text-center transform transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="text-4xl lg:text-5xl font-bold gradient-text mb-2">
@@ -281,7 +282,7 @@ export default function CasesGrid() {
             href="/casos-exito"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
-            Ver todos los casos de éxito
+            {t('cases.view_all')}
             <ArrowUpRight className="w-5 h-5 ml-2" />
           </Link>
         </div>

@@ -9,9 +9,9 @@ export interface Service {
 
 export interface CaseStudy {
   id: string;
-  title: string;
+  titleKey: string;
   client: string;
-  description: string;
+  descriptionKey: string;
   image: string;
   logoImage?: string;
   screenshotImage?: string;
@@ -19,7 +19,7 @@ export interface CaseStudy {
   year: number;
   hasDetailPage: boolean;
   results?: {
-    metric: string;
+    metricKey: string;
     value: string;
   }[];
 }
