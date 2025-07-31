@@ -4,11 +4,18 @@ import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { ChevronDown, Globe } from 'lucide-react';
 
-const languages = [
+interface Language {
+  code: string;
+  name: string;
+  shortName?: string;
+  flag: string;
+}
+
+const languages: Language[] = [
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ca', name: 'Català', flag: 'CA' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  { code: 'ca', name: 'Català', flag: '🏴󠁥󠁳󠁣󠁴󠁿' },
+  { code: 'pt', name: 'Português', shortName: 'PT', flag: '🇵🇹' },
 ];
 
 export default function LanguageSwitcher() {
@@ -47,10 +54,10 @@ export default function LanguageSwitcher() {
       >
         <Globe className="w-4 h-4" />
         <span className="hidden sm:inline text-sm font-medium">
-          <span className={currentLanguage.flag.length === 2 ? "px-1 py-0.5 bg-slate-700 rounded text-xs font-semibold" : "text-lg"}>{currentLanguage.flag}</span> {currentLanguage.name}
+          <span className="text-lg">{currentLanguage.flag}</span> {currentLanguage.shortName || currentLanguage.name}
         </span>
         <span className="sm:hidden text-sm">
-          <span className={currentLanguage.flag.length === 2 ? "px-1 py-0.5 bg-slate-700 rounded text-xs font-semibold" : "text-lg"}>{currentLanguage.flag}</span>
+          <span className="text-lg">{currentLanguage.flag}</span>
         </span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -70,7 +77,7 @@ export default function LanguageSwitcher() {
                   lang.code === currentLocale ? 'bg-slate-700 text-accent-cyan' : 'text-white/90'
                 }`}
               >
-                <span className={lang.flag.length === 2 ? "px-1 py-0.5 bg-slate-600 rounded text-xs font-semibold" : "text-lg"}>{lang.flag}</span>
+                <span className="text-lg">{lang.flag}</span>
                 <span className="font-medium">{lang.name}</span>
                 {lang.code === currentLocale && (
                   <span className="ml-auto w-2 h-2 bg-accent-cyan rounded-full" />
