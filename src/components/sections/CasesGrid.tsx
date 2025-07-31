@@ -103,22 +103,20 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
   return (
     <div
       ref={cardRef as any}
-      className={`group bg-slate-900 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 ${
-        isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
-      }`}
+      className={`group bg-slate-900 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
+        }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Image Section */}
-      <div 
+      <div
         className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-700 cursor-pointer"
         onMouseEnter={() => setShowScreenshot(true)}
         onMouseLeave={() => setShowScreenshot(false)}
         onTouchStart={() => setShowScreenshot(!showScreenshot)}
       >
         {/* Logo Image */}
-        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-          showScreenshot ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
-        }`}>
+        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${showScreenshot ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
+          }`}>
           <Image
             src={caseStudy.logoImage || caseStudy.image}
             alt={`${caseStudy.client} logo`}
@@ -131,9 +129,8 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         </div>
 
         {/* Screenshot Image */}
-        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-          showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-        }`}>
+        <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+          }`}>
           <Image
             src={caseStudy.screenshotImage || caseStudy.image}
             alt={`${caseStudy.client} screenshot`}
@@ -144,7 +141,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
             }}
           />
         </div>
-        
+
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
 
@@ -217,7 +214,7 @@ export default function CasesGrid() {
   const t = useTranslations();
 
   return (
-    <section 
+    <section
       ref={sectionRef as any}
       className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
     >
@@ -233,9 +230,9 @@ export default function CasesGrid() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit-accent rounded-2xl mb-6">
             <Tag className="w-8 h-8 text-white" />
           </div>
-          
+
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
-            {t('cases.section_title').split(' ').map((word, index) => 
+            {t('cases.section_title').split(' ').map((word, index) =>
               index === 1 ? (
                 <span key={index} className="gradient-text">{word}</span>
               ) : (
@@ -243,7 +240,7 @@ export default function CasesGrid() {
               )
             )}
           </h2>
-          
+
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {t('cases.section_description')}
           </p>
@@ -254,14 +251,14 @@ export default function CasesGrid() {
           {[
             { number: '50+', label: t('cases.stats.projects') },
             { number: '35+', label: t('cases.stats.clients') },
-            { number: '31+', label: t('cases.stats.countries') },
+            { number: '8+', label: t('cases.stats.countries') },
             { number: calculateYearsOfExperience(), label: t('cases.stats.experience') },
+
           ].map((stat, index) => (
             <div
               key={index}
-              className={`text-center transform transition-all duration-500 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`}
+              className={`text-center transform transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="text-4xl lg:text-5xl font-bold gradient-text mb-2">
