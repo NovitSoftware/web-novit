@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Upload, FileText, Send, Loader } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface PremiumQuoteModalProps {
   isOpen: boolean;
@@ -29,6 +30,7 @@ const BLOCKED_EMAIL_DOMAINS = [
 ];
 
 export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModalProps) {
+  const t = useTranslations('premium_quote');
   const [formData, setFormData] = useState<FormData>({
     email: '',
     phone: '',
@@ -42,24 +44,24 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateEmail = (email: string): string | null => {
-    if (!email) return 'El email es requerido';
+    if (!email) return t('form.email_required');
     
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) return 'Formato de email inválido';
+    if (!emailRegex.test(email)) return t('form.email_invalid');
     
     const domain = email.split('@')[1]?.toLowerCase();
     if (BLOCKED_EMAIL_DOMAINS.includes(domain)) {
-      return 'Debe usar un email corporativo (no se permiten Gmail, Outlook, etc.)';
+      return t('form.email_blocked');
     }
     
     return null;
   };
 
   const validatePhone = (phone: string): string | null => {
-    if (!phone) return 'El teléfono es requerido';
+    if (!phone) return t('form.phone_required');
     
     const phoneRegex = /^[\+]?[\d\s\-\(\)]{8,}$/;
-    if (!phoneRegex.test(phone)) return 'Formato de teléfono inválido';
+    if (!phoneRegex.test(phone)) return t('form.phone_invalid');
     
     return null;
   };
@@ -74,11 +76,11 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
     if (phoneError) newErrors.phone = phoneError;
     
     if (!formData.projectSummary.trim()) {
-      newErrors.projectSummary = 'El resumen del proyecto es requerido';
+      newErrors.projectSummary = t('form.project_summary_required');
     }
     
     if (!formData.pdfFile) {
-      newErrors.pdfFile = 'Debe adjuntar un archivo PDF con los requerimientos';
+      newErrors.pdfFile = t('form.pdf_required');
     }
     
     setErrors(newErrors);
@@ -89,12 +91,12 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
     const file = e.target.files?.[0];
     if (file) {
       if (file.type !== 'application/pdf') {
-        setErrors({ ...errors, pdfFile: 'Solo se permiten archivos PDF' });
+        setErrors({ ...errors, pdfFile: t('form.pdf_invalid_type') });
         return;
       }
       
       if (file.size > 10 * 1024 * 1024) { // 10MB limit
-        setErrors({ ...errors, pdfFile: 'El archivo no puede superar los 10MB' });
+        setErrors({ ...errors, pdfFile: t('form.pdf_too_large') });
         return;
       }
       
@@ -128,12 +130,12 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
       });
       
       if (!response.ok) {
-        throw new Error('Error al procesar la solicitud');
+        throw new Error(t('messages.processing_error'));
       }
       
       // Success - close modal and show success message
       onClose();
-      alert('¡Solicitud enviada con éxito! Recibirá su cotización premium en las próximas 24 horas.');
+      alert(t('messages.success'));
       
       // Reset form
       setFormData({
@@ -146,7 +148,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
       
     } catch (error) {
       console.error('Error submitting quote:', error);
-      alert('Error al enviar la solicitud. Por favor, inténtelo nuevamente.');
+      alert(t('messages.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -191,10 +193,10 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-white tracking-tight">
-                      Propuesta comercial premium
+                      {t('title')}
                     </h3>
                     <p className="text-blue-100 text-sm font-medium">
-                      Cotización personalizada
+                      {t('subtitle')}
                     </p>
                   </div>
                 </div>
@@ -215,7 +217,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           {/* Email */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Email Corporativo *
+              {t('form.email_label')} {t('form.required_field')}
             </label>
             <input
               type="email"
@@ -225,7 +227,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 bg-white shadow-sm text-gray-900 placeholder-gray-500 ${
                 errors.email ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-300 hover:border-gray-400'
               }`}
-              placeholder="nombre@suempresa.com"
+              placeholder={t('form.email_placeholder')}
               disabled={isSubmitting}
             />
             {errors.email && (
@@ -236,14 +238,14 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             )}
             <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
               <span className="text-xs">ℹ️</span>
-              No se permiten emails personales (Gmail, Outlook, etc.)
+              {t('form.email_hint')}
             </p>
           </div>
 
           {/* Phone */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Teléfono/WhatsApp *
+              {t('form.phone_label')} {t('form.required_field')}
             </label>
             <input
               type="tel"
@@ -253,7 +255,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 bg-white shadow-sm text-gray-900 placeholder-gray-500 ${
                 errors.phone ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-300 hover:border-gray-400'
               }`}
-              placeholder="+54 9 11 1234-5678"
+              placeholder={t('form.phone_placeholder')}
               disabled={isSubmitting}
             />
             {errors.phone && (
@@ -264,14 +266,14 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             )}
             <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
               <span className="text-xs">💬</span>
-              Solo para mensajes de WhatsApp si es necesario (no llamaremos)
+              {t('form.phone_hint')}
             </p>
           </div>
 
           {/* Project Summary */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Resumen del Proyecto *
+              {t('form.project_summary_label')} {t('form.required_field')}
             </label>
             <textarea
               required
@@ -281,7 +283,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
               className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 resize-none bg-white shadow-sm text-gray-900 placeholder-gray-500 ${
                 errors.projectSummary ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-300 hover:border-gray-400'
               }`}
-              placeholder="Describe brevemente qué tipo de solución necesitás, tecnologías involucradas, alcance estimado, etc."
+              placeholder={t('form.project_summary_placeholder')}
               disabled={isSubmitting}
             />
             {errors.projectSummary && (
@@ -295,26 +297,26 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           {/* Special Requirements */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              ¿Hay algo en especial que necesitás que este aclarado en la propuesta comercial?
+              {t('form.special_requirements_label')}
             </label>
             <textarea
               rows={3}
               value={formData.specialRequirements}
               onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
               className="w-full px-4 py-3 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 transition-all duration-200 resize-none bg-white shadow-sm border-gray-300 hover:border-gray-400 text-gray-900 placeholder-gray-500"
-              placeholder="Garantía, Mantenimiento post-productivo, costo de licencias, términos de pago, soporte técnico, etc."
+              placeholder={t('form.special_requirements_placeholder')}
               disabled={isSubmitting}
             />
             <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
               <span className="text-xs">💡</span>
-              Campo opcional - Ayúdanos a personalizar mejor tu propuesta
+              {t('form.special_requirements_hint')}
             </p>
           </div>
 
           {/* PDF Upload */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Requerimientos (PDF) *
+              {t('form.pdf_label')} {t('form.required_field')}
             </label>
             <div 
               onClick={() => fileInputRef.current?.click()}
@@ -341,9 +343,9 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
                 <div className="flex items-center justify-center gap-3 text-gray-700">
                   <Upload className="w-6 h-6" />
                   <div className="text-sm">
-                    <span className="font-medium text-gray-900">Hacer clic para adjuntar PDF</span>
+                    <span className="font-medium text-gray-900">{t('form.pdf_upload_text')}</span>
                     <br />
-                    <span className="text-xs text-gray-600">(máx. 10MB)</span>
+                    <span className="text-xs text-gray-600">{t('form.pdf_max_size')}</span>
                   </div>
                 </div>
               )}
@@ -356,7 +358,7 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             )}
             <p className="text-gray-600 text-xs mt-2 flex items-center gap-1">
               <span className="text-xs">🔒</span>
-              Tu información está segura y solo la usaremos para generar tu propuesta comercial. Nos comprometemos a no compartirla con terceros, y podés solicitar la eliminación de tus datos en cualquier momento.
+              {t('form.privacy_notice')}
             </p>
           </div>
 
@@ -373,13 +375,13 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             {isSubmitting ? (
               <>
                 <Loader className="w-5 h-5 animate-spin" />
-                <span>Procesando con IA...</span>
+                <span>{t('form.submit_processing')}</span>
                 <span className="text-xs">🤖</span>
               </>
             ) : (
               <>
                 <Send className="w-5 h-5" />
-                <span>Generar Propuesta Comercial</span>
+                <span>{t('form.submit_button')}</span>
                 <span className="text-lg">⚡</span>
               </>
             )}
@@ -391,12 +393,12 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-lg">🤖</span>
             <p className="text-gray-800 text-sm font-medium">
-              Nuestra IA especializada, asistida por un ingeniero de nuestro equipo técnico, generará la propuesta comercial completa y personalizada
+              {t('footer.ai_description')}
             </p>
           </div>
           <p className="text-sm text-gray-700 flex items-center justify-center gap-1">
             <span className="text-xs">⏱️</span>
-            Respuesta garantizada en menos de <span className="font-semibold text-gray-900 px-2 py-1 bg-gray-200 rounded-full">24 horas</span>
+            {t('footer.response_time')} <span className="font-semibold text-gray-900 px-2 py-1 bg-gray-200 rounded-full">{t('footer.hours')}</span>
             <span className="text-xs">⚡</span>
           </p>
         </div>

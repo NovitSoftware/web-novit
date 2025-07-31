@@ -167,11 +167,90 @@
       "experience": "Años de experiencia"
     },
     "view_case": "Ver caso completo",
-    "view_all": "Ver todos los casos de éxito"
+    "view_all": "Ver todos los casos de éxito",
+    "studies": {
+      "nazca-brands": {
+        "title": "Data analytics con IA para impulsar una app de fidelización en EE.UU.",
+        "description": "Desarrollo de dashboards interactivos embebidos con KPIs estratégicos usando Power BI y Microsoft Copilot para análisis conversacional.",
+        "results": {
+          "integration": "Integración exitosa",
+          "metrics": "Métricas en tiempo real",
+          "solution": "Solución escalable"
+        }
+      },
+      "consultatio": {
+        "title": "Sistema de Gestión Inmobiliaria",
+        "description": "Plataforma integral para gestión de proyectos inmobiliarios con análisis avanzado y dashboards de control.",
+        "results": {
+          "properties": "Propiedades gestionadas",
+          "users": "Usuarios activos",
+          "time_reduction": "Reducción de tiempo"
+        }
+      },
+      "ebmetrics": {
+        "title": "Plataforma de Analytics",
+        "description": "Sistema avanzado de análisis de datos y métricas empresariales para optimización de procesos de negocio."
+      },
+      "gamma": {
+        "title": "Sistema de Visualización de Datos",
+        "description": "Plataforma integral de dashboards y KPIs para análisis empresarial con visualizaciones interactivas avanzadas."
+      },
+      "novopath": {
+        "title": "Aplicación de Gestión de Procesos",
+        "description": "Desarrollo de aplicación empresarial para gestión y análisis de flujos de procesos internos y optimización."
+      },
+      "salas-bim": {
+        "title": "Aplicación BIM Web",
+        "description": "Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción e infraestructura."
+      }
+    }
   },
   "metadata": {
     "title": "NOVIT Software | La software factory que necesitás",
     "description": "Partner tecnológico ideal para acompañar tu proceso de transformación digital. Desarrollo de software, IA, consultoría IT y más.",
     "keywords": "desarrollo software, software factory, transformación digital, inteligencia artificial, consultoría IT"
+  },
+  "premium_quote": {
+    "title": "Propuesta comercial premium",
+    "subtitle": "Cotización personalizada",
+    "form": {
+      "email_label": "Email Corporativo",
+      "email_placeholder": "nombre@suempresa.com",
+      "email_hint": "No se permiten emails personales (Gmail, Outlook, etc.)",
+      "email_required": "El email es requerido",
+      "email_invalid": "Formato de email inválido",
+      "email_blocked": "Debe usar un email corporativo (no se permiten Gmail, Outlook, etc.)",
+      "phone_label": "Teléfono/WhatsApp",
+      "phone_placeholder": "+54 9 11 1234-5678",
+      "phone_hint": "Solo para mensajes de WhatsApp si es necesario (no llamaremos)",
+      "phone_required": "El teléfono es requerido",
+      "phone_invalid": "Formato de teléfono inválido",
+      "project_summary_label": "Resumen del Proyecto",
+      "project_summary_placeholder": "Describe brevemente qué tipo de solución necesitás, tecnologías involucradas, alcance estimado, etc.",
+      "project_summary_required": "El resumen del proyecto es requerido",
+      "special_requirements_label": "¿Hay algo en especial que necesitás que este aclarado en la propuesta comercial?",
+      "special_requirements_placeholder": "Garantía, Mantenimiento post-productivo, costo de licencias, términos de pago, soporte técnico, etc.",
+      "special_requirements_hint": "Campo opcional - Ayúdanos a personalizar mejor tu propuesta",
+      "pdf_label": "Requerimientos (PDF)",
+      "pdf_upload_text": "Hacer clic para adjuntar PDF",
+      "pdf_max_size": "(máx. 10MB)",
+      "pdf_required": "Debe adjuntar un archivo PDF con los requerimientos",
+      "pdf_invalid_type": "Solo se permiten archivos PDF",
+      "pdf_too_large": "El archivo no puede superar los 10MB",
+      "privacy_notice": "Tu información está segura y solo la usaremos para generar tu propuesta comercial. Nos comprometemos a no compartirla con terceros, y podés solicitar la eliminación de tus datos en cualquier momento.",
+      "submit_button": "Generar Propuesta Comercial",
+      "submit_processing": "Procesando con IA...",
+      "required_field": "*"
+    },
+    "footer": {
+      "ai_description": "Nuestra IA especializada, asistida por un ingeniero de nuestro equipo técnico, generará la propuesta comercial completa y personalizada",
+      "response_time": "Respuesta garantizada en menos de",
+      "hours": "24 horas"
+    },
+    "messages": {
+      "success": "¡Solicitud enviada con éxito! Recibirá su cotización premium en las próximas 24 horas.",
+      "error": "Error al enviar la solicitud. Por favor, inténtelo nuevamente.",
+      "processing_error": "Error al procesar la solicitud"
+    }
   }
 }

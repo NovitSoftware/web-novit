@@ -168,11 +168,90 @@
       "experience": "Years of experience"
     },
     "view_case": "View full case",
-    "view_all": "View all success cases"
+    "view_all": "View all success cases",
+    "studies": {
+      "nazca-brands": {
+        "title": "AI data analytics to boost a loyalty app in the USA",
+        "description": "Development of embedded interactive dashboards with strategic KPIs using Power BI and Microsoft Copilot for conversational analysis.",
+        "results": {
+          "integration": "Successful integration",
+          "metrics": "Real-time metrics",
+          "solution": "Scalable solution"
+        }
+      },
+      "consultatio": {
+        "title": "Real Estate Management System",
+        "description": "Comprehensive platform for real estate project management with advanced analysis and control dashboards.",
+        "results": {
+          "properties": "Properties managed",
+          "users": "Active users",
+          "time_reduction": "Time reduction"
+        }
+      },
+      "ebmetrics": {
+        "title": "Analytics Platform",
+        "description": "Advanced data analysis and business metrics system for business process optimization."
+      },
+      "gamma": {
+        "title": "Data Visualization System",
+        "description": "Comprehensive dashboard and KPI platform for business analysis with advanced interactive visualizations."
+      },
+      "novopath": {
+        "title": "Process Management Application",
+        "description": "Development of enterprise application for management and analysis of internal process flows and optimization."
+      },
+      "salas-bim": {
+        "title": "BIM Web Application",
+        "description": "Development of web application for visualization and management of BIM models in construction and infrastructure projects."
+      }
+    }
   },
   "metadata": {
     "title": "NOVIT Software | The software factory you need",
     "description": "Ideal technology partner to accompany your digital transformation process. Software development, AI, IT consulting and more.",
     "keywords": "software development, software factory, digital transformation, artificial intelligence, IT consulting"
+  },
+  "premium_quote": {
+    "title": "Premium commercial proposal",
+    "subtitle": "Personalized quote",
+    "form": {
+      "email_label": "Corporate Email",
+      "email_placeholder": "name@yourcompany.com",
+      "email_hint": "Personal emails not allowed (Gmail, Outlook, etc.)",
+      "email_required": "Email is required",
+      "email_invalid": "Invalid email format",
+      "email_blocked": "Must use a corporate email (Gmail, Outlook, etc. not allowed)",
+      "phone_label": "Phone/WhatsApp",
+      "phone_placeholder": "+1 555 123-4567",
+      "phone_hint": "Only for WhatsApp messages if necessary (we won't call)",
+      "phone_required": "Phone is required",
+      "phone_invalid": "Invalid phone format",
+      "project_summary_label": "Project Summary",
+      "project_summary_placeholder": "Briefly describe what type of solution you need, technologies involved, estimated scope, etc.",
+      "project_summary_required": "Project summary is required",
+      "special_requirements_label": "Is there anything special you need clarified in the commercial proposal?",
+      "special_requirements_placeholder": "Warranty, Post-production maintenance, license costs, payment terms, technical support, etc.",
+      "special_requirements_hint": "Optional field - Help us better customize your proposal",
+      "pdf_label": "Requirements (PDF)",
+      "pdf_upload_text": "Click to attach PDF",
+      "pdf_max_size": "(max. 10MB)",
+      "pdf_required": "Must attach a PDF file with requirements",
+      "pdf_invalid_type": "Only PDF files allowed",
+      "pdf_too_large": "File cannot exceed 10MB",
+      "privacy_notice": "Your information is secure and we will only use it to generate your commercial proposal. We commit not to share it with third parties, and you can request deletion of your data at any time.",
+      "submit_button": "Generate Commercial Proposal",
+      "submit_processing": "Processing with AI...",
+      "required_field": "*"
+    },
+    "footer": {
+      "ai_description": "Our specialized AI, assisted by an engineer from our technical team, will generate the complete and personalized commercial proposal",
+      "response_time": "Response guaranteed in less than",
+      "hours": "24 hours"
+    },
+    "messages": {
+      "success": "Request sent successfully! You will receive your premium quote in the next 24 hours.",
+      "error": "Error sending the request. Please try again.",
+      "processing_error": "Error processing the request"
+    }
   }
 }

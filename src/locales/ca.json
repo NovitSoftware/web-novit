@@ -167,11 +167,90 @@
       "experience": "Anys d'experiència"
     },
     "view_case": "Veure cas complet",
-    "view_all": "Veure tots els casos d'èxit"
+    "view_all": "Veure tots els casos d'èxit",
+    "studies": {
+      "nazca-brands": {
+        "title": "Analítica de dades amb IA per impulsar una app de fidelització als EUA",
+        "description": "Desenvolupament de dashboards interactius embeguts amb KPIs estratègics usant Power BI i Microsoft Copilot per anàlisi conversacional.",
+        "results": {
+          "integration": "Integració exitosa",
+          "metrics": "Mètriques en temps real",
+          "solution": "Solució escalable"
+        }
+      },
+      "consultatio": {
+        "title": "Sistema de Gestió Immobiliària",
+        "description": "Plataforma integral per gestió de projectes immobiliaris amb anàlisi avançat i dashboards de control.",
+        "results": {
+          "properties": "Propietats gestionades",
+          "users": "Usuaris actius",
+          "time_reduction": "Reducció de temps"
+        }
+      },
+      "ebmetrics": {
+        "title": "Plataforma d'Analytics",
+        "description": "Sistema avançat d'anàlisi de dades i mètriques empresarials per optimització de processos de negoci."
+      },
+      "gamma": {
+        "title": "Sistema de Visualització de Dades",
+        "description": "Plataforma integral de dashboards i KPIs per anàlisi empresarial amb visualitzacions interactives avançades."
+      },
+      "novopath": {
+        "title": "Aplicació de Gestió de Processos",
+        "description": "Desenvolupament d'aplicació empresarial per gestió i anàlisi de fluxos de processos interns i optimització."
+      },
+      "salas-bim": {
+        "title": "Aplicació BIM Web",
+        "description": "Desenvolupament d'aplicació web per visualització i gestió de models BIM en projectes de construcció i infraestructura."
+      }
+    }
   },
   "metadata": {
     "title": "NOVIT Software | La software factory que necessites",
     "description": "Partner tecnològic ideal per acompanyar el teu procés de transformació digital. Desenvolupament de software, IA, consultoria IT i més.",
     "keywords": "desenvolupament software, software factory, transformació digital, intel·ligència artificial, consultoria IT"
+  },
+  "premium_quote": {
+    "title": "Proposta comercial premium",
+    "subtitle": "Cotització personalitzada",
+    "form": {
+      "email_label": "Email Corporatiu",
+      "email_placeholder": "nom@latuaempresa.com",
+      "email_hint": "No es permeten emails personals (Gmail, Outlook, etc.)",
+      "email_required": "L'email és obligatori",
+      "email_invalid": "Format d'email invàlid",
+      "email_blocked": "Has d'usar un email corporatiu (no es permeten Gmail, Outlook, etc.)",
+      "phone_label": "Telèfon/WhatsApp",
+      "phone_placeholder": "+34 600 123 456",
+      "phone_hint": "Només per missatges de WhatsApp si és necessari (no trucarem)",
+      "phone_required": "El telèfon és obligatori",
+      "phone_invalid": "Format de telèfon invàlid",
+      "project_summary_label": "Resum del Projecte",
+      "project_summary_placeholder": "Descriu breument quin tipus de solució necessites, tecnologies involucrades, abast estimat, etc.",
+      "project_summary_required": "El resum del projecte és obligatori",
+      "special_requirements_label": "Hi ha alguna cosa especial que necessites que estigui aclarit a la proposta comercial?",
+      "special_requirements_placeholder": "Garantia, Manteniment post-productiu, cost de llicències, termes de pagament, suport tècnic, etc.",
+      "special_requirements_hint": "Camp opcional - Ajuda'ns a personalitzar millor la teva proposta",
+      "pdf_label": "Requeriments (PDF)",
+      "pdf_upload_text": "Clic per adjuntar PDF",
+      "pdf_max_size": "(màx. 10MB)",
+      "pdf_required": "Has d'adjuntar un arxiu PDF amb els requeriments",
+      "pdf_invalid_type": "Només es permeten arxius PDF",
+      "pdf_too_large": "L'arxiu no pot superar els 10MB",
+      "privacy_notice": "La teva informació està segura i només la farem servir per generar la teva proposta comercial. Ens comprometem a no compartir-la amb tercers, i pots sol·licitar l'eliminació de les teves dades en qualsevol moment.",
+      "submit_button": "Generar Proposta Comercial",
+      "submit_processing": "Processant amb IA...",
+      "required_field": "*"
+    },
+    "footer": {
+      "ai_description": "La nostra IA especialitzada, assistida per un enginyer del nostre equip tècnic, generarà la proposta comercial completa i personalitzada",
+      "response_time": "Resposta garantida en menys de",
+      "hours": "24 hores"
+    },
+    "messages": {
+      "success": "Sol·licitud enviada amb èxit! Rebràs la teva cotització premium en les properes 24 hores.",
+      "error": "Error en enviar la sol·licitud. Si us plau, torna-ho a intentar.",
+      "processing_error": "Error en processar la sol·licitud"
+    }
   }
 }
