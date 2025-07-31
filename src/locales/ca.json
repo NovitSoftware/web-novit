@@ -22,7 +22,10 @@
     "title_part1": "La",
     "title_highlight": "software factory",
     "title_part2": "que necessites",
-    "subtitle": "Perquè les teves idees es facin realitat de forma simple i pràctica",
+    "subtitle_part1": "Perquè les teves idees es facin realitat de forma",
+    "subtitle_highlight1": "simple",
+    "subtitle_middle": "i",
+    "subtitle_highlight2": "pràctica",
     "description": "El partner tecnològic ideal per acompanyar el teu procés de transformació digital",
     "cta_premium": "⚡ Cotització Premium en 24h",
     "cta_work": "Veure el nostre treball"

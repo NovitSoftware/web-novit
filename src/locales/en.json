@@ -22,7 +22,11 @@
     "title_part1": "The",
     "title_highlight": "software factory",
     "title_part2": "you need",
-    "subtitle": "So your ideas become reality in a simple and practical way",
+    "subtitle_part1": "So your ideas become reality in a",
+    "subtitle_highlight1": "simple",
+    "subtitle_middle": "and",
+    "subtitle_highlight2": "practical",
+    "subtitle_part2": "way",
     "description": "The ideal technology partner to accompany your digital transformation process",
     "cta_premium": "⚡ Premium Quote in 24h",
     "cta_work": "See our work"

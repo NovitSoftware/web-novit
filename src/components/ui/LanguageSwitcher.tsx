@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import { ChevronDown, Globe } from 'lucide-react';
 
 const languages = [
@@ -15,9 +14,14 @@ export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
 
-  const currentLanguage = languages.find(lang => lang.code === locale) || languages[0];
+  // Extract locale from pathname for static generation compatibility
+  const pathSegments = pathname.split('/');
+  const currentLocale = pathSegments[1] && languages.some(lang => lang.code === pathSegments[1]) 
+    ? pathSegments[1] 
+    : 'es'; // fallback to Spanish
+
+  const currentLanguage = languages.find(lang => lang.code === currentLocale) || languages[0];
 
   const handleLanguageChange = (newLocale: string) => {
     // Get the current path without the locale
@@ -62,12 +66,12 @@ export default function LanguageSwitcher() {
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
                 className={`w-full px-4 py-3 text-left text-sm flex items-center gap-3 hover:bg-slate-700 transition-colors ${
-                  lang.code === locale ? 'bg-slate-700 text-accent-cyan' : 'text-white/90'
+                  lang.code === currentLocale ? 'bg-slate-700 text-accent-cyan' : 'text-white/90'
                 }`}
               >
                 <span className="text-lg">{lang.flag}</span>
                 <span className="font-medium">{lang.name}</span>
-                {lang.code === locale && (
+                {lang.code === currentLocale && (
                   <span className="ml-auto w-2 h-2 bg-accent-cyan rounded-full" />
                 )}
               </button>

@@ -78,7 +78,11 @@ export default function Hero() {
 
           {/* Subtítulo */}
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-            {t('subtitle')}
+            {t('subtitle_part1')}{' '}
+            <span className="text-accent-cyan font-semibold">{t('subtitle_highlight1')}</span>{' '}
+            {t('subtitle_middle')}{' '}
+            <span className="text-accent-cyan font-semibold">{t('subtitle_highlight2')}</span>
+            {t.has('subtitle_part2') ? ` ${t('subtitle_part2')}` : ''}
           </p>
 
           {/* Descripción */}
