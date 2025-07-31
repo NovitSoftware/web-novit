@@ -16,7 +16,7 @@ export default function RootPage() {
             // Immediate language detection before page loads
             (function() {
               const stored = localStorage.getItem('preferred-locale');
-              if (stored && ['en', 'ca'].includes(stored)) {
+              if (stored && ['en', 'ca', 'pt'].includes(stored)) {
                 window.location.replace('/' + stored);
                 return;
               }
@@ -24,7 +24,7 @@ export default function RootPage() {
               const languages = navigator.languages || [navigator.language];
               for (const lang of languages) {
                 const code = lang.split('-')[0].toLowerCase();
-                if (code === 'en' || code === 'ca') {
+                if (code === 'en' || code === 'ca' || code === 'pt') {
                   localStorage.setItem('preferred-locale', code);
                   window.location.replace('/' + code);
                   return;
@@ -51,7 +51,7 @@ export default function RootPage() {
           padding: '2rem'
         }}>
           <h1>NOVIT Software</h1>
-          <p>Redirigiendo... / Redirecting...</p>
+          <p>Redirigiendo... / Redirecting... / Redirecionando...</p>
           <div style={{ marginTop: '2rem' }}>
             <span>Selecciona idioma: </span>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
@@ -60,6 +60,8 @@ export default function RootPage() {
             <a href="/en" style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>English</a>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/ca" style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Català</a>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/pt" style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Português</a>
           </div>
         </div>
       </body>

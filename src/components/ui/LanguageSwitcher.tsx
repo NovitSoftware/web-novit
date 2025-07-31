@@ -7,7 +7,8 @@ import { ChevronDown, Globe } from 'lucide-react';
 const languages = [
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ca', name: 'Català', flag: '🇪🇸' },
+  { code: 'ca', name: 'Català', flag: 'CA' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' },
 ];
 
 export default function LanguageSwitcher() {
@@ -46,10 +47,10 @@ export default function LanguageSwitcher() {
       >
         <Globe className="w-4 h-4" />
         <span className="hidden sm:inline text-sm font-medium">
-          {currentLanguage.flag} {currentLanguage.name}
+          <span className={currentLanguage.flag.length === 2 ? "px-1 py-0.5 bg-slate-700 rounded text-xs font-semibold" : "text-lg"}>{currentLanguage.flag}</span> {currentLanguage.name}
         </span>
         <span className="sm:hidden text-sm">
-          {currentLanguage.flag}
+          <span className={currentLanguage.flag.length === 2 ? "px-1 py-0.5 bg-slate-700 rounded text-xs font-semibold" : "text-lg"}>{currentLanguage.flag}</span>
         </span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -69,7 +70,7 @@ export default function LanguageSwitcher() {
                   lang.code === currentLocale ? 'bg-slate-700 text-accent-cyan' : 'text-white/90'
                 }`}
               >
-                <span className="text-lg">{lang.flag}</span>
+                <span className={lang.flag.length === 2 ? "px-1 py-0.5 bg-slate-600 rounded text-xs font-semibold" : "text-lg"}>{lang.flag}</span>
                 <span className="font-medium">{lang.name}</span>
                 {lang.code === currentLocale && (
                   <span className="ml-auto w-2 h-2 bg-accent-cyan rounded-full" />

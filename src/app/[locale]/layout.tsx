@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     publisher: "NOVIT Software",
     openGraph: {
       type: "website",
-      locale: locale === 'es' ? 'es_ES' : locale === 'en' ? 'en_US' : 'ca_ES',
+      locale: locale === 'es' ? 'es_ES' : locale === 'en' ? 'en_US' : locale === 'ca' ? 'ca_ES' : 'pt_BR',
       url: "https://novitsoftware.com",
       title: (metadata.title as string) || "NOVIT Software | La software factory que necesitás",
       description: (metadata.description as string) || "Partner tecnológico ideal para acompañar tu proceso de transformación digital.",
