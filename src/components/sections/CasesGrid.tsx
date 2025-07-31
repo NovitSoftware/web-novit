@@ -233,7 +233,7 @@ export default function CasesGrid() {
 
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
             {t('cases.section_title').split(' ').map((word, index) =>
-              index === 1 ? (
+              index === 2 ? (
                 <span key={index} className="gradient-text">{word}</span>
               ) : (
                 <span key={index}>{word} </span>
