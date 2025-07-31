@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
+import { useTranslations } from 'next-intl';
 import { CaseStudy } from '@/types';
 
 import { ArrowUpRight, Tag } from 'lucide-react';
@@ -98,6 +99,7 @@ const cases: CaseStudy[] = [
 ];
 
 function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
+  const t = useTranslations('cases');
   const { ref: cardRef, isVisible } = useScrollAnimation();
   const [showScreenshot, setShowScreenshot] = useState(false);
 
@@ -203,7 +205,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
             href="#"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
-            Ver caso completo
+            {t('view_case')}
             <ArrowUpRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
@@ -215,6 +217,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
 
 export default function CasesGrid() {
   const { ref: sectionRef, isVisible } = useScrollAnimation();
+  const t = useTranslations('cases');
 
   return (
     <section 
@@ -235,22 +238,27 @@ export default function CasesGrid() {
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
-            Casos de <span className="gradient-text">Éxito</span>
+            {t('section_title').split(' ').map((word, index) => 
+              index === 1 ? (
+                <span key={index} className="gradient-text">{word}</span>
+              ) : (
+                <span key={index}>{word} </span>
+              )
+            )}
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Conocé algunos de los proyectos que hemos desarrollado y cómo hemos 
-            ayudado a nuestros clientes a alcanzar sus objetivos
+            {t('section_description')}
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
-            { number: '50+', label: 'Proyectos completados' },
-            { number: '35+', label: 'Clientes satisfechos' },
-            { number: '31+', label: 'Países alcanzados' },
-            { number: calculateYearsOfExperience(), label: 'Años de experiencia' },
+            { number: '50+', label: t('stats.projects') },
+            { number: '35+', label: t('stats.clients') },
+            { number: '31+', label: t('stats.countries') },
+            { number: calculateYearsOfExperience(), label: t('stats.experience') },
           ].map((stat, index) => (
             <div
               key={index}
@@ -280,7 +288,7 @@ export default function CasesGrid() {
             href="/casos-exito"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
-            Ver todos los casos de éxito
+            {t('view_all')}
             <ArrowUpRight className="w-5 h-5 ml-2" />
           </Link>
         </div>

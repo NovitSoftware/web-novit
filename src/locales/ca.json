@@ -31,7 +31,76 @@
     "cta_work": "Veure el nostre treball"
   },
   "services": {
-    "included_services": "Serveis inclosos:"
+    "section_title": "Què fem",
+    "section_description": "Oferim solucions tecnològiques integrals per transformar el teu negoci i portar-lo al següent nivell",
+    "included_services": "Serveis inclosos:",
+    "see_more": "Conèixer més",
+    "see_less": "Veure menys",
+    "cta_title": "Necessites una solució personalitzada?",
+    "cta_description": "Explica'ns sobre el teu projecte i t'ajudarem a trobar la millor solució tecnològica",
+    "cta_button": "Sol·licitar assessorament",
+    "items": {
+      "desarrollo_software": {
+        "title": "Desenvolupament de Software",
+        "description": "Solucions tecnològiques a mida que transformen el teu negoci i optimitzen els teus processos.",
+        "features": [
+          "Aplicacions web i mòbils",
+          "Sistemes de gestió empresarial",
+          "APIs i microserveis",
+          "Integració de sistemes"
+        ]
+      },
+      "inteligencia_artificial": {
+        "title": "Intel·ligència Artificial",
+        "description": "Implementem IA per automatitzar processos i generar insights valuosos per a la teva empresa.",
+        "features": [
+          "Machine Learning",
+          "Processament de llenguatge natural",
+          "Computer Vision",
+          "Chatbots intel·ligents"
+        ]
+      },
+      "consultoria_it": {
+        "title": "Consultoria IT",
+        "description": "Assessorament estratègic per optimitzar la teva infraestructura tecnològica.",
+        "features": [
+          "Auditoria tecnològica",
+          "Arquitectura de software",
+          "Optimització de processos",
+          "Transformació digital"
+        ]
+      },
+      "qa_testing": {
+        "title": "QA & Testing",
+        "description": "Garantim la qualitat del teu software amb processos de testing automatitzats.",
+        "features": [
+          "Testing automatitzat",
+          "Testing manual",
+          "Performance testing",
+          "Security testing"
+        ]
+      },
+      "diseno_ux_ui": {
+        "title": "Disseny UX/UI",
+        "description": "Creem experiències digitals intuïtives que connecten amb els teus usuaris.",
+        "features": [
+          "Investigació d'usuaris",
+          "Prototipat",
+          "Disseny d'interfícies",
+          "Testing d'usabilitat"
+        ]
+      },
+      "data_science": {
+        "title": "Ciència de Dades",
+        "description": "Convertim les teves dades en insights accionables per a la presa de decisions.",
+        "features": [
+          "Anàlisi de dades",
+          "Dashboards interactius",
+          "Models predictius",
+          "Big Data"
+        ]
+      }
+    }
   },
   "footer": {
     "company_description": "La software factory que necessites perquè les teves idees es facin realitat de forma simple i pràctica.",
@@ -87,6 +156,18 @@
       "other": "Altre",
       "select_project": "Seleccionar tipus de projecte"
     }
+  },
+  "cases": {
+    "section_title": "Casos d'Èxit",
+    "section_description": "Coneix alguns dels projectes que hem desenvolupat i com hem ajudat als nostres clients a assolir els seus objectius",
+    "stats": {
+      "projects": "Projectes completats",
+      "clients": "Clients satisfets",
+      "countries": "Països abastats",
+      "experience": "Anys d'experiència"
+    },
+    "view_case": "Veure cas complet",
+    "view_all": "Veure tots els casos d'èxit"
   },
   "metadata": {
     "title": "NOVIT Software | La software factory que necessites",

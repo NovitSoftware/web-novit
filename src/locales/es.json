@@ -31,7 +31,76 @@
     "cta_work": "Ver nuestro trabajo"
   },
   "services": {
-    "included_services": "Servicios incluidos:"
+    "section_title": "Qué hacemos",
+    "section_description": "Ofrecemos soluciones tecnológicas integrales para transformar tu negocio y llevarlo al siguiente nivel",
+    "included_services": "Servicios incluidos:",
+    "see_more": "Conocer más",
+    "see_less": "Ver menos",
+    "cta_title": "¿Necesitás una solución personalizada?",
+    "cta_description": "Contanos sobre tu proyecto y te ayudamos a encontrar la mejor solución tecnológica",
+    "cta_button": "Solicitar asesoría",
+    "items": {
+      "desarrollo_software": {
+        "title": "Desarrollo de Software",
+        "description": "Soluciones tecnológicas a medida que transforman tu negocio y optimizan tus procesos.",
+        "features": [
+          "Aplicaciones web y móviles",
+          "Sistemas de gestión empresarial",
+          "APIs y microservicios",
+          "Integración de sistemas"
+        ]
+      },
+      "inteligencia_artificial": {
+        "title": "Inteligencia Artificial",
+        "description": "Implementamos IA para automatizar procesos y generar insights valiosos para tu empresa.",
+        "features": [
+          "Machine Learning",
+          "Procesamiento de lenguaje natural",
+          "Computer Vision",
+          "Chatbots inteligentes"
+        ]
+      },
+      "consultoria_it": {
+        "title": "Consultoría IT",
+        "description": "Asesoramiento estratégico para optimizar tu infraestructura tecnológica.",
+        "features": [
+          "Auditoría tecnológica",
+          "Arquitectura de software",
+          "Optimización de procesos",
+          "Transformación digital"
+        ]
+      },
+      "qa_testing": {
+        "title": "QA & Testing",
+        "description": "Garantizamos la calidad de tu software con procesos de testing automatizados.",
+        "features": [
+          "Testing automatizado",
+          "Testing manual",
+          "Performance testing",
+          "Security testing"
+        ]
+      },
+      "diseno_ux_ui": {
+        "title": "Diseño UX/UI",
+        "description": "Creamos experiencias digitales intuitivas que conectan con tus usuarios.",
+        "features": [
+          "Investigación de usuarios",
+          "Prototipado",
+          "Diseño de interfaces",
+          "Testing de usabilidad"
+        ]
+      },
+      "data_science": {
+        "title": "Data Science",
+        "description": "Convertimos tus datos en insights accionables para la toma de decisiones.",
+        "features": [
+          "Análisis de datos",
+          "Dashboards interactivos",
+          "Modelos predictivos",
+          "Big Data"
+        ]
+      }
+    }
   },
   "footer": {
     "company_description": "La software factory que necesitás para que tus ideas se hagan realidad de forma simple y práctica.",
@@ -87,6 +156,18 @@
       "other": "Otro",
       "select_project": "Seleccionar tipo de proyecto"
     }
+  },
+  "cases": {
+    "section_title": "Casos de Éxito",
+    "section_description": "Conocé algunos de los proyectos que hemos desarrollado y cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos",
+    "stats": {
+      "projects": "Proyectos completados",
+      "clients": "Clientes satisfechos", 
+      "countries": "Países alcanzados",
+      "experience": "Años de experiencia"
+    },
+    "view_case": "Ver caso completo",
+    "view_all": "Ver todos los casos de éxito"
   },
   "metadata": {
     "title": "NOVIT Software | La software factory que necesitás",

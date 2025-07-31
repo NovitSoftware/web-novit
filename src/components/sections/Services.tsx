@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScrollAnimation, useGSAP } from '@/hooks/useAnimations';
 import { useTranslations } from 'next-intl';
-import { Service } from '@/types';
 import { 
   Code2, 
   Brain, 
@@ -14,79 +13,22 @@ import {
   ArrowRight 
 } from 'lucide-react';
 
-const services: Service[] = [
-  {
-    id: 'desarrollo-software',
-    title: 'Desarrollo de Software',
-    description: 'Soluciones tecnológicas a medida que transforman tu negocio y optimizan tus procesos.',
-    icon: 'Code2',
-    features: [
-      'Aplicaciones web y móviles',
-      'Sistemas de gestión empresarial',
-      'APIs y microservicios',
-      'Integración de sistemas'
-    ],
-  },
-  {
-    id: 'inteligencia-artificial',
-    title: 'Inteligencia Artificial',
-    description: 'Implementamos IA para automatizar procesos y generar insights valiosos para tu empresa.',
-    icon: 'Brain',
-    features: [
-      'Machine Learning',
-      'Procesamiento de lenguaje natural',
-      'Computer Vision',
-      'Chatbots inteligentes'
-    ],
-  },
-  {
-    id: 'consultoria-it',
-    title: 'Consultoría IT',
-    description: 'Asesoramiento estratégico para optimizar tu infraestructura tecnológica.',
-    icon: 'Settings',
-    features: [
-      'Auditoría tecnológica',
-      'Arquitectura de software',
-      'Optimización de procesos',
-      'Transformación digital'
-    ],
-  },
-  {
-    id: 'qa-testing',
-    title: 'QA & Testing',
-    description: 'Garantizamos la calidad de tu software con procesos de testing automatizados.',
-    icon: 'TestTube',
-    features: [
-      'Testing automatizado',
-      'Testing manual',
-      'Performance testing',
-      'Security testing'
-    ],
-  },
-  {
-    id: 'diseno-ux-ui',
-    title: 'Diseño UX/UI',
-    description: 'Creamos experiencias digitales intuitivas que conectan con tus usuarios.',
-    icon: 'Palette',
-    features: [
-      'Investigación de usuarios',
-      'Prototipado',
-      'Diseño de interfaces',
-      'Testing de usabilidad'
-    ],
-  },
-  {
-    id: 'data-science',
-    title: 'Data Science',
-    description: 'Convertimos tus datos en insights accionables para la toma de decisiones.',
-    icon: 'BarChart3',
-    features: [
-      'Análisis de datos',
-      'Dashboards interactivos',
-      'Modelos predictivos',
-      'Big Data'
-    ],
-  },
+const serviceKeys = [
+  'desarrollo_software',
+  'inteligencia_artificial', 
+  'consultoria_it',
+  'qa_testing',
+  'diseno_ux_ui',
+  'data_science'
+];
+
+const serviceIcons = [
+  'Code2',
+  'Brain',
+  'Settings',
+  'TestTube',
+  'Palette',
+  'BarChart3'
 ];
 
 const iconMap = {
@@ -163,24 +105,23 @@ export default function Services() {
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
-            <span className="gradient-text">Qué hacemos</span>
+            <span className="gradient-text">{t('section_title')}</span>
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Ofrecemos soluciones tecnológicas integrales para transformar tu negocio
-            y llevarlo al siguiente nivel
+            {t('section_description')}
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => {
-            const IconComponent = iconMap[service.icon as keyof typeof iconMap];
+          {serviceKeys.map((serviceKey, index) => {
+            const IconComponent = iconMap[serviceIcons[index] as keyof typeof iconMap];
             const isActive = activeCard === index;
             
             return (
               <div
-                key={service.id}
+                key={serviceKey}
                 ref={(el) => {
                   if (el) cardsRef.current[index] = el;
                 }}
@@ -200,12 +141,12 @@ export default function Services() {
 
                   {/* Title */}
                   <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent-cyan transition-colors duration-300">
-                    {service.title}
+                    {t(`items.${serviceKey}.title`)}
                   </h3>
 
                   {/* Description */}
                   <p className="text-gray-300 mb-6 leading-relaxed">
-                    {service.description}
+                    {t(`items.${serviceKey}.description`)}
                   </p>
 
                   {/* Features - Se expande al hacer click */}
@@ -217,10 +158,10 @@ export default function Services() {
                         {t('included_services')}
                       </h4>
                       <ul className="space-y-2">
-                        {service.features.map((feature, featureIndex) => (
+                        {Array.from({length: 4}, (_, featureIndex) => (
                           <li key={featureIndex} className="flex items-center text-gray-300">
                             <div className="w-2 h-2 bg-gradient-novit-accent rounded-full mr-3" />
-                            {feature}
+                            {t(`items.${serviceKey}.features.${featureIndex}`)}
                           </li>
                         ))}
                       </ul>
@@ -230,7 +171,7 @@ export default function Services() {
                   {/* CTA Button */}
                   <div className="mt-6 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <button className="flex items-center text-accent-cyan font-semibold hover:text-secondary-500 transition-colors cursor-pointer">
-                      {isActive ? 'Ver menos' : 'Conocer más'}
+                      {isActive ? t('see_less') : t('see_more')}
                       <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
                         isActive ? 'rotate-90' : ''
                       }`} />
@@ -246,13 +187,13 @@ export default function Services() {
         <div className="text-center">
           <div className="bg-gradient-novit-accent rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-              ¿Necesitás una solución personalizada?
+              {t('cta_title')}
             </h3>
             <p className="text-lg lg:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              Contanos sobre tu proyecto y te ayudamos a encontrar la mejor solución tecnológica
+              {t('cta_description')}
             </p>
             <button className="bg-white text-slate-900 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
-              Solicitar asesoría
+              {t('cta_button')}
             </button>
           </div>
         </div>
