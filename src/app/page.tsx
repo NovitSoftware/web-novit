@@ -7,17 +7,24 @@ export const metadata: Metadata = {
 
 // Root page that immediately redirects based on language preference
 export default function RootPage() {
+  // Determine base path for redirects - this will be replaced at build time
+  const basePath = process.env.NODE_ENV === 'production' && process.env.DEPLOY_TARGET === 'github-pages' ? '/web-novit' : '';
+  
   return (
     <html lang="es">
       <head>
-        <meta httpEquiv="refresh" content="0; url=/es" />
+        <meta httpEquiv="refresh" content={`0; url=${basePath}/es`} />
         <script dangerouslySetInnerHTML={{
           __html: `
             // Immediate language detection before page loads
             (function() {
+              // Detect if we're running on GitHub Pages based on hostname
+              const isGitHubPages = window.location.hostname === 'novitsoftware.github.io';
+              const basePath = isGitHubPages ? '/web-novit' : '';
+              
               const stored = localStorage.getItem('preferred-locale');
               if (stored && ['en', 'ca', 'pt'].includes(stored)) {
-                window.location.replace('/' + stored);
+                window.location.replace(basePath + '/' + stored);
                 return;
               }
               
@@ -26,14 +33,14 @@ export default function RootPage() {
                 const code = lang.split('-')[0].toLowerCase();
                 if (code === 'en' || code === 'ca' || code === 'pt') {
                   localStorage.setItem('preferred-locale', code);
-                  window.location.replace('/' + code);
+                  window.location.replace(basePath + '/' + code);
                   return;
                 }
               }
               
               // Default to Spanish
               localStorage.setItem('preferred-locale', 'es');
-              window.location.replace('/es');
+              window.location.replace(basePath + '/es');
             })();
           `
         }} />
@@ -55,13 +62,13 @@ export default function RootPage() {
           <div style={{ marginTop: '2rem' }}>
             <span>Selecciona idioma: </span>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/es" style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Español</a>
+            <a href={`${basePath}/es`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Español</a>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/en" style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>English</a>
+            <a href={`${basePath}/en`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>English</a>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/ca" style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Català</a>
+            <a href={`${basePath}/ca`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Català</a>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/pt" style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Português</a>
+            <a href={`${basePath}/pt`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Português</a>
           </div>
         </div>
       </body>
