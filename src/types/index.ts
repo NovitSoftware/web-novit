@@ -78,10 +78,10 @@ export interface Testimonial {
   image?: string;
 }
 
-export type Language = 'es' | 'en' | 'ca';
+export type Language = 'es' | 'en' | 'pt';
 
 export interface LocalizedContent {
   es: string;
   en: string;
-  ca: string;
+  pt: string;
 }
