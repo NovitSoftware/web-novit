@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { CaseStudy } from '@/types';
 
 import { ArrowUpRight, Tag } from 'lucide-react';
@@ -97,6 +97,7 @@ const cases: CaseStudy[] = [
 
 function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
   const t = useTranslations();
+  const locale = useLocale();
   const { ref: cardRef, isVisible } = useScrollAnimation();
   const [showScreenshot, setShowScreenshot] = useState(false);
 
@@ -196,7 +197,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         {/* Action Button */}
         <div className="flex justify-end">
           <Link
-            href={`/casos-exito/${caseStudy.id}`}
+            href={`/${locale}/casos-exito/${caseStudy.id}`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             {t('cases.view_case')}
@@ -212,9 +213,11 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
 export default function CasesGrid() {
   const { ref: sectionRef, isVisible } = useScrollAnimation();
   const t = useTranslations();
+  const locale = useLocale();
 
   return (
     <section
+      id="cases"
       ref={sectionRef as any}
       className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
     >
@@ -279,7 +282,7 @@ export default function CasesGrid() {
         {/* CTA */}
         <div className="text-center mt-16">
           <Link
-            href="/casos-exito"
+            href={`/${locale}#cases`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             {t('cases.view_all')}
