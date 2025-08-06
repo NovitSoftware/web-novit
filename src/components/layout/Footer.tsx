@@ -115,7 +115,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {[
                   { key: 'about', href: '/nosotros' },
-                  { key: 'success_cases', href: '/casos-exito' },
+                  { key: 'success_cases', href: '#cases' },
                   { key: 'technologies', href: '/tecnologias' },
                   { key: 'academy', href: '/academia' },
                   { key: 'blog', href: '/blog' },

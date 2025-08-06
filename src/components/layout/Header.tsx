@@ -20,7 +20,7 @@ export default function Header() {
 
   const navigation = [
     { label: t('home'), href: `/${locale}` },
-    { label: t('services'), href: `/${locale}/servicios` },
+    { label: t('services'), href: `/${locale}#services` },
     { label: t('cases'), href: `/${locale}#cases` },
     { label: t('technologies'), href: `/${locale}/tecnologias` },
     { label: t('academy'), href: `/${locale}/academia` },

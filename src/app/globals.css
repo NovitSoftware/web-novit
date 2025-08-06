@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Smooth scrolling behavior for anchor navigation */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom Novit Colors and Gradients - Brand Guidelines */
 :root {
   --primary-50: #f8fafc;
