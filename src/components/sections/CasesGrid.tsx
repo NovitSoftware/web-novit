@@ -196,7 +196,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         {/* Action Button */}
         <div className="flex justify-end">
           <Link
-            href="#"
+            href={`/casos-exito/${caseStudy.id}`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             {t('cases.view_case')}
