@@ -23,7 +23,6 @@ export default function Header() {
     { label: t('services'), href: `/${locale}/servicios` },
     { label: t('cases'), href: `/${locale}/casos-exito` },
     { label: t('academy'), href: `/${locale}/academia` },
-    { label: t('contact'), href: `/${locale}/contacto` },
   ];
 
   useEffect(() => {
