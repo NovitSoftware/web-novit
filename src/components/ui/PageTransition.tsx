@@ -1,91 +1,30 @@
 'use client';
 
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-interface PageTransitionContextType {
-  triggerTransition: (direction: 'forward' | 'back') => void;
-  isTransitioning: boolean;
-}
-
-const PageTransitionContext = createContext<PageTransitionContextType | null>(null);
-
 export function PageTransitionProvider({ children }: { children: React.ReactNode }) {
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [transitionDirection, setTransitionDirection] = useState<'forward' | 'back'>('forward');
   const pathname = usePathname();
   const router = useRouter();
-  const previousPathname = useRef(pathname);
-  const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const triggerTransition = (direction: 'forward' | 'back') => {
-    // Clear any existing timeout
-    if (transitionTimeoutRef.current) {
-      clearTimeout(transitionTimeoutRef.current);
-    }
-
-    setTransitionDirection(direction);
-    setIsTransitioning(true);
-    
-    // Reset transition after animation completes
-    transitionTimeoutRef.current = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 600);
-  };
 
   useEffect(() => {
-    // Skip initial load
-    if (previousPathname.current === pathname) {
-      return;
-    }
-
-    // Detect navigation direction based on URL patterns
-    const isDetailPage = (path: string) => 
-      path.includes('/casos-exito/') && path.split('/').length > 3 ||
-      path.includes('/academia');
-    
-    const isHomePage = (path: string) => 
-      path.split('/').length <= 2 || path.endsWith('#cases') || path.endsWith('#services');
-
-    const current = pathname;
-    const previous = previousPathname.current;
-
-    if (isDetailPage(current) && !isDetailPage(previous)) {
-      // Going to detail page (forward)
-      triggerTransition('forward');
-    } else if (isHomePage(current) && isDetailPage(previous)) {
-      // Going back to home/section (back)
-      triggerTransition('back');
-    } else if (current !== previous) {
-      // Default for other navigations
-      triggerTransition('forward');
-    }
-    
-    previousPathname.current = pathname;
-  }, [pathname]);
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  // Enhanced click handler to trigger visual transition
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
+    // Add event listener for link clicks to intercept navigation
+    const handleLinkClick = (e: Event) => {
       const target = e.target as HTMLElement;
       const link = target.closest('a[href]') as HTMLAnchorElement;
       
-      if (link && link.href.includes(window.location.origin)) {
+      if (link && link.href && link.href.includes(window.location.origin)) {
+        const href = link.getAttribute('href') || '';
+        
+        // Don't intercept hash links or external links
+        if (href.startsWith('#') || href.startsWith('http') && !href.includes(window.location.origin)) {
+          return;
+        }
+
         e.preventDefault();
         
-        const href = link.getAttribute('href') || '';
+        // Detect navigation direction
         const currentPath = window.location.pathname;
-        
-        // Detect direction
         const isDetailPage = (path: string) => 
           path.includes('/casos-exito/') && path.split('/').length > 3 ||
           path.includes('/academia');
@@ -98,23 +37,50 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
           direction = 'back';
         }
         
-        // Start visual transition
-        const mainElement = document.querySelector('main');
-        if (mainElement) {
-          mainElement.style.transform = direction === 'forward' ? 'translateX(-100%)' : 'translateX(100%)';
-          mainElement.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        // Create transition effect
+        const body = document.body;
+        const main = document.querySelector('main');
+        
+        if (main) {
+          // Create a clone of the current page for the exit animation
+          const exitPage = main.cloneNode(true) as HTMLElement;
+          exitPage.style.position = 'fixed';
+          exitPage.style.top = '0';
+          exitPage.style.left = '0';
+          exitPage.style.width = '100%';
+          exitPage.style.zIndex = '1000';
+          exitPage.style.background = '#0f172a';
           
-          // Navigate after a short delay to allow animation to start
+          // Insert the clone
+          body.appendChild(exitPage);
+          
+          // Hide the original main during transition
+          main.style.opacity = '0';
+          
+          // Start exit animation
+          exitPage.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          
+          // Apply transform based on direction
+          if (direction === 'forward') {
+            exitPage.style.transform = 'translateX(-100%)';
+          } else {
+            exitPage.style.transform = 'translateX(100%)';
+          }
+          
+          // Navigate after a short delay
           setTimeout(() => {
             router.push(href);
-            // Reset transform after navigation
+            
+            // Clean up after navigation
             setTimeout(() => {
-              if (mainElement) {
-                mainElement.style.transform = '';
-                mainElement.style.transition = '';
+              if (body.contains(exitPage)) {
+                body.removeChild(exitPage);
+              }
+              if (main) {
+                main.style.opacity = '';
               }
             }, 100);
-          }, 50);
+          }, 300);
         } else {
           // Fallback to normal navigation
           router.push(href);
@@ -122,28 +88,46 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
       }
     };
 
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
+    // Add click listener to document
+    document.addEventListener('click', handleLinkClick);
+
+    return () => {
+      document.removeEventListener('click', handleLinkClick);
+    };
   }, [router]);
 
+  // Add entrance animation for new pages
+  useEffect(() => {
+    const main = document.querySelector('main');
+    if (main) {
+      // Detect if this is a detail page or home page
+      const isDetailPage = pathname.includes('/casos-exito/') && pathname.split('/').length > 3 ||
+                          pathname.includes('/academia');
+      
+      // Set initial position based on expected entrance direction
+      main.style.transform = isDetailPage ? 'translateX(100%)' : 'translateX(-100%)';
+      main.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      
+      // Animate to normal position
+      setTimeout(() => {
+        main.style.transform = 'translateX(0)';
+        
+        // Clean up transition after animation
+        setTimeout(() => {
+          main.style.transition = '';
+          main.style.transform = '';
+        }, 600);
+      }, 50);
+    }
+  }, [pathname]);
+
   return (
-    <PageTransitionContext.Provider value={{ triggerTransition, isTransitioning }}>
-      <div 
-        className="relative w-full min-h-screen"
-        style={{
-          overflow: 'hidden'
-        }}
-      >
-        {children}
-      </div>
-    </PageTransitionContext.Provider>
+    <div className="relative w-full min-h-screen overflow-hidden">
+      {children}
+    </div>
   );
 }
 
 export function usePageTransition() {
-  const context = useContext(PageTransitionContext);
-  if (!context) {
-    throw new Error('usePageTransition must be used within PageTransitionProvider');
-  }
-  return context;
+  return { triggerTransition: () => {}, isTransitioning: false };
 }
