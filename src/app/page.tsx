@@ -23,7 +23,7 @@ export default function RootPage() {
               const basePath = isGitHubPages ? '/web-novit' : '';
               
               const stored = localStorage.getItem('preferred-locale');
-              if (stored && ['en', 'ca', 'pt'].includes(stored)) {
+              if (stored && ['en', 'pt'].includes(stored)) {
                 window.location.replace(basePath + '/' + stored);
                 return;
               }
@@ -31,7 +31,7 @@ export default function RootPage() {
               const languages = navigator.languages || [navigator.language];
               for (const lang of languages) {
                 const code = lang.split('-')[0].toLowerCase();
-                if (code === 'en' || code === 'ca' || code === 'pt') {
+                if (code === 'en' || code === 'pt') {
                   localStorage.setItem('preferred-locale', code);
                   window.location.replace(basePath + '/' + code);
                   return;
@@ -65,8 +65,6 @@ export default function RootPage() {
             <a href={`${basePath}/es`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Español</a>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href={`${basePath}/en`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>English</a>
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href={`${basePath}/ca`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Català</a>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href={`${basePath}/pt`} style={{ margin: '0 0.5rem', color: '#3b82f6', textDecoration: 'underline' }}>Português</a>
           </div>
