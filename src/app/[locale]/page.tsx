@@ -2,7 +2,13 @@ import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import CasesGrid from "@/components/sections/CasesGrid";
 
-export default function Home() {
+interface HomeProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function Home({ params }: HomeProps) {
+  const { locale } = await params;
+  
   return (
     <div className="snap-container">
       <section className="snap-section">
@@ -14,7 +20,7 @@ export default function Home() {
       </section>
       
       <section className="snap-section">
-        <CasesGrid />
+        <CasesGrid locale={locale} />
       </section>
     </div>
   );

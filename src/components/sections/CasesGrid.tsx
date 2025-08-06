@@ -95,9 +95,11 @@ const cases: CaseStudy[] = [
   },
 ];
 
-function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number }) {
+function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseStudy; index: number; locale?: string }) {
   const t = useTranslations();
-  const locale = useLocale();
+  const localeFromHook = useLocale();
+  // Use the prop locale if provided, otherwise fall back to useLocale hook
+  const locale = localeParam || localeFromHook;
   const { ref: cardRef, isVisible } = useScrollAnimation();
   const [showScreenshot, setShowScreenshot] = useState(false);
 
@@ -210,10 +212,12 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
   );
 }
 
-export default function CasesGrid() {
+export default function CasesGrid({ locale: localeParam }: { locale?: string }) {
   const { ref: sectionRef, isVisible } = useScrollAnimation();
   const t = useTranslations();
-  const locale = useLocale();
+  const localeFromHook = useLocale();
+  // Use the prop locale if provided, otherwise fall back to useLocale hook
+  const locale = localeParam || localeFromHook;
 
   return (
     <section
@@ -275,7 +279,7 @@ export default function CasesGrid() {
         {/* Cases Grid - Clean Grid Layout (not masonry) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cases.map((caseStudy, index) => (
-            <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+            <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} locale={locale} />
           ))}
         </div>
 

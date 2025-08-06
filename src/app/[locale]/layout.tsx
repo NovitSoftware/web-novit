@@ -69,11 +69,11 @@ export default async function LocaleLayout({
     <html lang={locale} className="scroll-smooth dark">
       <body className="antialiased bg-slate-900 text-white font-sans">
         <NextIntlClientProvider messages={messages}>
-          <Header />
+          <Header locale={locale} />
           <main className="relative">
             {children}
           </main>
-          <Footer />
+          <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>

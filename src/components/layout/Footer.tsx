@@ -14,9 +14,11 @@ import {
 } from 'lucide-react';
 import { getAssetPath } from '@/config/constants';
 
-export default function Footer() {
+export default function Footer({ locale: localeParam }: { locale?: string }) {
   const t = useTranslations('footer');
-  const locale = useLocale();
+  const localeFromHook = useLocale();
+  // Use the prop locale if provided, otherwise fall back to useLocale hook
+  const locale = localeParam || localeFromHook;
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

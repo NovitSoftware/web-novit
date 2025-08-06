@@ -10,13 +10,15 @@ import { getAssetPath } from '@/config/constants';
 import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
-export default function Header() {
+export default function Header({ locale: localeParam }: { locale?: string }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPremiumQuoteOpen, setIsPremiumQuoteOpen] = useState(false);
   
   const t = useTranslations('navigation');
-  const locale = useLocale();
+  const localeFromHook = useLocale();
+  // Use the prop locale if provided, otherwise fall back to useLocale hook
+  const locale = localeParam || localeFromHook;
 
   const navigation = [
     { label: t('home'), href: `/${locale}` },
