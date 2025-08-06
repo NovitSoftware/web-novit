@@ -116,7 +116,6 @@ export default function Footer() {
                 {[
                   { key: 'about', href: '/nosotros' },
                   { key: 'success_cases', href: '/casos-exito' },
-                  { key: 'technologies', href: '/tecnologias' },
                   { key: 'academy', href: '/academia' },
                   { key: 'blog', href: '/blog' },
                   { key: 'careers', href: '/carreras' },
