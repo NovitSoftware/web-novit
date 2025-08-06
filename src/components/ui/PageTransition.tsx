@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface PageTransitionContextType {
   triggerTransition: (direction: 'forward' | 'back') => void;
@@ -14,6 +14,7 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionDirection, setTransitionDirection] = useState<'forward' | 'back'>('forward');
   const pathname = usePathname();
+  const router = useRouter();
   const previousPathname = useRef(pathname);
   const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -29,7 +30,7 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     // Reset transition after animation completes
     transitionTimeoutRef.current = setTimeout(() => {
       setIsTransitioning(false);
-    }, 500);
+    }, 600);
   };
 
   useEffect(() => {
@@ -72,16 +73,66 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     };
   }, []);
 
+  // Enhanced click handler to trigger visual transition
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a[href]') as HTMLAnchorElement;
+      
+      if (link && link.href.includes(window.location.origin)) {
+        e.preventDefault();
+        
+        const href = link.getAttribute('href') || '';
+        const currentPath = window.location.pathname;
+        
+        // Detect direction
+        const isDetailPage = (path: string) => 
+          path.includes('/casos-exito/') && path.split('/').length > 3 ||
+          path.includes('/academia');
+        
+        let direction: 'forward' | 'back' = 'forward';
+        
+        if (isDetailPage(href) && !isDetailPage(currentPath)) {
+          direction = 'forward';
+        } else if (!isDetailPage(href) && isDetailPage(currentPath)) {
+          direction = 'back';
+        }
+        
+        // Start visual transition
+        const mainElement = document.querySelector('main');
+        if (mainElement) {
+          mainElement.style.transform = direction === 'forward' ? 'translateX(-100%)' : 'translateX(100%)';
+          mainElement.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          
+          // Navigate after a short delay to allow animation to start
+          setTimeout(() => {
+            router.push(href);
+            // Reset transform after navigation
+            setTimeout(() => {
+              if (mainElement) {
+                mainElement.style.transform = '';
+                mainElement.style.transition = '';
+              }
+            }, 100);
+          }, 50);
+        } else {
+          // Fallback to normal navigation
+          router.push(href);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [router]);
+
   return (
     <PageTransitionContext.Provider value={{ triggerTransition, isTransitioning }}>
       <div 
-        className={`page-transition-container ${
-          isTransitioning 
-            ? transitionDirection === 'forward' 
-              ? 'page-enter page-enter-active' 
-              : 'page-back-enter page-back-enter-active'
-            : ''
-        }`}
+        className="relative w-full min-h-screen"
+        style={{
+          overflow: 'hidden'
+        }}
       >
         {children}
       </div>

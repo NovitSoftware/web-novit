@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { X, Upload, FileText, Send, Loader } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -155,31 +154,18 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
           {/* Backdrop */}
-          <motion.div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
             onClick={onClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
           />
           
           {/* Modal */}
-          <motion.div 
-            className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ 
-              type: "spring",
-              stiffness: 300,
-              damping: 30,
-              duration: 0.4
-            }}
+          <div 
+            className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col transform transition-all duration-300 scale-100 opacity-100"
           >
 
             {/* Header */}
@@ -402,9 +388,9 @@ export default function PremiumQuoteModal({ isOpen, onClose }: PremiumQuoteModal
             <span className="text-xs">⚡</span>
           </p>
         </div>
-      </motion.div>
+      </div>
     </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }
