@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {locales} from '../../i18n';
+import { PageTransitionProvider } from "@/components/ui/PageTransition";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({
@@ -69,11 +70,13 @@ export default async function LocaleLayout({
     <html lang={locale} className="scroll-smooth dark">
       <body className="antialiased bg-slate-900 text-white font-sans">
         <NextIntlClientProvider messages={messages}>
-          <Header locale={locale} />
-          <main className="relative">
-            {children}
-          </main>
-          <Footer locale={locale} />
+          <PageTransitionProvider>
+            <Header locale={locale} />
+            <main className="relative">
+              {children}
+            </main>
+            <Footer locale={locale} />
+          </PageTransitionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

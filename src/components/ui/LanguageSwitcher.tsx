@@ -35,8 +35,11 @@ export default function LanguageSwitcher() {
     const segments = pathname.split('/');
     const pathWithoutLocale = segments.slice(2).join('/');
     
+    // Preserve any hash fragment
+    const currentHash = window.location.hash;
+    
     // Construct new path with new locale
-    const newPath = `/${newLocale}${pathWithoutLocale ? '/' + pathWithoutLocale : ''}`;
+    const newPath = `/${newLocale}${pathWithoutLocale ? '/' + pathWithoutLocale : ''}${currentHash}`;
     
     // Store the user's language preference for future visits
     localStorage.setItem('preferred-locale', newLocale);
