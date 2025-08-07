@@ -5,23 +5,23 @@ import { usePathname } from 'next/navigation';
 
 export function PageTransitionProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Simple fade-in animation for page changes
+    // Start fade-out transition
     setIsVisible(false);
     
-    // Small delay to allow for smooth transition
+    // After fade-out completes, fade back in
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 50);
+    }, 250); // Longer delay to make fade effect more visible
 
     return () => clearTimeout(timer);
   }, [pathname]);
 
   return (
     <div 
-      className={`relative w-full transition-opacity duration-300 ease-in-out ${
+      className={`relative w-full transition-opacity duration-500 ease-in-out ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
