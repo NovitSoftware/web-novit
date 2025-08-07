@@ -11,6 +11,9 @@ export default async function Home({ params }: HomeProps) {
   
   return (
     <div className="snap-container">
+      {/* Anchor point for #home */}
+      <div id="home" className="absolute top-0"></div>
+      
       <section className="snap-section">
         <Hero />
       </section>

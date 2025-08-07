@@ -1,13 +1,32 @@
 @import "tailwindcss";
 
-/* Smooth scrolling behavior for anchor navigation */
+/* Enhanced smooth scrolling behavior */
 html {
   scroll-behavior: smooth;
+  /* Force smooth scrolling even if overridden */
+  scroll-padding-top: 80px; /* Account for fixed header */
 }
 
 /* Ensure page doesn't show horizontal scrollbar during transitions */
 body {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Ensure all scrollable elements use smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Smooth scroll for webkit browsers */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Custom Novit Colors and Gradients - Brand Guidelines */

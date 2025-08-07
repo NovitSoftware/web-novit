@@ -286,7 +286,7 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
         {/* CTA */}
         <div className="text-center mt-16">
           <Link
-            href={`/${locale}#cases`}
+            href={`/${locale}/#cases`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             {t('cases.view_all')}

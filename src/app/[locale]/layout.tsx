@@ -26,6 +26,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     authors: [{ name: "NOVIT Software" }],
     creator: "NOVIT Software",
     publisher: "NOVIT Software",
+    icons: {
+      icon: '/favicon.png',
+      shortcut: '/favicon.png',
+      apple: '/favicon.png',
+    },
     openGraph: {
       type: "website",
       locale: locale === 'es' ? 'es_ES' : locale === 'en' ? 'en_US' : 'pt_BR',

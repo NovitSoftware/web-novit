@@ -9,6 +9,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import { getAssetPath } from '@/config/constants';
 import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
+import TransitionLink from '@/components/ui/TransitionLink';
+import HomeLink from '@/components/ui/HomeLink';
 
 export default function Header({ locale: localeParam }: { locale?: string }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,9 +23,9 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
   const locale = localeParam || localeFromHook;
 
   const navigation = [
-    { label: t('home'), href: `/${locale}` },
-    { label: t('services'), href: `/${locale}#services` },
-    { label: t('cases'), href: `/${locale}#cases` },
+    { label: t('home'), href: `/${locale}/#home`, isHome: true },
+    { label: t('services'), href: `/${locale}/#services` },
+    { label: t('cases'), href: `/${locale}/#cases` },
     { label: t('technologies'), href: `/${locale}/tecnologias` },
     { label: t('academy'), href: `/${locale}/academia` },
     { label: t('contact'), href: `/${locale}/contacto` },
@@ -51,7 +53,10 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-18 lg:h-20">
             {/* Logo */}
-            <Link href={`/${locale}`} className="flex items-center">
+            <HomeLink 
+              locale={locale}
+              className="flex items-center"
+            >
               <Image
                 src={getAssetPath("novit-logo-official.png")}
                 alt="NOVIT Software"
@@ -60,20 +65,35 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
                 className="h-8 w-auto lg:h-10"
                 priority
               />
-            </Link>
+            </HomeLink>
 
             {/* Navigation Desktop */}
             <nav className="hidden lg:flex items-center space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-white/90 hover:text-white font-medium transition-colors duration-200 relative group"
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-novit-accent transition-all duration-300 group-hover:w-full" />
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                if (item.isHome) {
+                  return (
+                    <HomeLink
+                      key={item.href}
+                      locale={locale}
+                      className="text-white/90 hover:text-white font-medium transition-colors duration-200 relative group"
+                    >
+                      {item.label}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-novit-accent transition-all duration-300 group-hover:w-full" />
+                    </HomeLink>
+                  );
+                }
+                
+                return (
+                  <TransitionLink
+                    key={item.href}
+                    href={item.href}
+                    className="text-white/90 hover:text-white font-medium transition-colors duration-200 relative group"
+                  >
+                    {item.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-novit-accent transition-all duration-300 group-hover:w-full" />
+                  </TransitionLink>
+                );
+              })}
             </nav>
 
             {/* CTA Button and Language Switcher Desktop */}
@@ -109,16 +129,31 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
         >
           <div className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700">
             <div className="px-4 py-6 space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block text-white/90 hover:text-white font-medium py-2 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                if (item.isHome) {
+                  return (
+                    <HomeLink
+                      key={item.href}
+                      locale={locale}
+                      className="block text-white/90 hover:text-white font-medium py-2 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </HomeLink>
+                  );
+                }
+                
+                return (
+                  <TransitionLink
+                    key={item.href}
+                    href={item.href}
+                    className="block text-white/90 hover:text-white font-medium py-2 transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </TransitionLink>
+                );
+              })}
               <div className="border-t border-slate-700 pt-4">
                 <LanguageSwitcher />
               </div>
@@ -139,21 +174,41 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
       {/* Sticky Bottom Navigation - Mobile Only */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-700 safe-area-inset-bottom">
         <div className="flex justify-around items-center py-2">
-          {navigation.slice(0, 5).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex flex-col items-center p-2 text-xs font-medium text-white/80 hover:text-white transition-colors"
-            >
-              <div className="w-6 h-6 mb-1 flex items-center justify-center">
-                {/* Aquí puedes agregar iconos específicos para cada navegación */}
-                <div className="w-2 h-2 bg-current rounded-full" />
-              </div>
-              <span className="text-[10px] leading-none">
-                {item.label.split(' ')[0]}
-              </span>
-            </Link>
-          ))}
+          {navigation.slice(0, 5).map((item) => {
+            if (item.isHome) {
+              return (
+                <HomeLink
+                  key={item.href}
+                  locale={locale}
+                  className="flex flex-col items-center p-2 text-xs font-medium text-white/80 hover:text-white transition-colors"
+                >
+                  <div className="w-6 h-6 mb-1 flex items-center justify-center">
+                    {/* Aquí puedes agregar iconos específicos para cada navegación */}
+                    <div className="w-2 h-2 bg-current rounded-full" />
+                  </div>
+                  <span className="text-[10px] leading-none">
+                    {item.label.split(' ')[0]}
+                  </span>
+                </HomeLink>
+              );
+            }
+            
+            return (
+              <TransitionLink
+                key={item.href}
+                href={item.href}
+                className="flex flex-col items-center p-2 text-xs font-medium text-white/80 hover:text-white transition-colors"
+              >
+                <div className="w-6 h-6 mb-1 flex items-center justify-center">
+                  {/* Aquí puedes agregar iconos específicos para cada navegación */}
+                  <div className="w-2 h-2 bg-current rounded-full" />
+                </div>
+                <span className="text-[10px] leading-none">
+                  {item.label.split(' ')[0]}
+                </span>
+              </TransitionLink>
+            );
+          })}
         </div>
       </nav>
 

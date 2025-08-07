@@ -5,23 +5,56 @@ import { usePathname } from 'next/navigation';
 
 export function PageTransitionProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [key, setKey] = useState(0);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [hasInitializedHash, setHasInitializedHash] = useState(false);
 
   useEffect(() => {
-    // Start fade-out transition
-    setIsVisible(false);
-    
-    // After fade-out completes, fade back in
-    const timer = setTimeout(() => {
+    // En la primera carga, redirigir a #home si estamos en la página principal
+    if (isInitialLoad && !hasInitializedHash) {
+      const currentUrl = window.location.href;
+      const currentHash = window.location.hash;
+      const isHomePage = /\/[a-z]{2}\/?$/.test(pathname); // Detecta páginas como /es, /en, etc.
+      
+      if (isHomePage) {
+        // Si estamos en home sin hash o con hash diferente a #home, redirigir a #home
+        if (!currentHash || currentHash !== '#home') {
+          const newUrl = window.location.origin + pathname + '/#home';
+          window.location.replace(newUrl);
+          return;
+        }
+      } else {
+        // Para otras páginas, agregar hash genérico si no existe
+        if (!currentHash) {
+          window.history.replaceState(null, '', currentUrl + '#');
+        }
+      }
+      
+      setHasInitializedHash(true);
+      setIsInitialLoad(false);
       setIsVisible(true);
-    }, 250); // Longer delay to make fade effect more visible
+      return;
+    }
 
-    return () => clearTimeout(timer);
-  }, [pathname]);
+    // Para navegaciones subsecuentes, hacer la transición
+    if (!isInitialLoad) {
+      setIsVisible(false);
+      setKey(prev => prev + 1);
+      
+      // Fade in después de un delay más corto para mejor UX
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 150);
+
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, isInitialLoad, hasInitializedHash]);
 
   return (
     <div 
-      className={`relative w-full transition-opacity duration-500 ease-in-out ${
+      key={key}
+      className={`relative w-full transition-opacity duration-500 ease-out ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
