@@ -99,6 +99,24 @@ export interface NavigationContent extends MarkdownContent {
   };
 }
 
+export interface CasesHeaderContent extends MarkdownContent {
+  data: {
+    section_title: string;
+    section_description: string;
+    view_case: string;
+    view_all: string;
+    stats: {
+      projects: string;
+      clients: string;
+      countries: string;
+      experience: string;
+    };
+  };
+}
+
+/**
+ * Load cases header content
+ */
 /**
  * Load services header content
  */
@@ -113,6 +131,14 @@ export async function loadServicesHeaderContent(locale: string = 'es'): Promise<
 export async function loadNavigationContent(locale: string = 'es'): Promise<NavigationContent | null> {
   const content = await loadContent('home/navigation', locale);
   return content as NavigationContent | null;
+}
+
+/**
+ * Load cases header content
+ */
+export async function loadCasesHeaderContent(locale: string = 'es'): Promise<CasesHeaderContent | null> {
+  const content = await loadContent('home/cases', locale);
+  return content as CasesHeaderContent | null;
 }
 
 /**
@@ -163,6 +189,7 @@ export default {
   loadHeroContent,
   loadNavigationContent,
   loadServicesHeaderContent,
+  loadCasesHeaderContent,
   loadServicesContent,
   loadServiceContent,
 };

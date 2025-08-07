@@ -1,7 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import CasesGrid from "@/components/sections/CasesGrid";
-import { loadHeroContent, loadServicesContent, loadServicesHeaderContent } from "@/lib/contentLoader";
+import { loadHeroContent, loadServicesContent, loadServicesHeaderContent, loadCasesHeaderContent } from "@/lib/contentLoader";
 
 interface HomeProps {
   params: Promise<{ locale: string }>;
@@ -14,6 +14,7 @@ export default async function Home({ params }: HomeProps) {
   const heroContent = await loadHeroContent(locale);
   const servicesContent = await loadServicesContent(locale);
   const servicesHeaderContent = await loadServicesHeaderContent(locale);
+  const casesHeaderContent = await loadCasesHeaderContent(locale);
   
   return (
     <div className="snap-container">
@@ -29,7 +30,7 @@ export default async function Home({ params }: HomeProps) {
       </section>
       
       <section className="snap-section">
-        <CasesGrid locale={locale} />
+        <CasesGrid locale={locale} headerContent={casesHeaderContent} />
       </section>
     </div>
   );

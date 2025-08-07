@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
 import { useTranslations, useLocale } from 'next-intl';
 import { CaseStudy } from '@/types';
+import { CasesHeaderContent } from '@/lib/contentLoader';
 
 import { ArrowUpRight, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
@@ -95,7 +96,12 @@ const cases: CaseStudy[] = [
   },
 ];
 
-function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseStudy; index: number; locale?: string }) {
+function CaseCard({ caseStudy, index, locale: localeParam, headerContent }: { 
+  caseStudy: CaseStudy; 
+  index: number; 
+  locale?: string;
+  headerContent?: CasesHeaderContent | null;
+}) {
   const t = useTranslations();
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
@@ -202,7 +208,7 @@ function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseSt
             href={`/${locale}/casos-exito/${caseStudy.id}`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
-            {t('cases.view_case')}
+            {headerContent?.data.view_case || 'Ver caso completo'}
             <ArrowUpRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
@@ -212,9 +218,13 @@ function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseSt
   );
 }
 
-export default function CasesGrid({ locale: localeParam }: { locale?: string }) {
+interface CasesGridProps {
+  locale?: string;
+  headerContent?: CasesHeaderContent | null;
+}
+
+export default function CasesGrid({ locale: localeParam, headerContent }: CasesGridProps) {
   const { ref: sectionRef, isVisible } = useScrollAnimation();
-  const t = useTranslations();
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
   const locale = localeParam || localeFromHook;
@@ -223,6 +233,15 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
   const sectionId = locale === 'en' ? 'success-stories' : 
                    locale === 'pt' ? 'casos-sucesso' : 
                    'casos-exito';
+
+  // Fallback content if not loaded
+  if (!headerContent) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-slate-800">
+        <div className="text-gray-300">Cargando casos...</div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -244,8 +263,8 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
           </div>
 
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
-            {t('cases.section_title').split(' ').map((word, index) =>
-              index === 2 ? (
+            {headerContent.data.section_title.split(' ').map((word, index) =>
+              index === headerContent.data.section_title.split(' ').length - 1 ? (
                 <span key={index} className="gradient-text">{word}</span>
               ) : (
                 <span key={index}>{word} </span>
@@ -254,17 +273,17 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
           </h2>
 
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            {t('cases.section_description')}
+            {headerContent.data.section_description}
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
-            { number: '50+', label: t('cases.stats.projects') },
-            { number: '35+', label: t('cases.stats.clients') },
-            { number: '8+', label: t('cases.stats.countries') },
-            { number: calculateYearsOfExperience(), label: t('cases.stats.experience') },
+            { number: '50+', label: headerContent.data.stats.projects },
+            { number: '35+', label: headerContent.data.stats.clients },
+            { number: '8+', label: headerContent.data.stats.countries },
+            { number: calculateYearsOfExperience(), label: headerContent.data.stats.experience },
 
           ].map((stat, index) => (
             <div
@@ -284,17 +303,17 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
         {/* Cases Grid - Clean Grid Layout (not masonry) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cases.map((caseStudy, index) => (
-            <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} locale={locale} />
+            <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} locale={locale} headerContent={headerContent} />
           ))}
         </div>
 
         {/* CTA */}
         <div className="text-center mt-16">
           <Link
-            href={`/${locale}/#cases`}
+            href={`/${locale}/#${sectionId}`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
-            {t('cases.view_all')}
+            {headerContent.data.view_all}
             <ArrowUpRight className="w-5 h-5 ml-2" />
           </Link>
         </div>
