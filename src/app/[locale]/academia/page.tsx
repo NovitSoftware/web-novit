@@ -276,14 +276,18 @@ export default async function AcademiaPage({
              locale === 'en' ? 'Contact us to learn more about our training programs and how they can boost your professional career.' :
              'Entre em contato conosco para saber mais sobre nossos programas de treinamento e como eles podem impulsionar sua carreira profissional.'}
           </p>
-          <Link
-            href={`/${locale}#contact`}
+          <a
+            href={`mailto:academia@novit.com.ar?subject=${
+              locale === 'es' ? 'Info próxima edición' :
+              locale === 'en' ? 'Next edition info' :
+              'Info próxima edição'
+            }`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
-            {locale === 'es' ? 'Contactar academia' :
-             locale === 'en' ? 'Contact academy' :
-             'Contatar academia'}
-          </Link>
+            {locale === 'es' ? 'Inscríbete' :
+             locale === 'en' ? 'Sign up' :
+             'Inscreva-se'}
+          </a>
         </div>
       </section>
     </div>

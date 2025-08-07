@@ -316,14 +316,16 @@ export default async function CaseStudyPage({
              locale === 'en' ? 'Tell us about your project and we\'ll help you find the best technology solution for your business.' :
              'Conte-nos sobre seu projeto e ajudaremos você a encontrar a melhor solução tecnológica para seu negócio.'}
           </p>
-          <Link
-            href={`/${locale}#contact`}
+          <a
+            href="https://wa.me/5491131769406"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
-            {locale === 'es' ? 'Solicitar consultoría' :
-             locale === 'en' ? 'Request consultation' :
-             'Solicitar consultoria'}
-          </Link>
+            {locale === 'es' ? 'Contáctanos' :
+             locale === 'en' ? 'Contact us' :
+             'Fale conosco'}
+          </a>
         </div>
       </section>
     </div>

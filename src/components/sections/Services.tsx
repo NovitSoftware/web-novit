@@ -188,9 +188,14 @@ export default function Services({ content, headerContent }: ServicesProps) {
             <p className="text-lg lg:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
               {headerContent.data.cta_description}
             </p>
-            <button className="bg-white text-slate-900 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <a 
+              href="https://wa.me/5491131769406"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-slate-900 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
               {headerContent.data.cta_button}
-            </button>
+            </a>
           </div>
         </div>
       </div>
