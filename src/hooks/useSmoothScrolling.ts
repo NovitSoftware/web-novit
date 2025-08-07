@@ -4,6 +4,11 @@ import { useEffect } from 'react';
 
 export function useSmoothScrolling() {
   useEffect(() => {
+    // Ensure smooth scrolling is enabled in CSS
+    const ensureSmoothScroll = () => {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    };
+
     const handleAnchorClick = (e: Event) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
@@ -18,7 +23,10 @@ export function useSmoothScrolling() {
           
           const targetElement = document.querySelector(hash);
           if (targetElement) {
-            // Use JavaScript smooth scrolling for reliable behavior
+            // Ensure smooth scrolling is enabled
+            ensureSmoothScroll();
+            
+            // Use scrollIntoView with smooth behavior
             targetElement.scrollIntoView({
               behavior: 'smooth',
               block: 'start',
@@ -31,14 +39,14 @@ export function useSmoothScrolling() {
       }
     };
 
-    // Handle clicks on anchor links
-    document.addEventListener('click', handleAnchorClick);
-    
     // Handle initial page load with hash
     const handleInitialHash = () => {
       const hash = window.location.hash;
       if (hash) {
-        // Wait a bit for the page to fully load
+        // Ensure smooth scrolling is available
+        ensureSmoothScroll();
+        
+        // Wait a bit longer for the page to fully load and render
         setTimeout(() => {
           const targetElement = document.querySelector(hash);
           if (targetElement) {
@@ -47,15 +55,27 @@ export function useSmoothScrolling() {
               block: 'start',
             });
           }
-        }, 100);
+        }, 300); // Increased delay to ensure DOM is ready
       }
     };
 
-    // Handle hash on page load
+    // Initialize smooth scrolling immediately
+    ensureSmoothScroll();
+
+    // Handle clicks on anchor links
+    document.addEventListener('click', handleAnchorClick);
+    
+    // Handle hash on page load with multiple trigger points
     if (document.readyState === 'complete') {
       handleInitialHash();
     } else {
       window.addEventListener('load', handleInitialHash);
+      // Also try on DOMContentLoaded for faster response
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          setTimeout(handleInitialHash, 100);
+        });
+      }
     }
 
     return () => {
