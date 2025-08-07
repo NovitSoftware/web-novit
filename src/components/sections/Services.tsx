@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useScrollAnimation, useGSAP } from '@/hooks/useAnimations';
-import { useTranslations } from 'next-intl';
+import { ServiceContent, ServicesHeaderContent } from '@/lib/contentLoader';
 import { 
   Code2, 
   Brain, 
@@ -13,24 +13,6 @@ import {
   ArrowRight 
 } from 'lucide-react';
 
-const serviceKeys = [
-  'desarrollo_software',
-  'inteligencia_artificial', 
-  'consultoria_it',
-  'qa_testing',
-  'diseno_ux_ui',
-  'data_science'
-];
-
-const serviceIcons = [
-  'Code2',
-  'Brain',
-  'Settings',
-  'TestTube',
-  'Palette',
-  'BarChart3'
-];
-
 const iconMap = {
   Code2,
   Brain,
@@ -40,12 +22,16 @@ const iconMap = {
   BarChart3,
 };
 
-export default function Services() {
+interface ServicesProps {
+  content: ServiceContent[];
+  headerContent: ServicesHeaderContent | null;
+}
+
+export default function Services({ content, headerContent }: ServicesProps) {
   const { ref: sectionRef, isVisible } = useScrollAnimation();
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const gsap = useGSAP();
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const t = useTranslations('services');
 
   useEffect(() => {
     if (gsap && isVisible && cardsRef.current.length > 0) {
@@ -78,13 +64,22 @@ export default function Services() {
       setActiveCard(index);
       if (gsap && cardsRef.current[index]) {
         gsap.to(cardsRef.current[index], {
-          scale: 1.05,
+          scale: 1.02,
           duration: 0.3,
           ease: 'power2.out',
         });
       }
     }
   };
+
+  // Fallback if no content
+  if (!content || content.length === 0 || !headerContent) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-gray-600">Cargando servicios...</div>
+      </section>
+    );
+  }
 
   return (
     <section 
@@ -106,23 +101,23 @@ export default function Services() {
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
-            <span className="gradient-text">{t('section_title')}</span>
+            <span className="gradient-text">{headerContent.data.section_title}</span>
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            {t('section_description')}
+            {headerContent.data.section_description}
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {serviceKeys.map((serviceKey, index) => {
-            const IconComponent = iconMap[serviceIcons[index] as keyof typeof iconMap];
+          {content.map((service, index) => {
+            const IconComponent = iconMap[service.data.icon as keyof typeof iconMap] || Code2;
             const isActive = activeCard === index;
             
             return (
               <div
-                key={serviceKey}
+                key={service.slug}
                 ref={(el) => {
                   if (el) cardsRef.current[index] = el;
                 }}
@@ -142,12 +137,12 @@ export default function Services() {
 
                   {/* Title */}
                   <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent-cyan transition-colors duration-300">
-                    {t(`items.${serviceKey}.title`)}
+                    {service.data.title}
                   </h3>
 
                   {/* Description */}
                   <p className="text-gray-300 mb-6 leading-relaxed">
-                    {t(`items.${serviceKey}.description`)}
+                    {service.data.description}
                   </p>
 
                   {/* Features - Se expande al hacer click */}
@@ -156,13 +151,13 @@ export default function Services() {
                   }`}>
                     <div className="border-t border-slate-700 pt-6">
                       <h4 className="font-semibold text-white mb-3">
-                        {t('included_services')}
+                        {headerContent.data.included_services}
                       </h4>
                       <ul className="space-y-2">
-                        {Array.from({length: 4}, (_, featureIndex) => (
+                        {service.data.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-center text-gray-300">
                             <div className="w-2 h-2 bg-gradient-novit-accent rounded-full mr-3" />
-                            {t(`items.${serviceKey}.features.${featureIndex}`)}
+                            {feature}
                           </li>
                         ))}
                       </ul>
@@ -172,7 +167,7 @@ export default function Services() {
                   {/* CTA Button */}
                   <div className="mt-6 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <button className="flex items-center text-accent-cyan font-semibold hover:text-secondary-500 transition-colors cursor-pointer">
-                      {isActive ? t('see_less') : t('see_more')}
+                      {isActive ? headerContent.data.see_less : headerContent.data.see_more}
                       <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
                         isActive ? 'rotate-90' : ''
                       }`} />
@@ -188,13 +183,13 @@ export default function Services() {
         <div className="text-center">
           <div className="bg-gradient-novit-accent rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-              {t('cta_title')}
+              {headerContent.data.cta_title}
             </h3>
             <p className="text-lg lg:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              {t('cta_description')}
+              {headerContent.data.cta_description}
             </p>
             <button className="bg-white text-slate-900 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
-              {t('cta_button')}
+              {headerContent.data.cta_button}
             </button>
           </div>
         </div>

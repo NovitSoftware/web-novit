@@ -3,15 +3,28 @@
 import { useState } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 import { useScrollAnimation, useParallax } from '@/hooks/useAnimations';
-import { useTranslations } from 'next-intl';
 import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
+import { HeroContent } from '@/lib/contentLoader';
 
-export default function Hero() {
+interface HeroProps {
+  content: HeroContent | null;
+}
+
+export default function Hero({ content }: HeroProps) {
   const { ref: heroRef, isVisible } = useScrollAnimation();
   const { ref: parallaxRef, offset } = useParallax(0.3);
   const [isPremiumQuoteOpen, setIsPremiumQuoteOpen] = useState(false);
   
-  const t = useTranslations('hero');
+  // Fallback content if not loaded
+  if (!content) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+        <div className="text-white">Cargando...</div>
+      </section>
+    );
+  }
+
+  const { data } = content;
 
   return (
     <section
@@ -69,25 +82,24 @@ export default function Hero() {
         >
           {/* Título principal */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            {t('title_part1')}{' '}
+            {data.title_part1}{' '}
             <span className="text-accent-cyan font-black drop-shadow-lg">
-              {t('title_highlight')}
+              {data.title_highlight}
             </span>{' '}
-            {t('title_part2')}
+            {data.title_part2}
           </h1>
 
           {/* Subtítulo */}
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-            {t('subtitle_part1')}{' '}
-            <span className="text-accent-cyan font-semibold">{t('subtitle_highlight1')}</span>{' '}
-            {t('subtitle_middle')}{' '}
-            <span className="text-accent-cyan font-semibold">{t('subtitle_highlight2')}</span>
-            {t.has('subtitle_part2') ? ` ${t('subtitle_part2')}` : ''}
+            {data.subtitle_part1}{' '}
+            <span className="text-accent-cyan font-semibold">{data.subtitle_highlight1}</span>{' '}
+            {data.subtitle_middle}{' '}
+            <span className="text-accent-cyan font-semibold">{data.subtitle_highlight2}</span>
           </p>
 
           {/* Descripción */}
           <p className="text-lg lg:text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
-            {t('description')}
+            {data.description}
           </p>
 
           {/* CTAs */}
@@ -96,13 +108,13 @@ export default function Hero() {
               onClick={() => setIsPremiumQuoteOpen(true)}
               className="group bg-gradient-to-r from-accent-cyan to-secondary-500 text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-3 border-2 border-transparent hover:border-white/30 cursor-pointer"
             >
-              {t('cta_premium')}
+              {data.cta_premium}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             
             <button className="group bg-transparent border-2 border-gray-300 text-gray-300 px-8 py-4 sm:px-10 sm:py-5 rounded-full font-semibold text-lg hover:bg-gray-300 hover:text-slate-900 transition-all duration-300 flex items-center gap-3 cursor-pointer">
               <Play className="w-5 h-5" />
-              {t('cta_work')}
+              {data.cta_work}
             </button>
           </div>
         </div>
