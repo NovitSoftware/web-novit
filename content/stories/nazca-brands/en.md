@@ -1,5 +1,13 @@
 ---
-title: "Data analytics with AI to boost a loyalty app in the US"
+title: "AI-powered data analytics to boost a loyalty app in the U.S."
+description: "We implemented AI-powered data analytics solutions using Power BI and Microsoft Copilot to enhance a customer loyalty application in the U.S. market."
+client: "Nazca Brands"
+date: "2024"
+tags: ["Power BI", "Microsoft Copilot"]
+image: "/images/cases/nazca.png"
+logoImage: "/images/cases/logos/nazca-logo.png"
+screenshotImage: "/images/cases/screenshots/nazca-dashboard.png"
+---e: "Data analytics with AI to boost a loyalty app in the US"
 client: "Nazca Brands"
 date: "2024"
 tags: ["Power BI", "Microsoft Copilot"]

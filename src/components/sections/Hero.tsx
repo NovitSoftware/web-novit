@@ -95,6 +95,7 @@ export default function Hero({ content }: HeroProps) {
             <span className="text-accent-cyan font-semibold">{data.subtitle_highlight1}</span>{' '}
             {data.subtitle_middle}{' '}
             <span className="text-accent-cyan font-semibold">{data.subtitle_highlight2}</span>
+            {data.subtitle_part3 && ` ${data.subtitle_part3}`}
           </p>
 
           {/* Descripción */}

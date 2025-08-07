@@ -62,12 +62,12 @@ export async function generateMetadata({
   
   if (!carrerasData) {
     return {
-      title: 'Carreras | NOVIT Software'
+      title: 'Carreras | Novit Software'
     };
   }
   
   return {
-    title: `${carrerasData.frontmatter.title} | NOVIT Software`,
+    title: `${carrerasData.frontmatter.title} | Novit Software`,
     description: carrerasData.frontmatter.description,
     openGraph: {
       title: carrerasData.frontmatter.title,
@@ -272,9 +272,9 @@ export default async function CarrerasPage({
              'Pronto para se juntar à nossa equipe?'}
           </h2>
           <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-            {locale === 'es' ? 'Envíanos tu CV y cuéntanos por qué querés ser parte de NOVIT Software.' :
-             locale === 'en' ? 'Send us your CV and tell us why you want to be part of NOVIT Software.' :
-             'Envie-nos seu CV e conte-nos por que você quer fazer parte da NOVIT Software.'}
+            {locale === 'es' ? 'Envíanos tu CV y cuéntanos por qué querés ser parte de Novit Software.' :
+             locale === 'en' ? 'Send us your CV and tell us why you want to be part of Novit Software.' :
+             'Envie-nos seu CV e conte-nos por que você quer fazer parte da Novit Software.'}
           </p>
           <a
             href="mailto:rrhh@novit.com.ar"

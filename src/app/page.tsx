@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'NOVIT Software - Soluciones digitales integrales',
-  description: 'NOVIT Software ofrece soluciones digitales integrales: desarrollo web, aplicaciones móviles, automatización de procesos y mucho más.',
+  title: 'Novit Software - Soluciones digitales integrales',
+  description: 'Novit Software ofrece soluciones digitales integrales: desarrollo web, aplicaciones móviles, automatización de procesos y mucho más.',
 };
 
 // Root page that immediately redirects based on language preference
@@ -57,7 +57,7 @@ export default function RootPage() {
           textAlign: 'center',
           padding: '2rem'
         }}>
-          <h1>NOVIT Software</h1>
+          <h1>Novit Software</h1>
           <p>Redirigiendo... / Redirecting... / Redirecionando...</p>
           <div style={{ marginTop: '2rem' }}>
             <span>Selecciona idioma: </span>

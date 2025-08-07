@@ -1,5 +1,6 @@
 ---
 title: "Complete ERP platform for comprehensive real estate management"
+description: "We developed a comprehensive ERP platform that connects all areas of Consultatio's real estate business, from property management to financial administration."
 client: "Consultatio"
 date: "2024"
 tags: ["Web Development", "ERP"]

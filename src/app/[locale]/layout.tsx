@@ -21,12 +21,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const metadata = (messages as Record<string, unknown>).metadata as Record<string, unknown> || {};
   
   return {
-    title: (metadata.title as string) || "NOVIT Software | La software factory que necesitás",
+    title: (metadata.title as string) || "Novit Software | La software factory que necesitás",
     description: (metadata.description as string) || "Partner tecnológico ideal para acompañar tu proceso de transformación digital. Desarrollo de software, IA, consultoría IT y más.",
     keywords: metadata.keywords ? (metadata.keywords as string).split(', ') : ["desarrollo software", "software factory", "transformación digital", "inteligencia artificial", "consultoría IT"],
-    authors: [{ name: "NOVIT Software" }],
-    creator: "NOVIT Software",
-    publisher: "NOVIT Software",
+    authors: [{ name: "Novit Software" }],
+    creator: "Novit Software",
+    publisher: "Novit Software",
     icons: {
       icon: '/favicon.png',
       shortcut: '/favicon.png',
@@ -36,13 +36,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
       locale: locale === 'es' ? 'es_ES' : locale === 'en' ? 'en_US' : 'pt_BR',
       url: "https://novitsoftware.com",
-      title: (metadata.title as string) || "NOVIT Software | La software factory que necesitás",
+      title: (metadata.title as string) || "Novit Software | La software factory que necesitás",
       description: (metadata.description as string) || "Partner tecnológico ideal para acompañar tu proceso de transformación digital.",
-      siteName: "NOVIT Software",
+      siteName: "Novit Software",
     },
     twitter: {
       card: "summary_large_image",
-      title: (metadata.title as string) || "NOVIT Software | La software factory que necesitás",
+      title: (metadata.title as string) || "Novit Software | La software factory que necesitás",
       description: (metadata.description as string) || "Partner tecnológico ideal para acompañar tu proceso de transformación digital.",
       creator: "@novitsoftware",
     },

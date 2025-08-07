@@ -11,7 +11,7 @@ benefits:
 
 # Career Opportunities
 
-At **NOVIT Software** we believe that our greatest asset is the people who are part of our team. We look for talented professionals passionate about technology who want to grow with us.
+At **Novit Software** we believe that our greatest asset is the people who are part of our team. We look for talented professionals passionate about technology who want to grow with us.
 
 ## Why Choose NOVIT?
 

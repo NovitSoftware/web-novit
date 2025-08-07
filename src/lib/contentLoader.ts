@@ -20,6 +20,19 @@ export interface ServiceContent extends MarkdownContent {
   };
 }
 
+export interface StoryContent extends MarkdownContent {
+  data: {
+    title: string;
+    client: string;
+    date: string;
+    tags: string[];
+    image: string;
+    logoImage?: string;
+    screenshotImage?: string;
+    description: string; // Required description
+  };
+}
+
 export interface HeroContent extends MarkdownContent {
   data: {
     title_part1: string;
@@ -29,6 +42,7 @@ export interface HeroContent extends MarkdownContent {
     subtitle_highlight1: string;
     subtitle_middle: string;
     subtitle_highlight2: string;
+    subtitle_part3?: string;
     description: string;
     cta_premium: string;
     cta_work: string;
@@ -105,7 +119,6 @@ export interface CasesHeaderContent extends MarkdownContent {
     section_title: string;
     section_description: string;
     view_case: string;
-    view_all: string;
     stats: {
       projects: string;
       clients: string;
@@ -147,7 +160,7 @@ export async function loadCasesHeaderContent(locale: string = 'es'): Promise<Cas
  */
 export async function loadServicesContent(locale: string = 'es'): Promise<ServiceContent[]> {
   try {
-    const servicesDir = path.join(contentDirectory, 'services');
+    const servicesDir = path.join(contentDirectory, 'servicios');
     
     if (!fs.existsSync(servicesDir)) {
       return [];
@@ -160,7 +173,7 @@ export async function loadServicesContent(locale: string = 'es'): Promise<Servic
     const services: ServiceContent[] = [];
 
     for (const serviceDir of serviceDirs) {
-      const content = await loadContent(`services/${serviceDir}`, locale);
+      const content = await loadContent(`servicios/${serviceDir}`, locale);
       if (content) {
         services.push(content as ServiceContent);
       }
@@ -181,8 +194,50 @@ export async function loadServiceContent(
   serviceSlug: string, 
   locale: string = 'es'
 ): Promise<ServiceContent | null> {
-  const content = await loadContent(`services/${serviceSlug}`, locale);
+  const content = await loadContent(`servicios/${serviceSlug}`, locale);
   return content as ServiceContent | null;
+}
+
+/**
+ * Load all stories content
+ */
+export async function loadStoriesContent(locale: string = 'es'): Promise<StoryContent[]> {
+  try {
+    const storiesDir = path.join(contentDirectory, 'stories');
+    
+    if (!fs.existsSync(storiesDir)) {
+      return [];
+    }
+
+    const storyDirs = fs.readdirSync(storiesDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+
+    const stories: StoryContent[] = [];
+
+    for (const storyDir of storyDirs) {
+      const content = await loadContent(`stories/${storyDir}`, locale);
+      if (content) {
+        stories.push(content as StoryContent);
+      }
+    }
+
+    return stories;
+  } catch (error) {
+    console.error('Error loading stories content:', error);
+    return [];
+  }
+}
+
+/**
+ * Load single story content
+ */
+export async function loadStoryContent(
+  storySlug: string, 
+  locale: string = 'es'
+): Promise<StoryContent | null> {
+  const content = await loadContent(`stories/${storySlug}`, locale);
+  return content as StoryContent | null;
 }
 
 export default {

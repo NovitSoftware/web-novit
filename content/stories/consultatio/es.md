@@ -1,5 +1,6 @@
 ---
 title: "Plataforma ERP completa para gestión inmobiliaria integral"
+description: "Desarrollamos una plataforma ERP integral que conecta todas las áreas del negocio inmobiliario de Consultatio, desde gestión de propiedades hasta administración financiera."
 client: "Consultatio"
 date: "2024"
 tags: ["Desarrollo Web", "ERP"]

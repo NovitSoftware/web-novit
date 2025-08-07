@@ -1,8 +1,7 @@
 ---
 section_title: "Success Stories"
 section_description: "Learn about some of the projects we have developed and how we have helped our clients achieve their goals"
-view_case: "View full case"
-view_all: "View all success stories"
+view_case: "View full story"
 stats:
   projects: "Completed projects"
   clients: "Satisfied clients"

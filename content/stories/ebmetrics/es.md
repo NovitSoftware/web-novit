@@ -1,5 +1,6 @@
 ---
 title: "Plataforma de analytics avanzada para optimización de rendimiento"
+description: "Creamos una plataforma de analytics avanzada que procesa datos en tiempo real y genera insights accionables para la optimización del rendimiento empresarial."
 client: "EB Metrics"
 date: "2023"
 tags: ["Analytics", "Data Science"]

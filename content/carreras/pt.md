@@ -11,7 +11,7 @@ benefits:
 
 # Oportunidades de Carreira
 
-Na **NOVIT Software** acreditamos que nosso maior patrimônio são as pessoas que fazem parte da nossa equipe. Procuramos profissionais talentosos e apaixonados por tecnologia que queiram crescer conosco.
+Na **Novit Software** acreditamos que nosso maior patrimônio são as pessoas que fazem parte da nossa equipe. Procuramos profissionais talentosos e apaixonados por tecnologia que queiram crescer conosco.
 
 ## Por que Escolher a NOVIT?
 

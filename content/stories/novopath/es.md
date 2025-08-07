@@ -1,5 +1,6 @@
 ---
 title: "Sistema de gestión de procesos empresariales optimizado"
+description: "Desarrollamos un sistema integral de gestión de procesos empresariales que automatiza workflows, optimiza la operación y mejora la trazabilidad de todas las actividades comerciales."
 client: "NovoPath"
 date: "2023"
 tags: ["Gestión", "Procesos"]

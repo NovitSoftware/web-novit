@@ -1,5 +1,6 @@
 ---
 title: "Advanced analytics platform for performance optimization"
+description: "We created an advanced analytics platform that processes real-time data and generates actionable insights for business performance optimization."
 client: "EB Metrics"
 date: "2023"
 tags: ["Analytics", "Data Science"]

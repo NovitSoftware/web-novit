@@ -62,12 +62,12 @@ export async function generateMetadata({
   
   if (!academiaData) {
     return {
-      title: 'Academia Novit | NOVIT Software'
+      title: 'Academia Novit | Novit Software'
     };
   }
   
   return {
-    title: `${academiaData.frontmatter.title} | NOVIT Software`,
+    title: `${academiaData.frontmatter.title} | Novit Software`,
     description: academiaData.frontmatter.description,
     openGraph: {
       title: academiaData.frontmatter.title,

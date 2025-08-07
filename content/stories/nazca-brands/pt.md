@@ -1,5 +1,13 @@
 ---
-title: "Análise de dados com IA para impulsionar um app de fidelização nos EUA"
+title: "Data analytics com IA para impulsionar um app de fidelização nos EUA"
+description: "Implementamos soluções de data analytics com IA utilizando Power BI e Microsoft Copilot para potencializar uma aplicação de fidelização de clientes no mercado americano."
+client: "Nazca Brands"
+date: "2024"
+tags: ["Power BI", "Microsoft Copilot"]
+image: "/images/cases/nazca.png"
+logoImage: "/images/cases/logos/nazca-logo.png"
+screenshotImage: "/images/cases/screenshots/nazca-dashboard.png"
+---e: "Análise de dados com IA para impulsionar um app de fidelização nos EUA"
 client: "Nazca Brands"
 date: "2024"
 tags: ["Power BI", "Microsoft Copilot"]

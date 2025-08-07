@@ -43,24 +43,32 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
     }
   };
 
-  const handleNewsletterSubmit = () => {
+  const handleNewsletterSubmit = async () => {
     if (email) {
-      // Create email to newsletter@novit.com.ar with the subscriber's email
-      const subject = encodeURIComponent('Nueva suscripción al newsletter');
-      const body = encodeURIComponent(`Nueva suscripción al newsletter de NOVIT Software.\n\nEmail del suscriptor: ${email}\n\nFecha: ${new Date().toLocaleString()}`);
-      const mailtoUrl = `mailto:newsletter@novit.com.ar?subject=${subject}&body=${body}`;
-      
-      // Open email client
-      window.open(mailtoUrl, '_blank');
-      
-      // Show thank you message
-      setShowThankYou(true);
-      setEmail('');
-      
-      // Hide thank you message after 3 seconds
-      setTimeout(() => {
-        setShowThankYou(false);
-      }, 3000);
+      try {
+        const response = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        if (response.ok) {
+          // Show thank you message
+          setShowThankYou(true);
+          setEmail('');
+          
+          // Hide thank you message after 3 seconds
+          setTimeout(() => {
+            setShowThankYou(false);
+          }, 3000);
+        } else {
+          console.error('Error subscribing to newsletter');
+        }
+      } catch (error) {
+        console.error('Error subscribing to newsletter:', error);
+      }
     }
   };
 
@@ -69,8 +77,8 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
   };
 
   const handleGoogleMaps = () => {
-    // Open Google Maps with NOVIT Software location and reviews
-    window.open('https://maps.google.com/search/NOVIT+Software+Av.+Córdoba+1351+Buenos+Aires', '_blank');
+    // Open Google Maps with Novit Software location
+    window.open('https://maps.app.goo.gl/yVXVjiQqXgXvXQq17', '_blank');
   };
 
   return (
@@ -90,7 +98,7 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
               <div className="flex items-center space-x-3 mb-6">
                 <Image
                   src={getAssetPath("novit-logo-official.png")}
-                  alt="NOVIT Software"
+                  alt="Novit Software"
                   width={120}
                   height={40}
                   className="h-10 w-auto"
@@ -141,37 +149,16 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
                 {t('services_title')}
               </h3>
               <ul className="space-y-3">
-                {services.length > 0 ? (
-                  services.map((service) => (
-                    <li key={service.slug}>
-                      <button 
-                        onClick={scrollToServices}
-                        className="text-gray-300 hover:text-accent-cyan transition-colors text-sm text-left"
-                      >
-                        {service.data.title}
-                      </button>
-                    </li>
-                  ))
-                ) : (
-                  // Fallback to static services if dynamic not available
-                  [
-                    { key: 'software_development', href: '#services' },
-                    { key: 'artificial_intelligence', href: '#services' },
-                    { key: 'it_consulting', href: '#services' },
-                    { key: 'qa_testing', href: '#services' },
-                    { key: 'ux_ui_design', href: '#services' },
-                    { key: 'data_science', href: '#services' },
-                  ].map((service) => (
-                    <li key={service.key}>
-                      <button 
-                        onClick={scrollToServices}
-                        className="text-gray-300 hover:text-accent-cyan transition-colors text-sm text-left"
-                      >
-                        {t(`services.${service.key}`)}
-                      </button>
-                    </li>
-                  ))
-                )}
+                {services.map((service) => (
+                  <li key={service.slug}>
+                    <button 
+                      onClick={scrollToServices}
+                      className="text-gray-300 hover:text-accent-cyan transition-colors text-sm text-left cursor-pointer"
+                    >
+                      {service.data.title}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
 

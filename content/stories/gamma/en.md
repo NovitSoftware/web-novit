@@ -1,5 +1,6 @@
 ---
 title: "Executive dashboard with real-time strategic KPIs"
+description: "We developed an interactive executive dashboard that centralizes the most important business KPIs with real-time visualizations for strategic decision-making."
 client: "Gamma"
 date: "2023"
 tags: ["Data Visualization", "KPIs"]

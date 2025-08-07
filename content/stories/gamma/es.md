@@ -1,5 +1,6 @@
 ---
 title: "Dashboard ejecutivo con KPIs estratégicos en tiempo real"
+description: "Desarrollamos un dashboard ejecutivo interactivo que centraliza los KPIs más importantes del negocio con visualizaciones en tiempo real para la toma de decisiones estratégicas."
 client: "Gamma"
 date: "2023"
 tags: ["Data Visualization", "KPIs"]

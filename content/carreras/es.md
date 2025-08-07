@@ -11,7 +11,7 @@ benefits:
 
 # Oportunidades de Carrera
 
-En **NOVIT Software** creemos que nuestro mayor activo son las personas que forman parte de nuestro equipo. Buscamos profesionales talentosos y apasionados por la tecnología que quieran crecer junto a nosotros.
+En **Novit Software** creemos que nuestro mayor activo son las personas que forman parte de nuestro equipo. Buscamos profesionales talentosos y apasionados por la tecnología que quieran crecer junto a nosotros.
 
 ## ¿Por qué elegir NOVIT?
 

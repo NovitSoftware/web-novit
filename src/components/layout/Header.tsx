@@ -31,7 +31,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
   const defaultNavigation = [
     { label: 'Inicio', href: `/${locale}/#home`, isHome: true },
     { label: 'Qué hacemos', href: `/${locale}/#services` },
-    { label: 'Casos de Éxito', href: `/${locale}/#cases` },
+    { label: 'Casos de Éxito', href: `/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}` },
     { label: 'Academia Novit', href: `/${locale}/academia` },
     { label: 'Carreras', href: `/${locale}/carreras` },
   ];
@@ -75,7 +75,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
             >
               <Image
                 src={getAssetPath("novit-logo-official.png")}
-                alt="NOVIT Software"
+                alt="Novit Software"
                 width={120}
                 height={40}
                 className="h-8 w-auto lg:h-10"

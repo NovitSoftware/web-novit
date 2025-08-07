@@ -35,11 +35,11 @@ interface CaseStudyData {
 
 async function getCaseStudyContent(caseId: string, locale: string): Promise<CaseStudyData | null> {
   try {
-    const filePath = path.join(process.cwd(), 'content', 'cases', caseId, `${locale}.md`);
+    const filePath = path.join(process.cwd(), 'content', 'stories', caseId, `${locale}.md`);
     
     if (!fs.existsSync(filePath)) {
       // Fallback to Spanish if locale file doesn't exist
-      const fallbackPath = path.join(process.cwd(), 'content', 'cases', caseId, 'es.md');
+      const fallbackPath = path.join(process.cwd(), 'content', 'stories', caseId, 'es.md');
       if (!fs.existsSync(fallbackPath)) {
         return null;
       }
@@ -93,7 +93,7 @@ export async function generateMetadata({
   }
   
   return {
-    title: `${caseData.frontmatter.title} | NOVIT Software`,
+    title: `${caseData.frontmatter.title} | Novit Software`,
     description: `Caso de éxito: ${caseData.frontmatter.client}. ${caseData.frontmatter.title}`,
     openGraph: {
       title: caseData.frontmatter.title,
@@ -234,11 +234,11 @@ export default async function CaseStudyPage({
           {/* Back Navigation */}
           <div className="mb-8">
             <Link 
-              href={`/${locale}#cases`}
+              href={`/${locale}#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`}
               className="inline-flex items-center text-accent-cyan hover:text-accent-cyan/80 transition-colors font-medium"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              {locale === 'es' ? 'Volver a casos' : locale === 'en' ? 'Back to cases' : 'Voltar aos casos'}
+              {locale === 'es' ? 'Volver a casos' : locale === 'en' ? 'Back to stories' : 'Voltar aos casos'}
             </Link>
           </div>
           

@@ -1,5 +1,6 @@
 ---
 title: "Aplicación web BIM para gestión de proyectos de construcción"
+description: "Desarrollamos una aplicación web BIM que centraliza la gestión de proyectos de construcción, mejorando la colaboración entre equipos y optimizando los procesos constructivos."
 client: "Grupo Salas"
 date: "2024"
 tags: ["BIM", "Construcción"]

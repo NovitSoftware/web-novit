@@ -9,110 +9,11 @@
     "continue": "Continuar",
     "back": "Volver"
   },
-  "navigation": {
-    "home": "Inicio",
-    "services": "Qué hacemos",
-    "cases": "Casos de Éxito",
-    "academy": "Academia Novit",
-    "quote": "Necesito un presupuesto"
-  },
-  "hero": {
-    "title_part1": "La",
-    "title_highlight": "software factory",
-    "title_part2": "que necesitás",
-    "subtitle_part1": "Para que tus ideas se hagan realidad de forma",
-    "subtitle_highlight1": "simple",
-    "subtitle_middle": "y",
-    "subtitle_highlight2": "práctica",
-    "description": "El partner tecnológico ideal para acompañar tu proceso de transformación digital",
-    "cta_premium": "⚡ Cotización Premium en 24hs",
-    "cta_work": "Ver nuestro trabajo"
-  },
-  "services": {
-    "section_title": "Qué hacemos",
-    "section_description": "Ofrecemos soluciones tecnológicas integrales para transformar tu negocio y llevarlo al siguiente nivel",
-    "included_services": "Servicios incluidos:",
-    "see_more": "Conocer más",
-    "see_less": "Ver menos",
-    "cta_title": "¿Necesitás una solución personalizada?",
-    "cta_description": "Contanos sobre tu proyecto y te ayudamos a encontrar la mejor solución tecnológica",
-    "cta_button": "Solicitar asesoría",
-    "items": {
-      "desarrollo_software": {
-        "title": "Desarrollo de Software",
-        "description": "Soluciones tecnológicas a medida que transforman tu negocio y optimizan tus procesos.",
-        "features": [
-          "Aplicaciones web y móviles",
-          "Sistemas de gestión empresarial",
-          "APIs y microservicios",
-          "Integración de sistemas"
-        ]
-      },
-      "inteligencia_artificial": {
-        "title": "Inteligencia Artificial",
-        "description": "Implementamos IA para automatizar procesos y generar insights valiosos para tu empresa.",
-        "features": [
-          "Machine Learning",
-          "Procesamiento de lenguaje natural",
-          "Computer Vision",
-          "Chatbots inteligentes"
-        ]
-      },
-      "consultoria_it": {
-        "title": "Consultoría IT",
-        "description": "Asesoramiento estratégico para optimizar tu infraestructura tecnológica.",
-        "features": [
-          "Auditoría tecnológica",
-          "Arquitectura de software",
-          "Optimización de procesos",
-          "Transformación digital"
-        ]
-      },
-      "qa_testing": {
-        "title": "QA & Testing",
-        "description": "Garantizamos la calidad de tu software con procesos de testing automatizados.",
-        "features": [
-          "Testing automatizado",
-          "Testing manual",
-          "Performance testing",
-          "Security testing"
-        ]
-      },
-      "diseno_ux_ui": {
-        "title": "Diseño UX/UI",
-        "description": "Creamos experiencias digitales intuitivas que conectan con tus usuarios.",
-        "features": [
-          "Investigación de usuarios",
-          "Prototipado",
-          "Diseño de interfaces",
-          "Testing de usabilidad"
-        ]
-      },
-      "data_science": {
-        "title": "Data Science",
-        "description": "Convertimos tus datos en insights accionables para la toma de decisiones.",
-        "features": [
-          "Análisis de datos",
-          "Dashboards interactivos",
-          "Modelos predictivos",
-          "Big Data"
-        ]
-      }
-    }
-  },
   "footer": {
     "company_description": "La software factory que necesitás para que tus ideas se hagan realidad de forma simple y práctica.",
     "address_line1": "Av. Córdoba 1351, piso #3",
     "address_line2": "Ciudad de Buenos Aires",
     "services_title": "Servicios",
-    "services": {
-      "software_development": "Desarrollo de Software",
-      "artificial_intelligence": "Inteligencia Artificial", 
-      "it_consulting": "Consultoría IT",
-      "qa_testing": "QA & Testing",
-      "ux_ui_design": "Diseño UX/UI",
-      "data_science": "Data Science"
-    },
     "company_title": "Empresa",
     "company_links": {
       "home": "Inicio",
@@ -153,59 +54,6 @@
       "other": "Otro",
       "select_project": "Seleccionar tipo de proyecto"
     }
-  },
-  "cases": {
-    "section_title": "Casos de Éxito",
-    "section_description": "Conocé algunos de los proyectos que hemos desarrollado y cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos",
-    "stats": {
-      "projects": "Proyectos completados",
-      "clients": "Clientes satisfechos", 
-      "countries": "Países alcanzados",
-      "experience": "Años de experiencia"
-    },
-    "view_case": "Ver caso completo",
-    "view_all": "Ver todos los casos de éxito",
-    "studies": {
-      "nazca-brands": {
-        "title": "Data analytics con IA para impulsar una app de fidelización en EE.UU.",
-        "description": "Desarrollo de dashboards interactivos embebidos con KPIs estratégicos usando Power BI y Microsoft Copilot para análisis conversacional.",
-        "results": {
-          "integration": "Integración exitosa",
-          "metrics": "Métricas en tiempo real",
-          "solution": "Solución escalable"
-        }
-      },
-      "consultatio": {
-        "title": "Sistema de Gestión Inmobiliaria",
-        "description": "Plataforma integral para gestión de proyectos inmobiliarios con análisis avanzado y dashboards de control.",
-        "results": {
-          "properties": "Propiedades gestionadas",
-          "users": "Usuarios activos",
-          "time_reduction": "Reducción de tiempo"
-        }
-      },
-      "ebmetrics": {
-        "title": "Plataforma de Analytics",
-        "description": "Sistema avanzado de análisis de datos y métricas empresariales para optimización de procesos de negocio."
-      },
-      "gamma": {
-        "title": "Sistema de Visualización de Datos",
-        "description": "Plataforma integral de dashboards y KPIs para análisis empresarial con visualizaciones interactivas avanzadas."
-      },
-      "novopath": {
-        "title": "Aplicación de Gestión de Procesos",
-        "description": "Desarrollo de aplicación empresarial para gestión y análisis de flujos de procesos internos y optimización."
-      },
-      "salas-bim": {
-        "title": "Aplicación BIM Web",
-        "description": "Desarrollo de aplicación web para visualización y gestión de modelos BIM en proyectos de construcción e infraestructura."
-      }
-    }
-  },
-  "metadata": {
-    "title": "NOVIT Software | La software factory que necesitás",
-    "description": "Partner tecnológico ideal para acompañar tu proceso de transformación digital. Desarrollo de software, IA, consultoría IT y más.",
-    "keywords": "desarrollo software, software factory, transformación digital, inteligencia artificial, consultoría IT"
   },
   "premium_quote": {
     "title": "Propuesta comercial premium",
