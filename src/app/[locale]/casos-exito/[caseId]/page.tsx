@@ -35,11 +35,11 @@ interface CaseStudyData {
 
 async function getCaseStudyContent(caseId: string, locale: string): Promise<CaseStudyData | null> {
   try {
-    const filePath = path.join(process.cwd(), 'content', 'cases', caseId, `${locale}.md`);
+    const filePath = path.join(process.cwd(), 'content', 'stories', caseId, `${locale}.md`);
     
     if (!fs.existsSync(filePath)) {
       // Fallback to Spanish if locale file doesn't exist
-      const fallbackPath = path.join(process.cwd(), 'content', 'cases', caseId, 'es.md');
+      const fallbackPath = path.join(process.cwd(), 'content', 'stories', caseId, 'es.md');
       if (!fs.existsSync(fallbackPath)) {
         return null;
       }
@@ -93,7 +93,7 @@ export async function generateMetadata({
   }
   
   return {
-    title: `${caseData.frontmatter.title} | NOVIT Software`,
+    title: `${caseData.frontmatter.title} | Novit Software`,
     description: `Caso de éxito: ${caseData.frontmatter.client}. ${caseData.frontmatter.title}`,
     openGraph: {
       title: caseData.frontmatter.title,
@@ -234,11 +234,11 @@ export default async function CaseStudyPage({
           {/* Back Navigation */}
           <div className="mb-8">
             <Link 
-              href={`/${locale}#cases`}
+              href={`/${locale}#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`}
               className="inline-flex items-center text-accent-cyan hover:text-accent-cyan/80 transition-colors font-medium"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              {locale === 'es' ? 'Volver a casos' : locale === 'en' ? 'Back to cases' : 'Voltar aos casos'}
+              {locale === 'es' ? 'Volver a casos' : locale === 'en' ? 'Back to stories' : 'Voltar aos casos'}
             </Link>
           </div>
           
@@ -316,14 +316,16 @@ export default async function CaseStudyPage({
              locale === 'en' ? 'Tell us about your project and we\'ll help you find the best technology solution for your business.' :
              'Conte-nos sobre seu projeto e ajudaremos você a encontrar a melhor solução tecnológica para seu negócio.'}
           </p>
-          <Link
-            href={`/${locale}#contact`}
+          <a
+            href="https://wa.me/5491131769406"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
-            {locale === 'es' ? 'Solicitar consultoría' :
-             locale === 'en' ? 'Request consultation' :
-             'Solicitar consultoria'}
-          </Link>
+            {locale === 'es' ? 'Contáctanos' :
+             locale === 'en' ? 'Contact us' :
+             'Fale conosco'}
+          </a>
         </div>
       </section>
     </div>

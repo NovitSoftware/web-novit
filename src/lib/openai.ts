@@ -31,7 +31,7 @@ export const generateCommercialProposal = async ({
     }
 
     const prompt = `
-Como experto en desarrollo de software y consultoría tecnológica de NOVIT Software, genera una propuesta comercial premium personalizada basada en:
+Como experto en desarrollo de software y consultoría tecnológica de Novit Software, genera una propuesta comercial premium personalizada basada en:
 
 INFORMACIÓN DEL CLIENTE:
 - Email: ${email}
@@ -75,7 +75,7 @@ Máximo 1500 palabras, enfocado en valor y resultados.
       messages: [
         {
           role: "system",
-          content: "Eres un consultor senior de NOVIT Software, experto en generar propuestas comerciales técnicas personalizadas y de alto valor."
+          content: "Eres un consultor senior de Novit Software, experto en generar propuestas comerciales técnicas personalizadas y de alto valor."
         },
         {
           role: "user",

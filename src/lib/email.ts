@@ -39,7 +39,7 @@ export const sendEmail = async ({
     }
 
     const mailOptions = {
-      from: `"NOVIT Software" <${process.env.GMAIL_USER}>`,
+      from: `"Novit Software" <${process.env.GMAIL_USER}>`,
       to,
       subject,
       html,

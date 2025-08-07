@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage - Español -->
+  <url>
+    <loc>https://novit.com.ar/es</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Homepage - English -->
+  <url>
+    <loc>https://novit.com.ar/en</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Homepage - Português -->
+  <url>
+    <loc>https://novit.com.ar/pt</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Academia Pages -->
+  <url>
+    <loc>https://novit.com.ar/es/academia</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/academia"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/academia"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/academia"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/en/academia</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/academia"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/academia"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/academia"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/pt/academia</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/academia"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/academia"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/academia"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Carreras Pages -->
+  <url>
+    <loc>https://novit.com.ar/es/carreras</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/carreras"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/carreras"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/carreras"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/en/carreras</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/carreras"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/carreras"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/carreras"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/pt/carreras</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/carreras"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/carreras"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/carreras"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Casos de Éxito / Success Stories -->
+  <url>
+    <loc>https://novit.com.ar/es/casos-exito/consultatio</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/casos-exito/consultatio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/casos-exito/consultatio"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/casos-exito/consultatio"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/es/casos-exito/ebmetrics</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/casos-exito/ebmetrics"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/casos-exito/ebmetrics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/casos-exito/ebmetrics"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/es/casos-exito/gamma</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/casos-exito/gamma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/casos-exito/gamma"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/es/casos-exito/nazca-brands</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://novit.com.ar/es/casos-exito/nazca-brands"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://novit.com.ar/en/casos-exito/nazca-brands"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://novit.com.ar/pt/casos-exito/nazca-brands"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/es/casos-exito/novopath</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://novit.com.ar/es/casos-exito/salas-bim</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

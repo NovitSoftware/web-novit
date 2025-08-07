@@ -1,8 +1,8 @@
-# 🚀 NOVIT Software - Sitio Web Oficial
+# 🚀 Novit Software - Sitio Web Oficial
 
 ## 📋 Descripción del Proyecto
 
-Sitio web moderno y responsivo para NOVIT Software, desarrollado con Next.js 14, TypeScript y Tailwind CSS. Incluye animaciones avanzadas, optimización SEO y diseño mobile-first.
+Sitio web moderno y responsivo para Novit Software, desarrollado con Next.js 14, TypeScript y Tailwind CSS. Incluye animaciones avanzadas, optimización SEO y diseño mobile-first.
 
 ## 🎨 Características Principales
 
@@ -138,11 +138,11 @@ src/
 
 ## 📧 Contacto
 
-**NOVIT Software**
+**Novit Software**
 - Email: info@novitsoftware.com
 - Tel: +54 11 3176 9406
 - Web: https://novitsoftware.com
 
 ---
 
-**Desarrollado con ❤️ por el equipo de NOVIT Software**
+**Desarrollado con ❤️ por el equipo de Novit Software**

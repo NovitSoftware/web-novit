@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     const clientEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #06b6d4 100%); padding: 20px; text-align: center;">
-          <h1 style="color: white; margin: 0;">🚀 NOVIT Software</h1>
+          <h1 style="color: white; margin: 0;">🚀 Novit Software</h1>
           <p style="color: #e2e8f0; margin: 10px 0 0 0;">Propuesta Comercial Premium</p>
         </div>
         
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
         
         <div style="background: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
           <p style="color: #64748b; margin: 0; font-size: 14px;">
-            © 2024 NOVIT Software | La software factory que necesitás
+            © 2024 Novit Software | La software factory que necesitás
           </p>
         </div>
       </div>
@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
     // Enviar email al cliente con la propuesta
     const clientEmailResult = await sendEmail({
       to: email,
-      subject: '⚡ Tu Propuesta Comercial Premium está lista - NOVIT Software',
+      subject: '⚡ Tu Propuesta Comercial Premium está lista - Novit Software',
       html: clientEmailHtml,
       attachments: [
         {

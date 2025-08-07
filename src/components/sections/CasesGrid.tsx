@@ -6,96 +6,33 @@ import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useAnimations';
 import { useTranslations, useLocale } from 'next-intl';
 import { CaseStudy } from '@/types';
+import { CasesHeaderContent, StoryContent } from '@/lib/contentLoader';
 
 import { ArrowUpRight, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
 
-const cases: CaseStudy[] = [
-  {
-    id: 'nazca-brands',
-    titleKey: 'cases.studies.nazca-brands.title',
-    descriptionKey: 'cases.studies.nazca-brands.description',
-    client: 'Nazca Brands',
-    image: '/images/cases/nazca.png',
-    logoImage: '/images/cases/logos/nazca-logo.png',
-    screenshotImage: '/images/cases/screenshots/nazca-dashboard.png',
-    tags: ['Power BI', 'Microsoft Copilot'],
-    year: 2024,
+// Function to convert StoryContent to CaseStudy format
+function storyToCaseStudy(story: StoryContent): CaseStudy {
+  return {
+    id: story.slug,
+    titleKey: story.data.title, // Use direct title from markdown
+    descriptionKey: story.data.description, // Use direct description from markdown
+    client: story.data.client,
+    image: story.data.image,
+    logoImage: story.data.logoImage,
+    screenshotImage: story.data.screenshotImage,
+    tags: story.data.tags || [],
+    year: parseInt(story.data.date) || new Date().getFullYear(),
     hasDetailPage: true,
-    results: [
-      { metricKey: 'cases.studies.nazca-brands.results.integration', value: '100%' },
-      { metricKey: 'cases.studies.nazca-brands.results.metrics', value: 'Activo' },
-      { metricKey: 'cases.studies.nazca-brands.results.solution', value: 'Nacional' },
-    ],
-  },
-  {
-    id: 'consultatio',
-    titleKey: 'cases.studies.consultatio.title',
-    descriptionKey: 'cases.studies.consultatio.description',
-    client: 'Consultatio',
-    image: '/images/cases/consultatio.png',
-    logoImage: '/images/cases/logos/consultatio-logo.png',
-    screenshotImage: '/images/cases/screenshots/consultatio-dashboard.png',
-    tags: ['Desarrollo Web', 'ERP'],
-    year: 2024,
-    hasDetailPage: true,
-    results: [
-      { metricKey: 'cases.studies.consultatio.results.properties', value: '1000+' },
-      { metricKey: 'cases.studies.consultatio.results.users', value: '200+' },
-      { metricKey: 'cases.studies.consultatio.results.time_reduction', value: '60%' },
-    ],
-  },
-  {
-    id: 'ebmetrics',
-    titleKey: 'cases.studies.ebmetrics.title',
-    descriptionKey: 'cases.studies.ebmetrics.description',
-    client: 'EB Metrics',
-    image: '/images/cases/ebmetrics.png',
-    logoImage: '/images/cases/logos/ebmetrics-logo.png',
-    screenshotImage: '/images/cases/screenshots/ebmetrics-dashboard.png',
-    tags: ['Analytics', 'Data Science'],
-    year: 2023,
-    hasDetailPage: true,
-  },
-  {
-    id: 'gamma',
-    titleKey: 'cases.studies.gamma.title',
-    descriptionKey: 'cases.studies.gamma.description',
-    client: 'Gamma',
-    image: '/images/cases/gamma.png',
-    logoImage: '/images/cases/logos/gamma-logo.png',
-    screenshotImage: '/images/cases/screenshots/gamma-dashboard.png',
-    tags: ['Data Visualization', 'KPIs'],
-    year: 2023,
-    hasDetailPage: true,
-  },
-  {
-    id: 'novopath',
-    titleKey: 'cases.studies.novopath.title',
-    descriptionKey: 'cases.studies.novopath.description',
-    client: 'NovoPath',
-    image: '/images/cases/novopath.png',
-    logoImage: '/images/cases/logos/novopath-logo.png',
-    screenshotImage: '/images/cases/screenshots/novopath-dashboard.png',
-    tags: ['Gestión', 'Procesos'],
-    year: 2023,
-    hasDetailPage: true,
-  },
-  {
-    id: 'salas-bim',
-    titleKey: 'cases.studies.salas-bim.title',
-    descriptionKey: 'cases.studies.salas-bim.description',
-    client: 'Grupo Salas',
-    image: '/images/cases/salas.png',
-    logoImage: '/images/cases/logos/salas-logo.png',
-    screenshotImage: '/images/cases/screenshots/salas-bim.png',
-    tags: ['BIM', 'Construcción'],
-    year: 2024,
-    hasDetailPage: true,
-  },
-];
+  };
+}
 
-function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseStudy; index: number; locale?: string }) {
+function CaseCard({ caseStudy, index, locale: localeParam, headerContent }: { 
+  caseStudy: CaseStudy; 
+  index: number; 
+  locale?: string;
+  headerContent?: CasesHeaderContent | null;
+}) {
   const t = useTranslations();
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
@@ -170,10 +107,10 @@ function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseSt
             {caseStudy.client}
           </p>
           <h3 className="text-white font-bold text-xl leading-tight mb-3">
-            {t(caseStudy.titleKey)}
+            {caseStudy.titleKey}
           </h3>
           <p className="text-gray-300 text-sm leading-relaxed">
-            {t(caseStudy.descriptionKey)}
+            {caseStudy.descriptionKey}
           </p>
         </div>
 
@@ -202,7 +139,7 @@ function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseSt
             href={`/${locale}/casos-exito/${caseStudy.id}`}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
-            {t('cases.view_case')}
+            {headerContent?.data.view_case || 'Ver caso completo'}
             <ArrowUpRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
@@ -212,16 +149,38 @@ function CaseCard({ caseStudy, index, locale: localeParam }: { caseStudy: CaseSt
   );
 }
 
-export default function CasesGrid({ locale: localeParam }: { locale?: string }) {
+interface CasesGridProps {
+  locale?: string;
+  headerContent?: CasesHeaderContent | null;
+  storiesContent?: StoryContent[];
+}
+
+export default function CasesGrid({ locale: localeParam, headerContent, storiesContent }: CasesGridProps) {
   const { ref: sectionRef, isVisible } = useScrollAnimation();
-  const t = useTranslations();
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
   const locale = localeParam || localeFromHook;
+  
+  // Convert stories content to cases format
+  const cases: CaseStudy[] = storiesContent ? storiesContent.map(story => storyToCaseStudy(story)) : [];
+  
+  // Dynamic section ID based on locale for better SEO and navigation
+  const sectionId = locale === 'en' ? 'success-stories' : 
+                   locale === 'pt' ? 'casos-sucesso' : 
+                   'casos-exito';
+
+  // Fallback content if not loaded
+  if (!headerContent) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-slate-800">
+        <div className="text-gray-300">Cargando casos...</div>
+      </section>
+    );
+  }
 
   return (
     <section
-      id="cases"
+      id={sectionId}
       ref={sectionRef as any}
       className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
     >
@@ -239,8 +198,8 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
           </div>
 
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
-            {t('cases.section_title').split(' ').map((word, index) =>
-              index === 2 ? (
+            {headerContent.data.section_title.split(' ').map((word, index) =>
+              index === headerContent.data.section_title.split(' ').length - 1 ? (
                 <span key={index} className="gradient-text">{word}</span>
               ) : (
                 <span key={index}>{word} </span>
@@ -249,17 +208,17 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
           </h2>
 
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            {t('cases.section_description')}
+            {headerContent.data.section_description}
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
-            { number: '50+', label: t('cases.stats.projects') },
-            { number: '35+', label: t('cases.stats.clients') },
-            { number: '8+', label: t('cases.stats.countries') },
-            { number: calculateYearsOfExperience(), label: t('cases.stats.experience') },
+            { number: '50+', label: headerContent.data.stats.projects },
+            { number: '35+', label: headerContent.data.stats.clients },
+            { number: '8+', label: headerContent.data.stats.countries },
+            { number: calculateYearsOfExperience(), label: headerContent.data.stats.experience },
 
           ].map((stat, index) => (
             <div
@@ -279,19 +238,8 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
         {/* Cases Grid - Clean Grid Layout (not masonry) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cases.map((caseStudy, index) => (
-            <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} locale={locale} />
+            <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} locale={locale} headerContent={headerContent} />
           ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <Link
-            href={`/${locale}/#cases`}
-            className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 lg:px-10 lg:py-5 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-          >
-            {t('cases.view_all')}
-            <ArrowUpRight className="w-5 h-5 ml-2" />
-          </Link>
         </div>
       </div>
 

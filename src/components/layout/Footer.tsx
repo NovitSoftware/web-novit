@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
+import { useState } from 'react';
 import { 
   Mail, 
   Phone, 
@@ -10,18 +11,74 @@ import {
   Instagram, 
   Linkedin, 
   MessageSquare,
-  ArrowUp
+  ArrowUp,
+  Check
 } from 'lucide-react';
 import { getAssetPath } from '@/config/constants';
+import { ServiceContent } from '@/lib/contentLoader';
 
-export default function Footer({ locale: localeParam }: { locale?: string }) {
+interface FooterProps {
+  locale?: string;
+  services?: ServiceContent[];
+}
+
+export default function Footer({ locale: localeParam, services = [] }: FooterProps) {
   const t = useTranslations('footer');
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
   const locale = localeParam || localeFromHook;
   
+  const [email, setEmail] = useState('');
+  const [showThankYou, setShowThankYou] = useState(false);
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToServices = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNewsletterSubmit = async () => {
+    if (email) {
+      try {
+        const response = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        if (response.ok) {
+          // Show thank you message
+          setShowThankYou(true);
+          setEmail('');
+          
+          // Hide thank you message after 3 seconds
+          setTimeout(() => {
+            setShowThankYou(false);
+          }, 3000);
+        } else {
+          console.error('Error subscribing to newsletter');
+        }
+      } catch (error) {
+        console.error('Error subscribing to newsletter:', error);
+      }
+    }
+  };
+
+  const handleWhatsApp = () => {
+    window.open('https://wa.me/5491131769406', '_blank');
+  };
+
+  const handleGoogleMaps = () => {
+    // Open Google Maps with Novit Software location
+    window.open('https://maps.app.goo.gl/yVXVjiQqXgXvXQq17', '_blank');
   };
 
   return (
@@ -41,7 +98,7 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
               <div className="flex items-center space-x-3 mb-6">
                 <Image
                   src={getAssetPath("novit-logo-official.png")}
-                  alt="NOVIT Software"
+                  alt="Novit Software"
                   width={120}
                   height={40}
                   className="h-10 w-auto"
@@ -55,20 +112,23 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
               <div className="space-y-3">
                 <div className="flex items-center text-gray-300">
                   <MapPin className="w-4 h-4 mr-3 text-accent-cyan" />
-                  <span className="text-sm">
+                  <button 
+                    onClick={handleGoogleMaps}
+                    className="text-sm hover:text-accent-cyan transition-colors cursor-pointer text-left"
+                  >
                     {t('address_line1')}<br />
                     {t('address_line2')}
-                  </span>
+                  </button>
                 </div>
                 
                 <div className="flex items-center text-gray-300">
                   <Phone className="w-4 h-4 mr-3 text-accent-cyan" />
-                  <a 
-                    href="tel:+541131769406" 
-                    className="text-sm hover:text-accent-cyan transition-colors"
+                  <button 
+                    onClick={handleWhatsApp}
+                    className="text-sm hover:text-accent-cyan transition-colors cursor-pointer"
                   >
                     +54 11 3176 9406
-                  </a>
+                  </button>
                 </div>
                 
                 <div className="flex items-center text-gray-300">
@@ -89,21 +149,14 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
                 {t('services_title')}
               </h3>
               <ul className="space-y-3">
-                {[
-                  { key: 'software_development', href: '/servicios' },
-                  { key: 'artificial_intelligence', href: '/servicios' },
-                  { key: 'it_consulting', href: '/servicios' },
-                  { key: 'qa_testing', href: '/servicios' },
-                  { key: 'ux_ui_design', href: '/servicios' },
-                  { key: 'data_science', href: '/servicios' },
-                ].map((service) => (
-                  <li key={service.key}>
-                    <Link 
-                      href={`/${locale}${service.href}`}
-                      className="text-gray-300 hover:text-accent-cyan transition-colors text-sm"
+                {services.map((service) => (
+                  <li key={service.slug}>
+                    <button 
+                      onClick={scrollToServices}
+                      className="text-gray-300 hover:text-accent-cyan transition-colors text-sm text-left cursor-pointer"
                     >
-                      {t(`services.${service.key}`)}
-                    </Link>
+                      {service.data.title}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -116,11 +169,9 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
               </h3>
               <ul className="space-y-3">
                 {[
-                  { key: 'about', href: '/nosotros' },
-
-                  { key: 'success_cases', href: '#cases' },
+                  { key: 'home', href: '/#home' },
+                  { key: 'success_cases', href: `#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}` },
                   { key: 'academy', href: '/academia' },
-                  { key: 'blog', href: '/blog' },
                   { key: 'careers', href: '/carreras' },
                 ].map((item) => (
                   <li key={item.key}>
@@ -177,7 +228,7 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
               </div>
 
               {/* Newsletter */}
-              <div className="bg-white/5 rounded-lg p-4">
+              <div className="bg-white/5 rounded-lg p-4 relative">
                 <h4 className="font-semibold mb-2 text-sm">
                   {t('newsletter_title')}
                 </h4>
@@ -187,13 +238,28 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
                 <div className="flex flex-col gap-2">
                   <input
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder={t('newsletter_placeholder')}
                     className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:border-accent-cyan transition-colors"
                   />
-                  <button className="w-full px-4 py-2 bg-gradient-novit-accent rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium cursor-pointer">
+                  <button 
+                    onClick={handleNewsletterSubmit}
+                    className="w-full px-4 py-2 bg-gradient-novit-accent rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium cursor-pointer"
+                  >
                     {t('newsletter_subscribe')}
                   </button>
                 </div>
+                
+                {/* Thank you message */}
+                {showThankYou && (
+                  <div className="absolute top-0 left-0 right-0 bottom-0 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                    <div className="flex items-center space-x-2 text-green-400 font-medium text-sm">
+                      <Check className="w-4 h-4" />
+                      <span>{t('newsletter_thank_you')}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
