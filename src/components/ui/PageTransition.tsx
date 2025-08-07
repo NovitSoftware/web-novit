@@ -20,7 +20,10 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
       if (isHomePage) {
         // Si estamos en home sin hash o con hash diferente a #home, redirigir a #home
         if (!currentHash || currentHash !== '#home') {
-          const newUrl = window.location.origin + pathname + '/#home';
+          // Detect basePath for GitHub Pages
+          const isGitHubPages = window.location.hostname === 'novitsoftware.github.io';
+          const basePath = isGitHubPages ? '/web-novit' : '';
+          const newUrl = window.location.origin + basePath + pathname + '/#home';
           window.location.replace(newUrl);
           return;
         }
