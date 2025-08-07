@@ -4,31 +4,46 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 import { getAssetPath } from '@/config/constants';
 import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import TransitionLink from '@/components/ui/TransitionLink';
 import HomeLink from '@/components/ui/HomeLink';
+import { NavigationContent } from '@/lib/contentLoader';
 
-export default function Header({ locale: localeParam }: { locale?: string }) {
+interface HeaderProps {
+  locale?: string;
+  navigationContent?: NavigationContent | null;
+}
+
+export default function Header({ locale: localeParam, navigationContent }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPremiumQuoteOpen, setIsPremiumQuoteOpen] = useState(false);
   
-  const t = useTranslations('navigation');
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
   const locale = localeParam || localeFromHook;
 
-  const navigation = [
-
-    { label: t('home'), href: `/${locale}/#home`, isHome: true },
-    { label: t('services'), href: `/${locale}/#services` },
-    { label: t('cases'), href: `/${locale}/#cases` },
-    { label: t('academy'), href: `/${locale}/academia` },
+  // Default navigation if no content provided (fallback)
+  const defaultNavigation = [
+    { label: 'Inicio', href: `/${locale}/#home`, isHome: true },
+    { label: 'Qué hacemos', href: `/${locale}/#services` },
+    { label: 'Casos de Éxito', href: `/${locale}/#cases` },
+    { label: 'Academia Novit', href: `/${locale}/academia` },
   ];
+
+  const navigation = navigationContent ? [
+    { label: navigationContent.data.home, href: `/${locale}/#home`, isHome: true },
+    { label: navigationContent.data.services, href: `/${locale}/#services` },
+    { 
+      label: navigationContent.data.stories, 
+      href: `/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}` 
+    },
+    { label: navigationContent.data.academy, href: `/${locale}/academia` },
+  ] : defaultNavigation;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,7 +117,7 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
                 onClick={() => setIsPremiumQuoteOpen(true)}
                 className="bg-gradient-novit-accent text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
               >
-                {t('quote')}
+                {navigationContent?.data.quote || 'Necesito un presupuesto'}
               </button>
             </div>
 
@@ -163,7 +178,7 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
                 }}
                 className="block bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-medium text-center mt-6 cursor-pointer w-full"
               >
-                {t('quote')}
+                {navigationContent?.data.quote || 'Necesito un presupuesto'}
               </button>
             </div>
           </div>

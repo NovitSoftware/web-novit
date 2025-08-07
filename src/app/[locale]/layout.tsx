@@ -7,6 +7,7 @@ import {getMessages} from 'next-intl/server';
 import {locales} from '../../i18n';
 import { PageTransitionProvider } from "@/components/ui/PageTransition";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
+import { loadNavigationContent } from "@/lib/contentLoader";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({
@@ -68,6 +69,9 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   
+  // Load navigation content
+  const navigationContent = await loadNavigationContent(locale);
+  
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = await getMessages({ locale });
@@ -77,7 +81,7 @@ export default async function LocaleLayout({
       <body className="antialiased bg-slate-900 text-white font-sans">
         <NextIntlClientProvider messages={messages}>
           <SmoothScrollProvider>
-            <Header locale={locale} />
+            <Header locale={locale} navigationContent={navigationContent} />
             <PageTransitionProvider>
               <main className="relative">
                 {children}

@@ -218,10 +218,15 @@ export default function CasesGrid({ locale: localeParam }: { locale?: string }) 
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
   const locale = localeParam || localeFromHook;
+  
+  // Dynamic section ID based on locale for better SEO and navigation
+  const sectionId = locale === 'en' ? 'success-stories' : 
+                   locale === 'pt' ? 'casos-sucesso' : 
+                   'casos-exito';
 
   return (
     <section
-      id="cases"
+      id={sectionId}
       ref={sectionRef as any}
       className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
     >
