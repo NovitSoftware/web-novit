@@ -10,6 +10,7 @@ import {locales} from '../../i18n';
 import { PageTransitionProvider } from "@/components/ui/PageTransition";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
 import { loadNavigationContent, loadServicesContent } from "@/lib/contentLoader";
+import { getAssetPath } from "@/config/constants";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       openGraph: {
         title: 'NOVIT Software - Tu Partner Tecnológico en Argentina',
         description: 'Transformamos tus ideas en soluciones digitales. Desarrollo de software, IA, y consultoría IT con +10 años de experiencia.',
-        images: ['/images/og-image-es.svg'],
+        images: [getAssetPath('/images/og-image-es.svg')],
         locale: 'es_AR',
       }
     },
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       openGraph: {
         title: 'NOVIT Software - Your Technology Partner in Argentina',
         description: 'We transform your ideas into digital solutions. Software development, AI, and IT consulting with 10+ years of experience.',
-        images: ['/images/og-image-en.svg'],
+        images: [getAssetPath('/images/og-image-en.svg')],
         locale: 'en_US',
       }
     },
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       openGraph: {
         title: 'NOVIT Software - Seu Parceiro Tecnológico na Argentina',
         description: 'Transformamos suas ideias em soluções digitais. Desenvolvimento de software, IA e consultoria TI com +10 anos de experiência.',
-        images: ['/images/og-image-pt.svg'],
+        images: [getAssetPath('/images/og-image-pt.svg')],
         locale: 'pt_BR',
       }
     }
@@ -105,12 +106,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     icons: {
       icon: [
-        { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
-        { url: '/favicon.png', sizes: '16x16', type: 'image/png' }
+        { url: getAssetPath('/favicon.png'), sizes: '32x32', type: 'image/png' },
+        { url: getAssetPath('/favicon.png'), sizes: '16x16', type: 'image/png' }
       ],
-      shortcut: '/favicon.png',
+      shortcut: getAssetPath('/favicon.png'),
       apple: [
-        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+        { url: getAssetPath('/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' }
       ],
     },
     manifest: '/site.webmanifest',

@@ -3,7 +3,9 @@
  */
 
 // Base path for static deployment (GitHub Pages)
-export const BASE_PATH = process.env.GITHUB_ACTIONS === 'true' ? '/web-novit' : '';
+export const BASE_PATH = (process.env.GITHUB_ACTIONS === 'true' && 
+                          process.env.NODE_ENV === 'production' && 
+                          process.env.DEPLOY_TARGET === 'github-pages') ? '/web-novit' : '';
 
 /**
  * Get the correct asset path with base path for deployment

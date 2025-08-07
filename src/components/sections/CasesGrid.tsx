@@ -10,6 +10,7 @@ import { CasesHeaderContent, StoryContent } from '@/lib/contentLoader';
 
 import { ArrowUpRight, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
+import { getAssetPath } from '@/config/constants';
 
 // Function to convert StoryContent to CaseStudy format
 function storyToCaseStudy(story: StoryContent): CaseStudy {
@@ -58,7 +59,7 @@ function CaseCard({ caseStudy, index, locale: localeParam, headerContent }: {
         <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${showScreenshot ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
           }`}>
           <Image
-            src={caseStudy.logoImage || caseStudy.image}
+            src={getAssetPath(caseStudy.logoImage || caseStudy.image)}
             alt={`${caseStudy.client} logo`}
             fill
             className="object-contain p-6"
@@ -72,7 +73,7 @@ function CaseCard({ caseStudy, index, locale: localeParam, headerContent }: {
         <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${showScreenshot ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
           }`}>
           <Image
-            src={caseStudy.screenshotImage || caseStudy.image}
+            src={getAssetPath(caseStudy.screenshotImage || caseStudy.image)}
             alt={`${caseStudy.client} screenshot`}
             fill
             className="object-contain p-4"
