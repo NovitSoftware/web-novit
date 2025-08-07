@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://novit.com.ar/sitemap.xml
+
+# Crawl-delay optimizations
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0
+
+User-agent: Slurp
+Crawl-delay: 1
+
+# Block irrelevant paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: *.json$
+
+# Allow important assets
+Allow: /_next/static/
+Allow: /images/
+Allow: /icons/
+Allow: /favicon.png
