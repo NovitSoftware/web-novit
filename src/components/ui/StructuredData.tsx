@@ -1,3 +1,5 @@
+import { getAssetPath } from '@/config/constants';
+
 interface StructuredDataProps {
   type?: 'organization' | 'website' | 'article' | 'service';
   data?: any;
@@ -12,8 +14,8 @@ export default function StructuredData({ type = 'organization', data, locale = '
     "name": "NOVIT Software",
     "alternateName": "NOVIT",
     "url": "https://novit.com.ar",
-    "logo": "https://novit.com.ar/novit-logo-official.png",
-    "image": "https://novit.com.ar/novit-logo-official.png",
+    "logo": `https://novit.com.ar${getAssetPath("novit-logo-official.png")}`,
+    "image": `https://novit.com.ar${getAssetPath("novit-logo-official.png")}`,
     "description": locale === 'es' 
       ? "Software factory líder en Argentina especializada en desarrollo de aplicaciones web, móviles, inteligencia artificial y consultoría IT."
       : locale === 'en'
@@ -162,7 +164,7 @@ export default function StructuredData({ type = 'organization', data, locale = '
       "name": "NOVIT Software",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://novit.com.ar/novit-logo-official.png"
+        "url": `https://novit.com.ar${getAssetPath("novit-logo-official.png")}`
       }
     }
   });

@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, ExternalLink } from 'lucide-react';
+import { getAssetPath } from '@/config/constants';
 
 // Define available case studies
 const CASE_STUDIES = [
@@ -98,7 +99,7 @@ export async function generateMetadata({
     openGraph: {
       title: caseData.frontmatter.title,
       description: `Caso de éxito: ${caseData.frontmatter.client}`,
-      images: [caseData.frontmatter.image],
+      images: [`https://novit.com.ar${getAssetPath(caseData.frontmatter.image)}`],
     }
   };
 }
@@ -247,7 +248,7 @@ export default async function CaseStudyPage({
             <div className="mb-8">
               <div className="inline-block bg-white p-4 rounded-2xl shadow-xl">
                 <Image
-                  src={frontmatter.logoImage}
+                  src={getAssetPath(frontmatter.logoImage)}
                   alt={`${frontmatter.client} logo`}
                   width={200}
                   height={80}
