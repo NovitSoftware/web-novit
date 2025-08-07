@@ -95,6 +95,7 @@ export interface NavigationContent extends MarkdownContent {
     services: string;
     stories: string;
     academy: string;
+    careers: string;
     quote: string;
   };
 }

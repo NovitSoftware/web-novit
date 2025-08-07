@@ -116,10 +116,9 @@
     },
     "company_title": "Company",
     "company_links": {
-      "about": "About Us",
-      "success_cases": "Success Cases",
+      "home": "Home",
+      "success_cases": "Success Stories",
       "academy": "Novit Academy",
-      "blog": "Blog",
       "careers": "Careers"
     },
     "connect_title": "Connect with us",

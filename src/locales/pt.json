@@ -115,10 +115,9 @@
     },
     "company_title": "Empresa",
     "company_links": {
-      "about": "Sobre nós",
+      "home": "Início",
       "success_cases": "Casos de Sucesso",
       "academy": "Academia Novit",
-      "blog": "Blog",
       "careers": "Carreiras"
     },
     "connect_title": "Conecte-se conosco",

@@ -33,6 +33,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
     { label: 'Qué hacemos', href: `/${locale}/#services` },
     { label: 'Casos de Éxito', href: `/${locale}/#cases` },
     { label: 'Academia Novit', href: `/${locale}/academia` },
+    { label: 'Carreras', href: `/${locale}/carreras` },
   ];
 
   const navigation = navigationContent ? [
@@ -43,6 +44,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
       href: `/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}` 
     },
     { label: navigationContent.data.academy, href: `/${locale}/academia` },
+    { label: navigationContent.data.careers, href: `/${locale}/carreras` },
   ] : defaultNavigation;
 
   useEffect(() => {

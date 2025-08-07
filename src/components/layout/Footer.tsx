@@ -13,8 +13,14 @@ import {
   ArrowUp
 } from 'lucide-react';
 import { getAssetPath } from '@/config/constants';
+import { ServiceContent } from '@/lib/contentLoader';
 
-export default function Footer({ locale: localeParam }: { locale?: string }) {
+interface FooterProps {
+  locale?: string;
+  services?: ServiceContent[];
+}
+
+export default function Footer({ locale: localeParam, services = [] }: FooterProps) {
   const t = useTranslations('footer');
   const localeFromHook = useLocale();
   // Use the prop locale if provided, otherwise fall back to useLocale hook
@@ -22,6 +28,14 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToServices = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -89,23 +103,37 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
                 {t('services_title')}
               </h3>
               <ul className="space-y-3">
-                {[
-                  { key: 'software_development', href: '/servicios' },
-                  { key: 'artificial_intelligence', href: '/servicios' },
-                  { key: 'it_consulting', href: '/servicios' },
-                  { key: 'qa_testing', href: '/servicios' },
-                  { key: 'ux_ui_design', href: '/servicios' },
-                  { key: 'data_science', href: '/servicios' },
-                ].map((service) => (
-                  <li key={service.key}>
-                    <Link 
-                      href={`/${locale}${service.href}`}
-                      className="text-gray-300 hover:text-accent-cyan transition-colors text-sm"
-                    >
-                      {t(`services.${service.key}`)}
-                    </Link>
-                  </li>
-                ))}
+                {services.length > 0 ? (
+                  services.map((service) => (
+                    <li key={service.slug}>
+                      <button 
+                        onClick={scrollToServices}
+                        className="text-gray-300 hover:text-accent-cyan transition-colors text-sm text-left"
+                      >
+                        {service.data.title}
+                      </button>
+                    </li>
+                  ))
+                ) : (
+                  // Fallback to static services if dynamic not available
+                  [
+                    { key: 'software_development', href: '#services' },
+                    { key: 'artificial_intelligence', href: '#services' },
+                    { key: 'it_consulting', href: '#services' },
+                    { key: 'qa_testing', href: '#services' },
+                    { key: 'ux_ui_design', href: '#services' },
+                    { key: 'data_science', href: '#services' },
+                  ].map((service) => (
+                    <li key={service.key}>
+                      <button 
+                        onClick={scrollToServices}
+                        className="text-gray-300 hover:text-accent-cyan transition-colors text-sm text-left"
+                      >
+                        {t(`services.${service.key}`)}
+                      </button>
+                    </li>
+                  ))
+                )}
               </ul>
             </div>
 
@@ -116,11 +144,9 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
               </h3>
               <ul className="space-y-3">
                 {[
-                  { key: 'about', href: '/nosotros' },
-
-                  { key: 'success_cases', href: '#cases' },
+                  { key: 'home', href: '/#home' },
+                  { key: 'success_cases', href: `#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}` },
                   { key: 'academy', href: '/academia' },
-                  { key: 'blog', href: '/blog' },
                   { key: 'careers', href: '/carreras' },
                 ].map((item) => (
                   <li key={item.key}>
