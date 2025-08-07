@@ -13,9 +13,7 @@
     "home": "Inicio",
     "services": "Qué hacemos",
     "cases": "Casos de Éxito",
-    "technologies": "Tecnologías",
     "academy": "Academia Novit",
-    "contact": "Contacto",
     "quote": "Necesito un presupuesto"
   },
   "hero": {
@@ -119,7 +117,6 @@
     "company_links": {
       "about": "Nosotros",
       "success_cases": "Casos de Éxito",
-      "technologies": "Tecnologías",
       "academy": "Academia Novit",
       "blog": "Blog",
       "careers": "Carreras"

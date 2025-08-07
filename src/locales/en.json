@@ -13,9 +13,7 @@
     "home": "Home",
     "services": "What we do",
     "cases": "Success Cases",
-    "technologies": "Technologies",
     "academy": "Novit Academy",
-    "contact": "Contact",
     "quote": "I need a quote"
   },
   "hero": {
@@ -120,7 +118,6 @@
     "company_links": {
       "about": "About Us",
       "success_cases": "Success Cases",
-      "technologies": "Technologies",
       "academy": "Novit Academy",
       "blog": "Blog",
       "careers": "Careers"

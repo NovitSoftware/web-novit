@@ -23,12 +23,11 @@ export default function Header({ locale: localeParam }: { locale?: string }) {
   const locale = localeParam || localeFromHook;
 
   const navigation = [
+
     { label: t('home'), href: `/${locale}/#home`, isHome: true },
     { label: t('services'), href: `/${locale}/#services` },
     { label: t('cases'), href: `/${locale}/#cases` },
-    { label: t('technologies'), href: `/${locale}/tecnologias` },
     { label: t('academy'), href: `/${locale}/academia` },
-    { label: t('contact'), href: `/${locale}/contacto` },
   ];
 
   useEffect(() => {

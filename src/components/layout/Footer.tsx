@@ -117,8 +117,8 @@ export default function Footer({ locale: localeParam }: { locale?: string }) {
               <ul className="space-y-3">
                 {[
                   { key: 'about', href: '/nosotros' },
+
                   { key: 'success_cases', href: '#cases' },
-                  { key: 'technologies', href: '/tecnologias' },
                   { key: 'academy', href: '/academia' },
                   { key: 'blog', href: '/blog' },
                   { key: 'careers', href: '/carreras' },
