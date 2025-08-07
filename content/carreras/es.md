@@ -98,7 +98,7 @@ Participá en proyectos que marcan la diferencia, trabajando con empresas líder
 
 ## ¿Cómo Postularte?
 
-Si te interesa formar parte de nuestro equipo, envianos tu CV a [rrhh@novitsoftware.com](mailto:rrhh@novitsoftware.com) indicando:
+Si te interesa formar parte de nuestro equipo, envianos tu CV a [rrhh@novit.com.ar](mailto:rrhh@novit.com.ar) indicando:
 
 - Posición de interés
 - Pretensión salarial

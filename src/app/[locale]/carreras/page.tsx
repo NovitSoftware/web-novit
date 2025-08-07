@@ -277,7 +277,7 @@ export default async function CarrerasPage({
              'Envie-nos seu CV e conte-nos por que você quer fazer parte da NOVIT Software.'}
           </p>
           <a
-            href="mailto:rrhh@novitsoftware.com"
+            href="mailto:rrhh@novit.com.ar"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             {locale === 'es' ? 'Enviar CV' :

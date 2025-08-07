@@ -98,7 +98,7 @@ Participe de projetos que fazem a diferença, trabalhando com empresas líderes 
 
 ## Como se Candidatar?
 
-Se você tem interesse em fazer parte da nossa equipe, envie-nos seu CV para [rrhh@novitsoftware.com](mailto:rrhh@novitsoftware.com) indicando:
+Se você tem interesse em fazer parte da nossa equipe, envie-nos seu CV para [rrhh@novit.com.ar](mailto:rrhh@novit.com.ar) indicando:
 
 - Posição de interesse
 - Expectativa salarial

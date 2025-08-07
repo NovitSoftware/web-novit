@@ -98,7 +98,7 @@ Participate in projects that make a difference, working with leading companies i
 
 ## How to Apply?
 
-If you're interested in being part of our team, send us your CV to [rrhh@novitsoftware.com](mailto:rrhh@novitsoftware.com) indicating:
+If you're interested in being part of our team, send us your CV to [rrhh@novit.com.ar](mailto:rrhh@novit.com.ar) indicating:
 
 - Position of interest
 - Salary expectations
