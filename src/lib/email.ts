@@ -1,13 +1,20 @@
 import nodemailer from 'nodemailer';
 
-// Configuración del transporte de email con Gmail
-export const emailTransporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASSWORD, // App Password de Gmail
-  },
-});
+// Configuración del transporte de email con Gmail - lazy initialization to avoid build-time errors
+let emailTransporterInstance: nodemailer.Transporter | null = null;
+
+const getEmailTransporter = () => {
+  if (!emailTransporterInstance && process.env.GMAIL_USER && process.env.GMAIL_PASSWORD) {
+    emailTransporterInstance = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASSWORD, // App Password de Gmail
+      },
+    });
+  }
+  return emailTransporterInstance;
+};
 
 // Función para enviar email
 export const sendEmail = async ({
@@ -26,6 +33,11 @@ export const sendEmail = async ({
   }>;
 }) => {
   try {
+    const emailTransporter = getEmailTransporter();
+    if (!emailTransporter) {
+      throw new Error('Email transporter not configured. Please set GMAIL_USER and GMAIL_PASSWORD environment variables.');
+    }
+
     const mailOptions = {
       from: `"NOVIT Software" <${process.env.GMAIL_USER}>`,
       to,
