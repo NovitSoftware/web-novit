@@ -193,8 +193,8 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
         )}
 
 
-        {/* Action Button - Temporarily disabled to prevent navigation issues */}
-        {/* <div className="flex justify-end">
+        {/* Action Button */}
+        <div className="flex justify-end">
           <Link
             href="#"
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
@@ -202,7 +202,7 @@ function CaseCard({ caseStudy, index }: { caseStudy: CaseStudy; index: number })
             {t('cases.view_case')}
             <ArrowUpRight className="w-4 h-4 ml-2" />
           </Link>
-        </div> */}
+        </div>
       </div>
 
     </div>
