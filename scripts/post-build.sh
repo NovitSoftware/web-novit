@@ -36,6 +36,18 @@ if [ "$NODE_ENV" = "production" ] && [ "$DEPLOY_TARGET" = "github-pages" ]; then
     echo "✅ Moved /_next/ to /web-novit/_next/"
   fi
   
+  # Move images directory to web-novit/images
+  if [ -d "images" ]; then
+    mv images web-novit/images
+    echo "✅ Moved /images/ to /web-novit/images/"
+  fi
+  
+  # Move logos directory to web-novit/logos
+  if [ -d "logos" ]; then
+    mv logos web-novit/logos
+    echo "✅ Moved /logos/ to /web-novit/logos/"
+  fi
+  
   # Keep root files at root for GitHub Pages
   echo "✅ Root files maintained for GitHub Pages compatibility"
   
