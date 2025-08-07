@@ -14,9 +14,11 @@ import {
 } from 'lucide-react';
 import { getAssetPath } from '@/config/constants';
 
-export default function Footer() {
+export default function Footer({ locale: localeParam }: { locale?: string }) {
   const t = useTranslations('footer');
-  const locale = useLocale();
+  const localeFromHook = useLocale();
+  // Use the prop locale if provided, otherwise fall back to useLocale hook
+  const locale = localeParam || localeFromHook;
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -115,7 +117,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {[
                   { key: 'about', href: '/nosotros' },
-                  { key: 'success_cases', href: '/casos-exito' },
+                  { key: 'success_cases', href: '#cases' },
                   { key: 'technologies', href: '/tecnologias' },
                   { key: 'academy', href: '/academia' },
                   { key: 'blog', href: '/blog' },

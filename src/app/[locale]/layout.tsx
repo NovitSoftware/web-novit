@@ -5,6 +5,8 @@ import Footer from "@/components/layout/Footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {locales} from '../../i18n';
+import { PageTransitionProvider } from "@/components/ui/PageTransition";
+import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({
@@ -24,6 +26,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     authors: [{ name: "NOVIT Software" }],
     creator: "NOVIT Software",
     publisher: "NOVIT Software",
+    icons: {
+      icon: '/favicon.png',
+      shortcut: '/favicon.png',
+      apple: '/favicon.png',
+    },
     openGraph: {
       type: "website",
       locale: locale === 'es' ? 'es_ES' : locale === 'en' ? 'en_US' : 'pt_BR',
@@ -69,11 +76,15 @@ export default async function LocaleLayout({
     <html lang={locale} className="scroll-smooth dark">
       <body className="antialiased bg-slate-900 text-white font-sans">
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="relative">
-            {children}
-          </main>
-          <Footer />
+          <SmoothScrollProvider>
+            <Header locale={locale} />
+            <PageTransitionProvider>
+              <main className="relative">
+                {children}
+              </main>
+            </PageTransitionProvider>
+            <Footer locale={locale} />
+          </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -88,6 +88,7 @@ export default function Services() {
 
   return (
     <section 
+      id="services"
       ref={sectionRef as any}
       className="py-20 lg:py-32 bg-slate-900 relative overflow-hidden"
     >
