@@ -6,6 +6,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {locales} from '../../i18n';
 import { PageTransitionProvider } from "@/components/ui/PageTransition";
+import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({
@@ -70,13 +71,15 @@ export default async function LocaleLayout({
     <html lang={locale} className="scroll-smooth dark">
       <body className="antialiased bg-slate-900 text-white font-sans">
         <NextIntlClientProvider messages={messages}>
-          <Header locale={locale} />
-          <PageTransitionProvider>
-            <main className="relative">
-              {children}
-            </main>
-          </PageTransitionProvider>
-          <Footer locale={locale} />
+          <SmoothScrollProvider>
+            <Header locale={locale} />
+            <PageTransitionProvider>
+              <main className="relative">
+                {children}
+              </main>
+            </PageTransitionProvider>
+            <Footer locale={locale} />
+          </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,45 +1,63 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export function PageTransitionProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
 
   useEffect(() => {
-    // Simple entrance animation for page changes
-    const main = document.querySelector('main');
-    if (main) {
-      // Detect if this is a detail page (like cases or academia)
-      const isDetailPage = 
-        pathname.includes('/casos-exito/') && pathname.split('/').length > 3 ||
-        pathname.includes('/academia') && pathname !== pathname.replace('/academia', '');
+    // Detect navigation direction based on URL patterns
+    const isDetailPage = 
+      pathname.includes('/casos-exito/') && pathname.split('/').length > 3 ||
+      pathname.endsWith('/academia');
+    
+    const isHomePage = pathname.match(/^\/[a-z]{2}(\/)?$/);
+    
+    // Determine direction based on page type
+    if (isDetailPage) {
+      setDirection('forward'); // Going to detail page
+    } else if (isHomePage) {
+      setDirection('backward'); // Going back to home
+    }
+
+    // Only apply transition for page changes (not initial load)
+    if (isDetailPage || (isHomePage && document.referrer)) {
+      setIsTransitioning(true);
       
-      // Only apply transition for detail pages
-      if (isDetailPage) {
-        // Set initial state for entrance animation
-        main.style.opacity = '0';
-        main.style.transform = 'translateX(30px)';
-        main.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+      const container = document.querySelector('[data-page-container]');
+      if (container) {
+        // Set initial state based on direction
+        const initialTransform = direction === 'forward' ? 'translateX(100%)' : 'translateX(-100%)';
         
-        // Trigger entrance animation
+        (container as HTMLElement).style.transform = initialTransform;
+        (container as HTMLElement).style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        
+        // Trigger slide animation
         requestAnimationFrame(() => {
-          main.style.opacity = '1';
-          main.style.transform = 'translateX(0)';
+          (container as HTMLElement).style.transform = 'translateX(0)';
           
           // Clean up after animation
           setTimeout(() => {
-            main.style.transition = '';
-            main.style.transform = '';
-            main.style.opacity = '';
-          }, 300);
+            (container as HTMLElement).style.transition = '';
+            (container as HTMLElement).style.transform = '';
+            setIsTransitioning(false);
+          }, 600);
         });
       }
     }
-  }, [pathname]);
+  }, [pathname, direction]);
 
   return (
-    <div className="relative w-full">
+    <div 
+      data-page-container 
+      className="relative w-full"
+      style={{ 
+        transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : undefined 
+      }}
+    >
       {children}
     </div>
   );
