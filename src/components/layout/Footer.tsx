@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
+import { useState } from 'react';
 import { 
   Mail, 
   Phone, 
@@ -10,7 +11,8 @@ import {
   Instagram, 
   Linkedin, 
   MessageSquare,
-  ArrowUp
+  ArrowUp,
+  Check
 } from 'lucide-react';
 import { getAssetPath } from '@/config/constants';
 import { ServiceContent } from '@/lib/contentLoader';
@@ -26,6 +28,9 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
   // Use the prop locale if provided, otherwise fall back to useLocale hook
   const locale = localeParam || localeFromHook;
   
+  const [email, setEmail] = useState('');
+  const [showThankYou, setShowThankYou] = useState(false);
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -36,6 +41,36 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
     if (servicesSection) {
       servicesSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleNewsletterSubmit = () => {
+    if (email) {
+      // Create email to newsletter@novit.com.ar with the subscriber's email
+      const subject = encodeURIComponent('Nueva suscripción al newsletter');
+      const body = encodeURIComponent(`Nueva suscripción al newsletter de NOVIT Software.\n\nEmail del suscriptor: ${email}\n\nFecha: ${new Date().toLocaleString()}`);
+      const mailtoUrl = `mailto:newsletter@novit.com.ar?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.open(mailtoUrl, '_blank');
+      
+      // Show thank you message
+      setShowThankYou(true);
+      setEmail('');
+      
+      // Hide thank you message after 3 seconds
+      setTimeout(() => {
+        setShowThankYou(false);
+      }, 3000);
+    }
+  };
+
+  const handleWhatsApp = () => {
+    window.open('https://wa.me/5491131769406', '_blank');
+  };
+
+  const handleGoogleMaps = () => {
+    // Open Google Maps with NOVIT Software location and reviews
+    window.open('https://maps.google.com/search/NOVIT+Software+Av.+Córdoba+1351+Buenos+Aires', '_blank');
   };
 
   return (
@@ -69,20 +104,23 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
               <div className="space-y-3">
                 <div className="flex items-center text-gray-300">
                   <MapPin className="w-4 h-4 mr-3 text-accent-cyan" />
-                  <span className="text-sm">
+                  <button 
+                    onClick={handleGoogleMaps}
+                    className="text-sm hover:text-accent-cyan transition-colors cursor-pointer text-left"
+                  >
                     {t('address_line1')}<br />
                     {t('address_line2')}
-                  </span>
+                  </button>
                 </div>
                 
                 <div className="flex items-center text-gray-300">
                   <Phone className="w-4 h-4 mr-3 text-accent-cyan" />
-                  <a 
-                    href="tel:+541131769406" 
-                    className="text-sm hover:text-accent-cyan transition-colors"
+                  <button 
+                    onClick={handleWhatsApp}
+                    className="text-sm hover:text-accent-cyan transition-colors cursor-pointer"
                   >
                     +54 11 3176 9406
-                  </a>
+                  </button>
                 </div>
                 
                 <div className="flex items-center text-gray-300">
@@ -203,7 +241,7 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
               </div>
 
               {/* Newsletter */}
-              <div className="bg-white/5 rounded-lg p-4">
+              <div className="bg-white/5 rounded-lg p-4 relative">
                 <h4 className="font-semibold mb-2 text-sm">
                   {t('newsletter_title')}
                 </h4>
@@ -213,13 +251,28 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
                 <div className="flex flex-col gap-2">
                   <input
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder={t('newsletter_placeholder')}
                     className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:border-accent-cyan transition-colors"
                   />
-                  <button className="w-full px-4 py-2 bg-gradient-novit-accent rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium cursor-pointer">
+                  <button 
+                    onClick={handleNewsletterSubmit}
+                    className="w-full px-4 py-2 bg-gradient-novit-accent rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium cursor-pointer"
+                  >
                     {t('newsletter_subscribe')}
                   </button>
                 </div>
+                
+                {/* Thank you message */}
+                {showThankYou && (
+                  <div className="absolute top-0 left-0 right-0 bottom-0 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                    <div className="flex items-center space-x-2 text-green-400 font-medium text-sm">
+                      <Check className="w-4 h-4" />
+                      <span>{t('newsletter_thank_you')}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
