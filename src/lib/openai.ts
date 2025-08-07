@@ -1,9 +1,16 @@
 import OpenAI from 'openai';
 
-// Configuración de OpenAI
-export const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Configuración de OpenAI - lazy initialization to avoid build-time errors
+let openaiInstance: OpenAI | null = null;
+
+const getOpenAIInstance = () => {
+  if (!openaiInstance && process.env.OPENAI_API_KEY) {
+    openaiInstance = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return openaiInstance;
+};
 
 // Función para generar propuesta comercial con IA
 export const generateCommercialProposal = async ({
@@ -18,6 +25,11 @@ export const generateCommercialProposal = async ({
   specialRequirements?: string;
 }) => {
   try {
+    const openai = getOpenAIInstance();
+    if (!openai) {
+      throw new Error('OpenAI not configured. Please set OPENAI_API_KEY environment variable.');
+    }
+
     const prompt = `
 Como experto en desarrollo de software y consultoría tecnológica de NOVIT Software, genera una propuesta comercial premium personalizada basada en:
 
