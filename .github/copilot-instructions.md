@@ -106,8 +106,19 @@ src/
 
 ### Adding New Content
 1. **Always add translations**: For any new text, add entries to all locale files (`es.json`, `en.json`, `pt.json`)
-2. **Use translation keys**: Reference translations with `t('key')` in components
-3. **Test all locales**: Verify new content appears correctly in all languages
+2. **Markdown files also need translations**: When creating or modifying user-facing markdown files (README, CONTRIBUTING, documentation), create localized versions (e.g., `README_en.md`, `README_pt.md`) or update existing localized versions
+3. **Senior translator approach**: Do NOT make literal translations. Act as a Senior translator finding the most appropriate words and phrases that convey the intended meaning naturally in each target language while maintaining professional tone
+4. **Use translation keys**: Reference translations with `t('key')` in components  
+5. **Test all locales**: Verify new content appears correctly in all languages, including any markdown documentation changes
+
+### Translation Guidelines
+- **Quality over speed**: Take time to find the most appropriate terminology for each language
+- **Context matters**: Consider the business context when translating technical terms
+- **Maintain consistency**: Use established terminology patterns within the codebase
+- **Professional tone**: Maintain the company's professional voice across all languages
+- **Cultural adaptation**: Adapt content culturally when needed, not just linguistically
+- **JSON translations**: For component text in `/src/locales/` files
+- **Markdown translations**: For documentation files, create separate localized files (e.g., `_en.md`, `_pt.md` suffixes)
 
 ### Making UI Changes
 1. **Tailwind classes**: Use existing custom classes from `tailwind.config.ts`
