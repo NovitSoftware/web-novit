@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Briefcase, Users, Star, Target } from 'lucide-react';
 import { getAssetPath } from '@/config/constants';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 interface CarrerasFrontmatter {
   title: string;
@@ -192,15 +193,13 @@ export default async function CarrerasPage({
   
   return (
     <div className="min-h-screen bg-slate-900">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent-cyan rounded-full blur-3xl" />
-        </div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Hero Section with Background Video */}
+      <BackgroundVideo 
+        pageName="carreras"
+        className="py-20 lg:py-32"
+        overlayOpacity={0.95}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Navigation */}
           <div className="mb-8">
             <Link 
@@ -248,7 +247,7 @@ export default async function CarrerasPage({
             </div>
           )}
         </div>
-      </section>
+      </BackgroundVideo>
       
       {/* Content Section */}
       <section className="py-16 lg:py-24">
