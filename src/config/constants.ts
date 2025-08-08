@@ -20,12 +20,16 @@ export function getAssetPath(path: string): string {
   // Para rutas con hash (#), mantener la estructura correcta
   if (normalizedPath.includes('#')) {
     const [pathname, hash] = normalizedPath.split('#');
-    const basePath = isGitHubPagesBuild ? '/web-novit' : '';
+    // No aplicar base path durante build de GitHub Pages, Next.js ya lo maneja
+    // Solo aplicar en desarrollo o cuando no estamos en modo build
+    const basePath = (isGitHubPagesBuild && typeof window === 'undefined') ? '' : (isGitHubPagesBuild ? '/web-novit' : '');
     return `${basePath}${pathname}#${hash}`;
   }
   
-  // Usar variable de entorno para determinar si agregar prefix
-  return isGitHubPagesBuild ? `/web-novit${normalizedPath}` : normalizedPath;
+  // No aplicar base path durante build de GitHub Pages, Next.js ya lo maneja  
+  // Solo aplicar en desarrollo o cuando no estamos en modo build
+  const basePath = (isGitHubPagesBuild && typeof window === 'undefined') ? '' : (isGitHubPagesBuild ? '/web-novit' : '');
+  return `${basePath}${normalizedPath}`;
 }
 
 export function getImagePath(imageName: string): string {
