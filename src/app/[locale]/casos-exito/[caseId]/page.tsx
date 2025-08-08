@@ -7,6 +7,8 @@ import remarkGfm from 'remark-gfm';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, ExternalLink } from 'lucide-react';
+import { getAssetPath } from '@/config/constants';
+import { processMarkdownImages } from '@/utils/markdown';
 
 // Define available case studies
 const CASE_STUDIES = [
@@ -45,17 +47,53 @@ async function getCaseStudyContent(caseId: string, locale: string): Promise<Case
       }
       const fallbackContent = fs.readFileSync(fallbackPath, 'utf8');
       const { data, content } = matter(fallbackContent);
-      return { frontmatter: data as CaseStudyFrontmatter, content };
+      
+      // Process images in frontmatter
+      const processedData = processDataImages(data);
+      // Process images in markdown content
+      const processedContent = processMarkdownImages(content);
+      
+      return { frontmatter: processedData as CaseStudyFrontmatter, content: processedContent };
     }
     
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContent);
     
-    return { frontmatter: data as CaseStudyFrontmatter, content };
+    // Process images in frontmatter
+    const processedData = processDataImages(data);
+    // Process images in markdown content
+    const processedContent = processMarkdownImages(content);
+    
+    return { frontmatter: processedData as CaseStudyFrontmatter, content: processedContent };
   } catch (error) {
     console.error('Error reading case study:', error);
     return null;
   }
+}
+
+// Helper function to process images in frontmatter data
+function processDataImages(obj: any): any {
+  if (typeof obj === 'string') {
+    // Si es una URL de imagen, procesarla
+    if (obj.startsWith('/images/')) {
+      return getAssetPath(obj);
+    }
+    return obj;
+  }
+  
+  if (Array.isArray(obj)) {
+    return obj.map(processDataImages);
+  }
+  
+  if (obj && typeof obj === 'object') {
+    const processed: any = {};
+    for (const [key, value] of Object.entries(obj)) {
+      processed[key] = processDataImages(value);
+    }
+    return processed;
+  }
+  
+  return obj;
 }
 
 export async function generateStaticParams() {

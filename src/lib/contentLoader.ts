@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { processMarkdownImages } from '@/utils/markdown';
+import { getAssetPath } from '@/config/constants';
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
@@ -84,15 +86,45 @@ export async function loadContent(
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
 
+    // Procesar las imágenes en el contenido markdown
+    const processedContent = processMarkdownImages(content);
+
     return {
       slug: contentPath.split('/').pop() || '',
-      data,
-      content,
+      data: processDataImages(data),
+      content: processedContent,
     };
   } catch (error) {
     console.error(`Error loading content from ${contentPath}:`, error);
     return null;
   }
+}
+
+/**
+ * Process image paths in frontmatter data recursively
+ */
+function processDataImages(obj: any): any {
+  if (typeof obj === 'string') {
+    // Si es una URL de imagen, procesarla
+    if (obj.startsWith('/images/')) {
+      return getAssetPath(obj);
+    }
+    return obj;
+  }
+  
+  if (Array.isArray(obj)) {
+    return obj.map(processDataImages);
+  }
+  
+  if (obj && typeof obj === 'object') {
+    const processed: any = {};
+    for (const [key, value] of Object.entries(obj)) {
+      processed[key] = processDataImages(value);
+    }
+    return processed;
+  }
+  
+  return obj;
 }
 
 /**

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && ./scripts/post-build.sh",
+    "build": "next build && node scripts/post-build.js",
     "start": "next start",
     "lint": "next lint",
     "serve": "npm run build && echo \"🌐 Testing locale routes at:\" && echo \"📍 Root (auto-detect): http://localhost:8000\" && echo \"🇪🇸 Spanish: http://localhost:8000/es/\" && echo \"🇺🇸 English: http://localhost:8000/en/\" && echo \"🇵🇹 Portuguese: http://localhost:8000/pt/\" && echo \"\" && serve out -p 8000"

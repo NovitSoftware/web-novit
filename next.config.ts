@@ -1,23 +1,14 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 
-/**
- * Whether we're in GitHub Actions building for GitHub Pages deployment
- * Only apply GitHub Pages config when explicitly deploying to GitHub Pages
- */
-const isGithubPages = process.env.GITHUB_ACTIONS === 'true' && process.env.NODE_ENV === 'production' && process.env.DEPLOY_TARGET === 'github-pages';
-
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
+
+// Detectar si estamos construyendo para GitHub Pages
+const isGitHubPagesBuild = process.env.DEPLOY_TARGET === 'github-pages';
 
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
-  // Configure base path for GitHub Pages deployment
-  basePath: isGithubPages ? '/web-novit' : '',
-  assetPrefix: isGithubPages ? '/web-novit' : '',
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
-  },
   images: {
     unoptimized: true,
     domains: ['static.wixstatic.com'],
@@ -29,6 +20,25 @@ const nextConfig: NextConfig = {
         pathname: '/media/**',
       },
     ],
+  },
+  
+  // Solo aplicar basePath cuando construimos para GitHub Pages
+  ...(isGitHubPagesBuild && {
+    basePath: '/web-novit',
+    assetPrefix: '/web-novit/',
+  }),
+  
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
+  
+  // Configuración para manejar archivos markdown con imágenes
+  webpack: (config: any) => {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    });
+    return config;
   },
 };
 

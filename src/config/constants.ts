@@ -2,18 +2,23 @@
  * Application configuration constants
  */
 
-// Base path for static deployment (GitHub Pages)
-export const BASE_PATH = (process.env.GITHUB_ACTIONS === 'true' && 
-                          process.env.NODE_ENV === 'production' && 
-                          process.env.DEPLOY_TARGET === 'github-pages') ? '/web-novit' : '';
+// Detectar si estamos en build de producción para GitHub Pages
+const isGitHubPagesBuild = process.env.DEPLOY_TARGET === 'github-pages';
 
 /**
  * Get the correct asset path with base path for deployment
  */
 export function getAssetPath(path: string): string {
-  // Remove leading slash if present to normalize
-  const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
+  // Normalizar el path para que siempre comience con /
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   
-  // Return the path with base path if configured
-  return BASE_PATH ? `${BASE_PATH}/${normalizedPath}` : `/${normalizedPath}`;
+  // Usar variable de entorno para determinar si agregar prefix
+  return isGitHubPagesBuild ? `/web-novit${normalizedPath}` : normalizedPath;
 }
+
+export function getImagePath(imageName: string): string {
+  return getAssetPath(`/images/${imageName}`);
+}
+
+// Legacy compatibility
+export const BASE_PATH = isGitHubPagesBuild ? '/web-novit' : '';
