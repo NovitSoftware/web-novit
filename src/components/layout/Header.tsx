@@ -29,22 +29,22 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
 
   // Default navigation if no content provided (fallback)
   const defaultNavigation = [
-    { label: 'Inicio', href: `/${locale}/#home`, isHome: true },
-    { label: 'Qué hacemos', href: `/${locale}/#services` },
-    { label: 'Casos de Éxito', href: `/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}` },
-    { label: 'Academia Novit', href: `/${locale}/academia` },
-    { label: 'Carreras', href: `/${locale}/carreras` },
+    { label: 'Inicio', href: getAssetPath(`/${locale}/#home`), isHome: true },
+    { label: 'Qué hacemos', href: getAssetPath(`/${locale}/#services`) },
+    { label: 'Casos de Éxito', href: getAssetPath(`/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`) },
+    { label: 'Academia Novit', href: getAssetPath(`/${locale}/academia`) },
+    { label: 'Carreras', href: getAssetPath(`/${locale}/carreras`) },
   ];
 
   const navigation = navigationContent ? [
-    { label: navigationContent.data.home, href: `/${locale}/#home`, isHome: true },
-    { label: navigationContent.data.services, href: `/${locale}/#services` },
+    { label: navigationContent.data.home, href: getAssetPath(`/${locale}/#home`), isHome: true },
+    { label: navigationContent.data.services, href: getAssetPath(`/${locale}/#services`) },
     { 
       label: navigationContent.data.stories, 
-      href: `/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}` 
+      href: getAssetPath(`/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`) 
     },
-    { label: navigationContent.data.academy, href: `/${locale}/academia` },
-    { label: navigationContent.data.careers, href: `/${locale}/carreras` },
+    { label: navigationContent.data.academy, href: getAssetPath(`/${locale}/academia`) },
+    { label: navigationContent.data.careers, href: getAssetPath(`/${locale}/carreras`) },
   ] : defaultNavigation;
 
   useEffect(() => {

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       openGraph: {
         title: 'NOVIT Software - Tu Partner Tecnológico en Argentina',
         description: 'Transformamos tus ideas en soluciones digitales. Desarrollo de software, IA, y consultoría IT con +10 años de experiencia.',
-        images: [getAssetPath('/images/og-image-es.svg')],
+        images: [getAssetPath('/images/og-image-es.png')],
         locale: 'es_AR',
       }
     },
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       openGraph: {
         title: 'NOVIT Software - Your Technology Partner in Argentina',
         description: 'We transform your ideas into digital solutions. Software development, AI, and IT consulting with 10+ years of experience.',
-        images: [getAssetPath('/images/og-image-en.svg')],
+        images: [getAssetPath('/images/og-image-en.png')],
         locale: 'en_US',
       }
     },
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       openGraph: {
         title: 'NOVIT Software - Seu Parceiro Tecnológico na Argentina',
         description: 'Transformamos suas ideias em soluções digitais. Desenvolvimento de software, IA e consultoria TI com +10 anos de experiência.',
-        images: [getAssetPath('/images/og-image-pt.svg')],
+        images: [getAssetPath('/images/og-image-pt.png')],
         locale: 'pt_BR',
       }
     }

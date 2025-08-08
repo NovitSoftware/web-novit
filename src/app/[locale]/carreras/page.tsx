@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Briefcase, Users, Star, Target } from 'lucide-react';
+import { getAssetPath } from '@/config/constants';
 
 interface CarrerasFrontmatter {
   title: string;
@@ -203,7 +204,7 @@ export default async function CarrerasPage({
           {/* Back Navigation */}
           <div className="mb-8">
             <Link 
-              href={`/${locale}`}
+              href={getAssetPath(`/${locale}`)}
               className="inline-flex items-center text-accent-cyan hover:text-accent-cyan/80 transition-colors font-medium"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />

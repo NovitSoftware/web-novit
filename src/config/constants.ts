@@ -12,6 +12,18 @@ export function getAssetPath(path: string): string {
   // Normalizar el path para que siempre comience con /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   
+  // Si el path ya incluye el basePath, no lo duplicamos
+  if (normalizedPath.startsWith('/web-novit')) {
+    return normalizedPath;
+  }
+  
+  // Para rutas con hash (#), mantener la estructura correcta
+  if (normalizedPath.includes('#')) {
+    const [pathname, hash] = normalizedPath.split('#');
+    const basePath = isGitHubPagesBuild ? '/web-novit' : '';
+    return `${basePath}${pathname}#${hash}`;
+  }
+  
   // Usar variable de entorno para determinar si agregar prefix
   return isGitHubPagesBuild ? `/web-novit${normalizedPath}` : normalizedPath;
 }

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
+import { getAssetPath } from '@/config/constants';
 
 interface HomeLinkProps {
   locale: string;
@@ -58,7 +59,7 @@ export default function HomeLink({
 
   return (
     <Link 
-      href={`/${locale}/#home`}
+      href={getAssetPath(`/${locale}/#home`)}
       className={className}
       onClick={handleClick}
     >

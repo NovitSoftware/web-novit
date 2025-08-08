@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
+import { getAssetPath } from '@/config/constants';
 
 export default function FloatingCTA() {
   const [isOpen, setIsOpen] = useState(false);
@@ -156,7 +157,7 @@ export default function FloatingCTA() {
                 />
                 <label htmlFor="privacy" className="text-sm text-gray-600">
                   {t('privacy_acceptance')}{' '}
-                  <Link href={`/${locale}/privacy`} className="text-accent-cyan hover:underline">
+                  <Link href={getAssetPath(`/${locale}/privacy`)} className="text-accent-cyan hover:underline">
                     {t('privacy_policy')}
                   </Link>{' '}
                   {t('privacy_text')}

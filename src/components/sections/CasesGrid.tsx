@@ -137,7 +137,7 @@ function CaseCard({ caseStudy, index, locale: localeParam, headerContent }: {
         {/* Action Button */}
         <div className="flex justify-end">
           <Link
-            href={`/${locale}/casos-exito/${caseStudy.id}`}
+            href={getAssetPath(`/${locale}/casos-exito/${caseStudy.id}`)}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             {headerContent?.data.view_case || 'Ver caso completo'}

@@ -176,7 +176,7 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
                 ].map((item) => (
                   <li key={item.key}>
                     <Link 
-                      href={`/${locale}${item.href}`}
+                      href={getAssetPath(`/${locale}${item.href}`)}
                       className="text-gray-300 hover:text-accent-cyan transition-colors text-sm"
                     >
                       {t(`company_links.${item.key}`)}
@@ -275,13 +275,13 @@ export default function Footer({ locale: localeParam, services = [] }: FooterPro
               
               <div className="flex items-center space-x-6 text-sm text-gray-400">
                 <Link 
-                  href={`/${locale}/privacy`}
+                  href={getAssetPath(`/${locale}/privacy`)}
                   className="hover:text-accent-cyan transition-colors"
                 >
                   {t('privacy_policy')}
                 </Link>
                 <Link 
-                  href={`/${locale}/terms`}
+                  href={getAssetPath(`/${locale}/terms`)}
                   className="hover:text-accent-cyan transition-colors"
                 >
                   {t('terms_of_use')}
