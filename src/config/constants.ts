@@ -5,18 +5,7 @@
 // Detectar si estamos en build de producción para GitHub Pages
 const isGitHubPagesBuild = process.env.DEPLOY_TARGET === 'github-pages';
 
-/**
- * Detectar si estamos en GitHub Pages en runtime
- */
-function isGitHubPagesRuntime(): boolean {
-  // En el servidor (build time), usar la variable de entorno
-  if (typeof window === 'undefined') {
-    return isGitHubPagesBuild;
-  }
-  
-  // En el cliente (runtime), detectar por la URL
-  return window.location.pathname.startsWith('/web-novit');
-}
+
 
 /**
  * Get the correct asset path with base path for deployment
@@ -30,15 +19,24 @@ export function getAssetPath(path: string): string {
     return normalizedPath;
   }
   
+  // Durante el build para GitHub Pages, Next.js ya maneja el basePath automáticamente
+  // No debemos agregarlo manualmente para evitar duplicación
+  if (typeof window === 'undefined' && isGitHubPagesBuild) {
+    return normalizedPath;
+  }
+  
   // Para rutas con hash (#), mantener la estructura correcta
   if (normalizedPath.includes('#')) {
     const [pathname, hash] = normalizedPath.split('#');
-    const basePath = isGitHubPagesRuntime() ? '/web-novit' : '';
+    // Solo agregar basePath en runtime del cliente si estamos en GitHub Pages
+    const shouldAddBasePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/web-novit');
+    const basePath = shouldAddBasePath ? '/web-novit' : '';
     return `${basePath}${pathname}#${hash}`;
   }
   
-  // Detectar si necesitamos agregar el prefix tanto en build como en runtime
-  return isGitHubPagesRuntime() ? `/web-novit${normalizedPath}` : normalizedPath;
+  // En runtime del cliente, detectar si necesitamos agregar el prefix
+  const shouldAddBasePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/web-novit');
+  return shouldAddBasePath ? `/web-novit${normalizedPath}` : normalizedPath;
 }
 
 export function getImagePath(imageName: string): string {
