@@ -6,6 +6,19 @@
 const isGitHubPagesBuild = process.env.DEPLOY_TARGET === 'github-pages';
 
 /**
+ * Detectar si estamos en GitHub Pages en runtime
+ */
+function isGitHubPagesRuntime(): boolean {
+  // En el servidor (build time), usar la variable de entorno
+  if (typeof window === 'undefined') {
+    return isGitHubPagesBuild;
+  }
+  
+  // En el cliente (runtime), detectar por la URL
+  return window.location.pathname.startsWith('/web-novit');
+}
+
+/**
  * Get the correct asset path with base path for deployment
  */
 export function getAssetPath(path: string): string {
@@ -20,12 +33,12 @@ export function getAssetPath(path: string): string {
   // Para rutas con hash (#), mantener la estructura correcta
   if (normalizedPath.includes('#')) {
     const [pathname, hash] = normalizedPath.split('#');
-    const basePath = isGitHubPagesBuild ? '/web-novit' : '';
+    const basePath = isGitHubPagesRuntime() ? '/web-novit' : '';
     return `${basePath}${pathname}#${hash}`;
   }
   
-  // Usar variable de entorno para determinar si agregar prefix
-  return isGitHubPagesBuild ? `/web-novit${normalizedPath}` : normalizedPath;
+  // Detectar si necesitamos agregar el prefix tanto en build como en runtime
+  return isGitHubPagesRuntime() ? `/web-novit${normalizedPath}` : normalizedPath;
 }
 
 export function getImagePath(imageName: string): string {
