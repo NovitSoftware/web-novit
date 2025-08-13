@@ -17,26 +17,44 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:3000',
-
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
+  /* Configure projects for different environments */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'localhost-dev',
+      use: { 
+        ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:3000',
+      },
+      testMatch: /.*\.(dev|shared)\.spec\.ts/,
+    },
+    {
+      name: 'static-build',
+      use: { 
+        ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:8000',
+      },
+      testMatch: /.*\.(static|shared)\.spec\.ts/,
+      dependencies: ['localhost-dev'], // Run after dev tests pass
     },
   ],
 
-  /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000, // 2 minutes
-  },
+  /* Configure web servers for both environments */
+  webServer: [
+    {
+      command: 'npm run dev',
+      url: 'http://localhost:3000',
+      reuseExistingServer: !process.env.CI,
+      timeout: 120 * 1000, // 2 minutes
+    },
+    {
+      command: 'DEPLOY_TARGET=github-pages npm run build && npx serve out -p 8000 -s',
+      url: 'http://localhost:8000',
+      reuseExistingServer: !process.env.CI,
+      timeout: 180 * 1000, // 3 minutes for build + serve
+    },
+  ],
 });
