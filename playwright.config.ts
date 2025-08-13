@@ -51,7 +51,7 @@ export default defineConfig({
       timeout: 120 * 1000, // 2 minutes
     },
     {
-      command: 'DEPLOY_TARGET=github-pages npm run build && npx serve out -p 8000 -s',
+      command: 'rm -rf out && NODE_ENV=production DEPLOY_TARGET=github-pages npm run build && npx serve out -p 8000 -s',
       url: 'http://localhost:8000',
       reuseExistingServer: !process.env.CI,
       timeout: 180 * 1000, // 3 minutes for build + serve
