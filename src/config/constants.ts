@@ -19,24 +19,9 @@ export function getAssetPath(path: string): string {
     return normalizedPath;
   }
   
-  // Durante el build para GitHub Pages, Next.js ya maneja el basePath automáticamente
-  // No debemos agregarlo manualmente para evitar duplicación
-  if (typeof window === 'undefined' && isGitHubPagesBuild) {
-    return normalizedPath;
-  }
-  
-  // Para rutas con hash (#), mantener la estructura correcta
-  if (normalizedPath.includes('#')) {
-    const [pathname, hash] = normalizedPath.split('#');
-    // Solo agregar basePath en runtime del cliente si estamos en GitHub Pages
-    const shouldAddBasePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/web-novit');
-    const basePath = shouldAddBasePath ? '/web-novit' : '';
-    return `${basePath}${pathname}#${hash}`;
-  }
-  
-  // En runtime del cliente, detectar si necesitamos agregar el prefix
-  const shouldAddBasePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/web-novit');
-  return shouldAddBasePath ? `/web-novit${normalizedPath}` : normalizedPath;
+  // Next.js maneja automáticamente el basePath cuando está configurado
+  // Solo necesitamos devolver el path normalizado y Next.js se encarga del resto
+  return normalizedPath;
 }
 
 export function getImagePath(imageName: string): string {
