@@ -1,0 +1,28 @@
+# Docker Compose for Novit Website Testing
+# Provides easy cross-platform testing environment for Windows, macOS, and Linux
+
+services:
+  playwright-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.playwright
+    volumes:
+      # Mount source code for live development
+      - .:/app
+      # Exclude node_modules to avoid Windows/Linux compatibility issues
+      - /app/node_modules
+      # Mount test results
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    ports:
+      - "3000:3000"  # Development server
+      - "8000:8000"  # Static build server
+    environment:
+      - CI=true
+      - NODE_ENV=development
+    networks:
+      - novit-testing
+
+networks:
+  novit-testing:
+    driver: bridge
