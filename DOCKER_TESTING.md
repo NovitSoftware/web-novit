@@ -50,6 +50,14 @@ npm run docker:setup
 - Verifica que Docker esté funcionando
 - Muestra versiones de Docker y Docker Compose
 
+### ✅ Validar Configuración
+```bash
+npm run test:docker:validate
+```
+- Valida toda la configuración Docker
+- Verifica sintaxis de archivos
+- Confirma que todo está listo para usar
+
 ## Arquitectura de Pruebas
 
 ### Entornos Duales

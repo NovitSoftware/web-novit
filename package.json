@@ -15,6 +15,7 @@
     "test:docker": "docker compose up --build --abort-on-container-exit",
     "test:docker:dev": "docker compose -f docker-compose.dev.yml up --build",
     "test:docker:clean": "docker compose down --volumes --remove-orphans && docker compose -f docker-compose.dev.yml down --volumes --remove-orphans",
+    "test:docker:validate": "./scripts/validate-docker.sh",
     "docker:build": "docker build -f Dockerfile.playwright -t novit-playwright .",
     "docker:setup": "echo \"🐳 Setting up Docker environment for cross-platform testing...\" && docker --version && docker compose version"
   },

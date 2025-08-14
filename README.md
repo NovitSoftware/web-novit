@@ -157,6 +157,7 @@ npm run test:headed        # Pruebas con navegador visible
 npm run test:docker        # Ejecutar todas las pruebas en contenedor
 npm run test:docker:dev    # Modo desarrollo interactivo
 npm run test:docker:clean  # Limpiar entorno Docker
+npm run test:docker:validate # Validar configuración Docker
 ```
 
 ### ¿Por qué Docker para Testing?
