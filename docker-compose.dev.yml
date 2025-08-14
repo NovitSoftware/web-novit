@@ -1,0 +1,28 @@
+# Docker Compose for Development Testing
+# Optimized for local development with live code changes
+
+services:
+  playwright-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.playwright
+    volumes:
+      # Mount source for live development
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    environment:
+      - NODE_ENV=development
+      - DEPLOY_TARGET=development
+    command: ["npm", "run", "test:headed"]
+    networks:
+      - novit-dev
+
+networks:
+  novit-dev:
+    driver: bridge

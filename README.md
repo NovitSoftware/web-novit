@@ -136,6 +136,38 @@ src/
 - **Inglés** (en)  
 - **Catalán** (ca)
 
+## 🧪 Testing y Control de Calidad
+
+### UI Testing con Playwright
+Este proyecto incluye pruebas automatizadas completas para validar la funcionalidad en ambos entornos:
+- **Desarrollo**: `localhost:3000` (Next.js dev server)
+- **Producción**: `localhost:8000` (GitHub Pages con base path `/web-novit`)
+
+### Comandos de Testing
+
+#### 💻 Testing Local (requiere Linux/macOS)
+```bash
+npm test                    # Ejecutar todas las pruebas
+npm run test:ui            # Interfaz visual para pruebas
+npm run test:headed        # Pruebas con navegador visible
+```
+
+#### 🐳 Testing con Docker (Windows/macOS/Linux)
+```bash
+npm run test:docker        # Ejecutar todas las pruebas en contenedor
+npm run test:docker:dev    # Modo desarrollo interactivo
+npm run test:docker:clean  # Limpiar entorno Docker
+npm run test:docker:validate # Validar configuración Docker
+```
+
+### ¿Por qué Docker para Testing?
+- **✅ Compatibilidad**: Funciona idénticamente en Windows, macOS y Linux
+- **✅ Consistencia**: Mismo entorno que GitHub Actions
+- **✅ Aislamiento**: No interfiere con tu instalación local
+- **✅ GitHub Pages**: Simula exactamente el entorno de producción
+
+Para más detalles sobre Docker testing, ver [DOCKER_TESTING.md](./DOCKER_TESTING.md)
+
 ## 📧 Contacto
 
 **Novit Software**

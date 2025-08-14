@@ -1,0 +1,25 @@
+# Dockerfile for Playwright testing environment
+# Provides a consistent Linux environment for running tests across Windows, macOS, and Linux
+
+FROM mcr.microsoft.com/playwright:v1.54.2-jammy
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first for better Docker layer caching
+COPY package*.json ./
+
+# Install dependencies with npm install instead of npm ci for better compatibility
+RUN npm install --frozen-lockfile
+
+# Copy source code
+COPY . .
+
+# Create output directory for static builds
+RUN mkdir -p out
+
+# Expose ports for development and static servers
+EXPOSE 3000 8000
+
+# Default command runs tests
+CMD ["npm", "run", "test"]
