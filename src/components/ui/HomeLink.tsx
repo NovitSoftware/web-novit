@@ -10,15 +10,20 @@ interface HomeLinkProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  href?: string; // Allow passing pre-computed href
 }
 
 export default function HomeLink({ 
   locale, 
   children, 
   className = '', 
-  onClick 
+  onClick,
+  href: providedHref
 }: HomeLinkProps) {
   const pathname = usePathname();
+  
+  // Use provided href or generate default one
+  const homeHref = providedHref || getAssetPath(`/${locale}/#home`);
   
   const handleClick = (e: React.MouseEvent) => {
     // Verificar si ya estamos en la página home
@@ -59,7 +64,7 @@ export default function HomeLink({
 
   return (
     <Link 
-      href={getAssetPath(`/${locale}/#home`)}
+      href={homeHref}
       className={className}
       onClick={handleClick}
     >

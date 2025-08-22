@@ -50,6 +50,9 @@ if (process.env.NODE_ENV === 'production' && process.env.DEPLOY_TARGET === 'gith
   // Move logos directory to web-novit/logos
   moveDirectory('logos', 'web-novit/logos', '/logos/ → /web-novit/logos/');
   
+  // Move video directory to web-novit/video
+  moveDirectory('video', 'web-novit/video', '/video/ → /web-novit/video/');
+  
   // Keep root files at root for GitHub Pages
   console.log('✅ Root files maintained for GitHub Pages compatibility');
   

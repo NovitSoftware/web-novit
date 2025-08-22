@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { useLocale } from 'next-intl';
@@ -91,6 +90,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
                     <HomeLink
                       key={item.href}
                       locale={locale}
+                      href={item.href}
                       className="text-white/90 hover:text-white font-medium transition-colors duration-200 relative group"
                     >
                       {item.label}
@@ -151,6 +151,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
                     <HomeLink
                       key={item.href}
                       locale={locale}
+                      href={item.href}
                       className="block text-white/90 hover:text-white font-medium py-2 transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -196,6 +197,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
                 <HomeLink
                   key={item.href}
                   locale={locale}
+                  href={item.href}
                   className="flex flex-col items-center p-2 text-xs font-medium text-white/80 hover:text-white transition-colors"
                 >
                   <div className="w-6 h-6 mb-1 flex items-center justify-center">
