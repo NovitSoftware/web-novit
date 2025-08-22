@@ -111,7 +111,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ],
       shortcut: getAssetPath('/favicon.png'),
       apple: [
-        { url: getAssetPath('/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' }
+        { url: getAssetPath('/favicon.png'), sizes: '180x180', type: 'image/png' }
       ],
     },
     manifest: '/site.webmanifest',
