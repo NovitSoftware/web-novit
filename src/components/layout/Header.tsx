@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { useLocale } from 'next-intl';
 
-import { getAssetPath } from '@/config/constants';
+import { getAssetPath, getNavigationPath } from '@/config/constants';
 import PremiumQuoteModal from '@/components/ui/PremiumQuoteModal';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import TransitionLink from '@/components/ui/TransitionLink';
@@ -28,22 +28,22 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
 
   // Default navigation if no content provided (fallback)
   const defaultNavigation = [
-    { label: 'Inicio', href: getAssetPath(`/${locale}/#home`), isHome: true },
-    { label: 'Qué hacemos', href: getAssetPath(`/${locale}/#services`) },
-    { label: 'Casos de Éxito', href: getAssetPath(`/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`) },
-    { label: 'Academia Novit', href: getAssetPath(`/${locale}/academia`) },
-    { label: 'Carreras', href: getAssetPath(`/${locale}/carreras`) },
+    { label: 'Inicio', href: getNavigationPath(`/${locale}/#home`), isHome: true },
+    { label: 'Qué hacemos', href: getNavigationPath(`/${locale}/#services`) },
+    { label: 'Casos de Éxito', href: getNavigationPath(`/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`) },
+    { label: 'Academia Novit', href: getNavigationPath(`/${locale}/academia`) },
+    { label: 'Carreras', href: getNavigationPath(`/${locale}/carreras`) },
   ];
 
   const navigation = navigationContent ? [
-    { label: navigationContent.data.home, href: getAssetPath(`/${locale}/#home`), isHome: true },
-    { label: navigationContent.data.services, href: getAssetPath(`/${locale}/#services`) },
+    { label: navigationContent.data.home, href: getNavigationPath(`/${locale}/#home`), isHome: true },
+    { label: navigationContent.data.services, href: getNavigationPath(`/${locale}/#services`) },
     { 
       label: navigationContent.data.stories, 
-      href: getAssetPath(`/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`) 
+      href: getNavigationPath(`/${locale}/#${locale === 'en' ? 'success-stories' : locale === 'pt' ? 'casos-sucesso' : 'casos-exito'}`) 
     },
-    { label: navigationContent.data.academy, href: getAssetPath(`/${locale}/academia`) },
-    { label: navigationContent.data.careers, href: getAssetPath(`/${locale}/carreras`) },
+    { label: navigationContent.data.academy, href: getNavigationPath(`/${locale}/academia`) },
+    { label: navigationContent.data.careers, href: getNavigationPath(`/${locale}/carreras`) },
   ] : defaultNavigation;
 
   useEffect(() => {

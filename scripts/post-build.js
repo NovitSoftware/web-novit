@@ -50,11 +50,31 @@ if (process.env.NODE_ENV === 'production' && process.env.DEPLOY_TARGET === 'gith
   // Move logos directory to web-novit/logos
   moveDirectory('logos', 'web-novit/logos', '/logos/ → /web-novit/logos/');
   
-  // Move video directory to web-novit/video
-  moveDirectory('video', 'web-novit/video', '/video/ → /web-novit/video/');
+  // Move root-level assets to web-novit directory
+  const rootAssets = [
+    'novit-logo-official.png',
+    'novit-icon-only.svg', 
+    'favicon.png',
+    'robots.txt',
+    'site.webmanifest',
+    'sitemap.xml'
+  ];
   
-  // Keep root files at root for GitHub Pages
-  console.log('✅ Root files maintained for GitHub Pages compatibility');
+  rootAssets.forEach(asset => {
+    const fromPath = path.join(outDir, asset);
+    const toPath = path.join(webNovitDir, asset);
+    
+    if (fs.existsSync(fromPath)) {
+      try {
+        fs.copyFileSync(fromPath, toPath);
+        console.log(`✅ Copied /${asset} → /web-novit/${asset}`);
+      } catch (error) {
+        console.log(`⚠️  Failed to copy ${asset}:`, error.message);
+      }
+    }
+  });
+  
+  console.log('✅ Root assets moved to web-novit directory for GitHub Pages compatibility');
   
   console.log('🎉 GitHub Pages structure ready!');
 } else {

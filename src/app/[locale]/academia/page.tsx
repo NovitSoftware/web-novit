@@ -7,7 +7,7 @@ import remarkGfm from 'remark-gfm';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, Users, Award, Target } from 'lucide-react';
-import { getAssetPath } from '@/config/constants';
+import { getNavigationPath } from '@/config/constants';
 import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 interface AcademiaFrontmatter {
@@ -203,7 +203,7 @@ export default async function AcademiaPage({
           {/* Back Navigation */}
           <div className="mb-8">
             <Link 
-              href={getAssetPath(`/${locale}`)}
+              href={getNavigationPath(`/${locale}`)}
               className="inline-flex items-center text-accent-cyan hover:text-accent-cyan/80 transition-colors font-medium"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />

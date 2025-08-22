@@ -32,19 +32,24 @@ export function getAssetPath(path: string): string {
     return normalizedPath;
   }
   
-  // Durante build time para GitHub Pages, Next.js maneja automáticamente el basePath
-  // En el cliente, si ya estamos en GitHub Pages, no necesitamos agregar basePath
-  // porque Next.js ya lo ha aplicado a las rutas
+  // Para GitHub Pages, necesitamos agregar el basePath para assets estáticos
+  // tanto en build time como en runtime
   const isGitHub = isOnGitHubPages();
   
-  // Si estamos en build de GitHub Pages (server-side) o ya estamos en GitHub Pages (client-side),
-  // no agregamos basePath porque Next.js ya lo maneja
   if (isGitHub) {
-    return normalizedPath;
+    return `/web-novit${normalizedPath}`;
   }
   
-  // Solo para desarrollo local u otros entornos que no sean GitHub Pages
+  // Para desarrollo local u otros entornos
+  return normalizedPath;
+}
 
+/**
+ * Get the correct navigation path - should NOT include basePath as Next.js handles this automatically
+ */
+export function getNavigationPath(path: string): string {
+  // Las rutas de navegación no necesitan basePath porque Next.js las maneja automáticamente
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   return normalizedPath;
 }
 

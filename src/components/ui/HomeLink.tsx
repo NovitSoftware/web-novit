@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
-import { getAssetPath } from '@/config/constants';
+import { getNavigationPath } from '@/config/constants';
 
 interface HomeLinkProps {
   locale: string;
@@ -23,7 +23,7 @@ export default function HomeLink({
   const pathname = usePathname();
   
   // Use provided href or generate default one
-  const homeHref = providedHref || getAssetPath(`/${locale}/#home`);
+  const homeHref = providedHref || getNavigationPath(`/${locale}/#home`);
   
   const handleClick = (e: React.MouseEvent) => {
     // Verificar si ya estamos en la página home

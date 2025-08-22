@@ -10,7 +10,7 @@ import { CasesHeaderContent, StoryContent } from '@/lib/contentLoader';
 
 import { ArrowUpRight, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
-import { getAssetPath } from '@/config/constants';
+import { getAssetPath, getNavigationPath } from '@/config/constants';
 import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 // Function to convert StoryContent to CaseStudy format
@@ -138,7 +138,7 @@ function CaseCard({ caseStudy, index, locale: localeParam, headerContent }: {
         {/* Action Button */}
         <div className="flex justify-end">
           <Link
-            href={getAssetPath(`/${locale}/casos-exito/${caseStudy.id}`)}
+            href={getNavigationPath(`/${locale}/casos-exito/${caseStudy.id}`)}
             className="inline-flex items-center bg-gradient-novit-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             {headerContent?.data.view_case || 'Ver caso completo'}
