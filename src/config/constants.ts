@@ -5,6 +5,8 @@
 // Detectar si estamos en build de producción para GitHub Pages
 const isGitHubPagesBuild = process.env.DEPLOY_TARGET === 'github-pages';
 
+
+
 /**
  * Detect if we're currently running on GitHub Pages (client-side detection)
  */
@@ -42,6 +44,7 @@ export function getAssetPath(path: string): string {
   }
   
   // Solo para desarrollo local u otros entornos que no sean GitHub Pages
+
   return normalizedPath;
 }
 

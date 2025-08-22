@@ -44,6 +44,9 @@ if (process.env.NODE_ENV === 'production' && process.env.DEPLOY_TARGET === 'gith
   // Move images directory to web-novit/images
   moveDirectory('images', 'web-novit/images', '/images/ → /web-novit/images/');
   
+  // Move video directory to web-novit/video
+  moveDirectory('video', 'web-novit/video', '/video/ → /web-novit/video/');
+  
   // Move logos directory to web-novit/logos
   moveDirectory('logos', 'web-novit/logos', '/logos/ → /web-novit/logos/');
   

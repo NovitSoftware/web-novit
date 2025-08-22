@@ -73,7 +73,7 @@ export default function Header({ locale: localeParam, navigationContent }: Heade
               className="flex items-center"
             >
               <Image
-                src={getAssetPath("novit-logo-official.png")}
+                src={getAssetPath("/novit-logo-official.png")}
                 alt="Novit Software"
                 width={120}
                 height={40}
