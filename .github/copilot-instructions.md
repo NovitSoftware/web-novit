@@ -15,6 +15,9 @@ Always reference these instructions first and fallback to search or bash command
 3. **Build for production**: `npm run build` -- takes 20-30 seconds. NEVER CANCEL. Set timeout to 180+ seconds.
 4. **Linting**: `npm run lint` -- takes 3-5 seconds. Returns warnings for TypeScript any types (expected).
 5. **Serve built site with locale testing**: `npm run serve` -- builds first, then serves at http://localhost:8000
+6. **UI Tests**: `npm run test` -- runs automated Playwright UI tests. Takes 2-5 minutes. Use timeout 300+ seconds.
+7. **UI Tests (Interactive)**: `npm run test:ui` -- opens Playwright test UI for debugging
+8. **UI Tests (Headed)**: `npm run test:headed` -- runs tests with visible browser for debugging
 
 ### Critical Build Information
 - **Build time**: 20-30 seconds (much faster than typical Next.js builds)
@@ -36,10 +39,26 @@ Always reference these instructions first and fallback to search or bash command
 ### Always Test After Making Changes
 1. **Build validation**: Run `npm run build` and ensure it completes without errors
 2. **Development server**: Start `npm run dev` and verify http://localhost:3000 loads
-3. **Locale switching**: Click language switcher and verify content changes (Spanish "La software factory que necesitás" vs English "The software factory you need")
-4. **Navigation**: Verify all header navigation links are functional
-5. **Premium quote functionality**: Click "⚡ Premium Quote in 24h" / "⚡ Cotización Premium en 24hs" button to test modal
-6. **Responsive design**: Test both desktop and mobile views
+3. **Automated UI tests**: Run `npm run test` to verify asset loading and navigation functionality
+4. **Locale switching**: Click language switcher and verify content changes (Spanish "La software factory que necesitás" vs English "The software factory you need")
+5. **Navigation**: Verify all header navigation links are functional
+6. **Premium quote functionality**: Click "⚡ Premium Quote in 24h" / "⚡ Cotización Premium en 24hs" button to test modal
+7. **Responsive design**: Test both desktop and mobile views
+
+### Automated UI Testing Requirements
+- **MANDATORY**: Run `npm run test` on every change and pull request
+- **Test coverage**: Asset loading (images, videos, logos), navigation flows, smooth scroll animations
+- **Environment testing**: Tests verify functionality in both localhost and GitHub Pages simulation  
+- **404 detection**: Tests specifically check for and report any 404 errors for assets or navigation
+- **Navigation flows tested**:
+  - Casos de éxito (with smooth scroll animation verification)
+  - Home navigation
+  - Academia page navigation
+  - Carreras page navigation
+  - Qué hacemos section scroll
+  - Novit logo click (return to home)
+- **Asset verification**: Case study images, Novit official logos, hero-academia.mp4 video
+- **Cross-locale testing**: Tests run in Spanish, English, and Portuguese locales
 
 ### Manual Validation Requirements
 - **CRITICAL**: After any changes, always test the complete user journey: homepage load → language switching → navigation → key interactions
@@ -76,6 +95,7 @@ The premium quote functionality requires additional setup:
 - **GSAP**: Advanced animations
 - **Framer Motion**: UI transitions
 - **Turbopack**: Development bundler (faster than webpack)
+- **Playwright**: Automated UI testing for asset loading and navigation verification
 
 ### Project Structure
 ```
@@ -94,10 +114,16 @@ src/
 ├── types/               # TypeScript definitions
 ├── utils/               # Utility functions
 └── config/              # Configuration constants
+
+tests/                   # Playwright UI tests
+├── assets.spec.ts       # Asset loading tests (images, videos, logos)
+├── navigation.spec.ts   # Navigation and smooth scroll tests
+└── environments.spec.ts # Cross-environment testing (localhost vs GitHub Pages)
 ```
 
 ### Key Configuration Files
 - **next.config.ts**: Static export, GitHub Pages deployment, next-intl setup
+- **playwright.config.ts**: UI testing configuration with dev server startup
 - **tailwind.config.ts**: Custom NOVIT brand colors and animations
 - **tsconfig.json**: TypeScript configuration with path mapping
 - **eslint.config.mjs**: ESLint rules for Next.js and TypeScript

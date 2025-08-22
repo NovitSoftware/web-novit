@@ -11,6 +11,7 @@ import { CasesHeaderContent, StoryContent } from '@/lib/contentLoader';
 import { ArrowUpRight, Tag } from 'lucide-react';
 import { calculateYearsOfExperience } from '@/utils/experience';
 import { getAssetPath } from '@/config/constants';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 // Function to convert StoryContent to CaseStudy format
 function storyToCaseStudy(story: StoryContent): CaseStudy {
@@ -180,18 +181,16 @@ export default function CasesGrid({ locale: localeParam, headerContent, storiesC
   }
 
   return (
-    <section
-      id={sectionId}
-      ref={sectionRef as any}
-      className="py-20 lg:py-32 bg-slate-800 relative overflow-hidden"
+    <BackgroundVideo
+      pageName="cases"
+      className="py-20 lg:py-32"
+      overlayOpacity={0.85}
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent-cyan rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section
+        id={sectionId}
+        ref={sectionRef as any}        className="relative overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-novit-accent rounded-2xl mb-6">
@@ -267,6 +266,7 @@ export default function CasesGrid({ locale: localeParam, headerContent, storiesC
           overflow: hidden;
         }
       `}</style>
-    </section>
+      </section>
+    </BackgroundVideo>
   );
 }

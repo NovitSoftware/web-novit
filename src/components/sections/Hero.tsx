@@ -32,7 +32,7 @@ export default function Hero({ content }: HeroProps) {
       <BackgroundVideo 
         pageName="home"
         className="min-h-screen flex items-center justify-center"
-        overlayOpacity={0.95}
+        overlayOpacity={0.9}
       >
         {/* Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

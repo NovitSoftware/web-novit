@@ -7,7 +7,17 @@
     "build": "next build && node scripts/post-build.js",
     "start": "next start",
     "lint": "next lint",
-    "serve": "npm run build && echo \"🌐 Testing locale routes at:\" && echo \"📍 Root (auto-detect): http://localhost:8000\" && echo \"🇪🇸 Spanish: http://localhost:8000/es/\" && echo \"🇺🇸 English: http://localhost:8000/en/\" && echo \"🇵🇹 Portuguese: http://localhost:8000/pt/\" && echo \"\" && serve out -p 8000"
+    "serve": "npm run build && echo \"🌐 Testing locale routes at:\" && echo \"📍 Root (auto-detect): http://localhost:8000\" && echo \"🇪🇸 Spanish: http://localhost:8000/es/\" && echo \"🇺🇸 English: http://localhost:8000/en/\" && echo \"🇵🇹 Portuguese: http://localhost:8000/pt/\" && echo \"\" && serve out -p 8000",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:docker": "docker compose up --build --abort-on-container-exit",
+    "test:docker:dev": "docker compose -f docker-compose.dev.yml up --build",
+    "test:docker:clean": "docker compose down --volumes --remove-orphans && docker compose -f docker-compose.dev.yml down --volumes --remove-orphans",
+    "test:docker:validate": "./scripts/validate-docker.sh",
+    "docker:build": "docker build -f Dockerfile.playwright -t novit-playwright .",
+    "docker:setup": "echo \"🐳 Setting up Docker environment for cross-platform testing...\" && docker --version && docker compose version"
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.17",
@@ -26,6 +36,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.54.2",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20.19.9",
     "@types/react": "^19",
@@ -33,6 +44,7 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.4.3",
+    "playwright": "^1.54.2",
     "postcss": "^8.5.6",
     "serve": "^14.2.4",
     "tailwindcss": "^4.1.11",
