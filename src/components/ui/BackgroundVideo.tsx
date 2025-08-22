@@ -23,14 +23,19 @@ export default function BackgroundVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoExists, setVideoExists] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [fallbackImage, setFallbackImage] = useState<string | null>(null);
 
   // Auto-generate video source based on pageName if videoSrc not provided
   const finalVideoSrc = videoSrc || (pageName ? `/video/hero-${pageName}.mp4` : null);
+  // Auto-generate fallback image source based on pageName
+  const fallbackImageSrc = pageName ? getAssetPath(`/images/hero-${pageName}.png`) : null;
 
   useEffect(() => {
-    // Check if video exists before trying to load it
     const checkVideoExists = async () => {
       if (!finalVideoSrc) {
+        if (fallbackImageSrc) {
+          setFallbackImage(fallbackImageSrc);
+        }
         setVideoExists(false);
         return;
       }
@@ -39,15 +44,32 @@ export default function BackgroundVideo({
         const response = await fetch(getAssetPath(finalVideoSrc), { method: 'HEAD' });
         if (response.ok) {
           setVideoExists(true);
+          setFallbackImage(null);
+        } else {
+          // Video 404, use fallback image
+          setVideoExists(false);
+          if (fallbackImageSrc) {
+            setFallbackImage(fallbackImageSrc);
+          }
         }
       } catch (error) {
-        console.log('Video not found, using fallback background');
         setVideoExists(false);
+        if (fallbackImageSrc) {
+          setFallbackImage(fallbackImageSrc);
+        }
       }
     };
 
     checkVideoExists();
-  }, [finalVideoSrc]);
+  }, [finalVideoSrc, fallbackImageSrc]);
+
+  const handleVideoError = () => {
+    setVideoExists(false);
+    setIsLoaded(false);
+    if (fallbackImageSrc) {
+      setFallbackImage(fallbackImageSrc);
+    }
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -58,18 +80,13 @@ export default function BackgroundVideo({
           console.log('Video autoplay failed:', error);
         });
       };
-      
-      const handleError = () => {
-        console.log('Video failed to load');
-        setVideoExists(false);
-      };
 
       video.addEventListener('canplay', handleCanPlay);
-      video.addEventListener('error', handleError);
+      video.addEventListener('error', handleVideoError);
       
       return () => {
         video.removeEventListener('canplay', handleCanPlay);
-        video.removeEventListener('error', handleError);
+        video.removeEventListener('error', handleVideoError);
       };
     }
   }, [videoExists]);
@@ -87,25 +104,40 @@ export default function BackgroundVideo({
           muted
           loop
           playsInline
+          onError={handleVideoError}
           poster={posterSrc ? getAssetPath(posterSrc) : undefined}
         >
           <source src={getAssetPath(finalVideoSrc!)} type="video/mp4" />
         </video>
       )}
 
-      {/* Fallback background when no video (same layer as video) */}
-      {!videoExists && (
+      {/* Fallback background when no video */}
+      {!videoExists && !fallbackImage && (
         <div className="absolute inset-0">
           {/* Dark professional gradient background */}
           <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
         </div>
       )}
 
-      {/* Text readability overlay - only when video exists */}
-      {videoExists && (
+      {/* Fallback image background when no video but image exists */}
+      {!videoExists && fallbackImage && (
+        <div className="absolute inset-0">
+          <img
+            src={fallbackImage}
+            alt="Background"
+            className="w-full h-full object-cover"
+            onError={() => {
+              setFallbackImage(null);
+            }}
+          />
+        </div>
+      )}
+
+      {/* Text readability overlay - when video OR image exists */}
+      {(videoExists || fallbackImage) && (
         <div 
           className="absolute inset-0 z-10" 
-          style={{ opacity: overlayOpacity }}
+          style={{ opacity: videoExists ? overlayOpacity : 0.8 }}
         >
           {/* Exact same background as fallback - replicate the no-video state */}
           <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
@@ -150,7 +182,7 @@ export default function BackgroundVideo({
       )}
 
       {/* Always render lighting effects over video/background - but only when no video overlay */}
-      {!videoExists && (
+      {!videoExists && !fallbackImage && (
         <div className="absolute inset-0 z-10">
           {/* Subtle accent overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-secondary-500/10 to-accent-cyan/20" />
